@@ -8,11 +8,11 @@
   </div>
 
   <header id="header" role="banner" class="clearfix">
-	<?php if ($logo): ?>
-      <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" id="logo">
-        <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-      </a>
-    <?php endif; ?>
+	
+    <div id="c-bip-logo">
+      <a href="/"><img src="/sites/all/themes/framework/images/cbiplogo.gif" width="289" height="74" alt="C-BIP: Columbia Building Intelligence Project" /></a>
+    </div>
+
     <?php if ($site_name || $site_slogan): ?>
       <hgroup id="site-name-slogan">
         <?php if ($site_name): ?>
@@ -29,7 +29,7 @@
     <?php print render($page['header']); ?>
 
     <?php if ($main_menu || $secondary_menu || !empty($page['navigation'])): ?>
-      <nav id="navigation" role="navigation" class="clearfix">
+      <nav id="navigation" role="navigation" >
         <?php if (!empty($page['navigation'])): ?> <!--if block in navigation region, override $main_menu and $secondary_menu-->
           <?php print render($page['navigation']); ?>
         <?php endif; ?>
@@ -61,7 +61,7 @@
         <?php endif; ?>
       </nav> <!-- /#navigation -->
     <?php endif; ?>
-    <?php if ($breadcrumb): print $breadcrumb; endif;?>
+    
   </header> <!-- /#header -->
 
   <section id="main" role="main" class="clearfix">

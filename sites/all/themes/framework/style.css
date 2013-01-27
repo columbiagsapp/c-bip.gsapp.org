@@ -44,10 +44,10 @@ Equation for font sizing:
  */
 
 body {
-  background: #fff;
+  background: #f5f5f5;
   color: #222;
-  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
-  font-size: 100%;
+  font-family: "Times New Roman", "Georgia", serif;
+  font-size: 12px;
   line-height: 1.5;
   margin: 0;
   padding: 0;
@@ -123,8 +123,10 @@ th { padding-right: 1em; }
 #container {
   margin: 0 auto;
   padding: 0 10px;
-  width: 940px;
+  max-width: 1000px;
+
 }
+
 
 /**
  * 3.MAIN
@@ -209,8 +211,8 @@ body.sidebar-second #sidebar-second {
  */
 
 #header {
-  margin: 0;
-  padding: 2.5em 0 0;
+  margin: 20px auto 20px auto;
+  padding: 0;
   position: relative;
 }
 
@@ -240,14 +242,25 @@ body.sidebar-second #sidebar-second {
   margin: 0;
 }
 
+#c-bip-logo {
+  width: 289px;
+  height: 74px;
+  float: left;
+  margin-right: 20px;
+}
+
 /**
  * 6.NAVIGATION
  */
 
 #navigation {
-  clear: both;
+  clear:right;
+  float: left;
   margin: 0;
   padding: 0;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 #navigation ul#main-menu {
@@ -264,9 +277,22 @@ body.sidebar-second #sidebar-second {
 }
 
 #navigation ul#main-menu li a {
+  border: 1px solid black;
+  color: #000000;
   display: block;
-  padding: 0 2em 0 0;
+  margin-left: 10px;
+  padding: 5px;
 }
+
+#navigation ul#main-menu li a:hover {
+  border: 1px solid black;
+  color: #fff;
+  display: block;
+  margin-left: 10px;
+  padding: 5px;
+  background-color: blue;
+}
+
 
 #navigation ul#secondary-menu {
   clear: both;
@@ -428,6 +454,78 @@ ul.secondary a.active {
 
 .password-parent {
   width: 36em;
+}
+
+
+/**
+ * C-BIP VIEWS
+ */
+
+div.view-elements div.view-content div.element  { 
+  background-color: #fff;
+  height: 294px;
+  margin: 0px 20px 20px 0;
+  width: 200px;
+  float: left;
+  padding: 15px;
+
+}
+
+div.views-field-field-element-image {
+  width: 200px;
+  height: 124px;
+  margin-bottom:10px;
+  overflow: hidden;
+}
+
+div.element div.views-field-title {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 186px;
+  max-height: 30px;
+  overflow: hidden;
+  margin: 0 auto 10px auto;
+  text-align: center;
+}
+
+div.views-field-field-element-description, div.views-field-field-student-names {
+  font-size: 12px;
+}
+
+div.views-field-field-student-names {
+  float: left;
+}
+
+div.views-field-field-year {
+  padding-left: 2px;
+}
+
+div.views-field-field-element-tags {
+
+}
+
+/** ABOUT **/
+.view-about .view-content .about {
+  float: left;
+  width: 148px;
+  height: 210px;
+  margin-right: 20px;
+
+}
+
+.about .views-field-field-first-name {
+  float: left;
+  margin-right: 2px;
+  font-family: "Courier New", Courier, monospace;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.about .views-field-title, .about .views-field-field-person-type {
+  font-family: "Courier New", Courier, monospace;
+  text-transform: uppercase;
+  font-weight: bold; 
 }
 
 /**
