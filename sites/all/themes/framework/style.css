@@ -461,13 +461,54 @@ ul.secondary a.active {
  * C-BIP VIEWS
  */
 
-div.view-elements div.view-content div.element  { 
+ div.element-inner {
   background-color: #fff;
   height: 294px;
-  margin: 0px 20px 20px 0;
   width: 200px;
-  float: left;
   padding: 15px;
+  position:relative;
+ }
+
+ div.element-outer {
+ float: left;
+    height: 330px;
+    margin: 22px;
+    position: relative;
+    width: 200px;
+ }
+
+ div.element-data-links {
+background-color: #DDDDDD;
+    height: 18px;
+    margin-bottom: 20px;
+    margin-top: 6px;
+    padding: 6px 15px;
+    text-align: center;
+    width: 200px;
+ }
+
+ div.data-link {
+   color: #AAAAAA;
+    float: left;
+    font-family: "Courier New", Courier, monospace;
+    font-weight: bold;
+    margin-right: 5px;
+    width: 29%;
+ }
+
+div.data-link a {
+  color: blue;
+  padding: 4px;
+}
+
+div.data-link a:hover {
+  border: 1px solid blue;
+
+}
+
+
+div.view-elements div.view-content div.element  { 
+
 
 }
 
@@ -502,6 +543,19 @@ div.views-field-field-year {
 }
 
 div.views-field-field-element-tags {
+  bottom: 10px;
+  height: 20px;
+  overflow: hidden;
+  position: absolute;
+  text-align: center;
+  width: 200px;
+}
+
+div.views-field-field-element-tags a {
+
+ color: blue;
+    font-family: helvetica,arial,sans-serif;
+    font-size: 11px;
 
 }
 
