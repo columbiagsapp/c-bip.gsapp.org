@@ -59,6 +59,39 @@
             ),
           )); ?>
         <?php endif; ?>
+
+        <div id="hidden-secondary-nav-items">
+
+          <div id="hidden-lib-of-work-subitems">
+            <div id="lib-work-elements"><a href="/elements">ELEMENTS</a></div>
+            <div id="lib-work-strategies"><a href="/building-strategies">BUILDING STRATEGIES</a></div>
+            <div id="lib-work-tag-sort">SORT BY TAG
+              <div id="element-and-stategy-tags">
+              <?php 
+                //get terms
+                $vid = taxonomy_vocabulary_machine_name_load("tags")->vid;
+                $terms = taxonomy_get_tree($vid);
+                $terms_to_display = array();
+                $terms_to_display[] = array('All'); // TODO not sure if this should be a page reload? maybe to the tax term page?
+                foreach($terms as $term_object) {
+                  $terms_to_display[] = array($term_object->name);
+                }
+                print '<ul id="terms_for_elements">';
+                foreach($terms_to_display as $term_item) {
+                  print '<li>' . $term_item[0] . '</li>';
+                }
+                print '</ul>';
+
+
+              ?>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+
       </nav> <!-- /#navigation -->
     <?php endif; ?>
     

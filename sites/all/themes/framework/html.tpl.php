@@ -9,6 +9,9 @@
   <meta name="viewport" content="width=device-width" />
   <title><?php print $head_title; ?></title>
   <?php print $styles; ?>
+
+  <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+
   <?php print $scripts; ?>
   <!-- IE Fix for HTML5 Tags -->
   <!--[if lt IE 9]>
