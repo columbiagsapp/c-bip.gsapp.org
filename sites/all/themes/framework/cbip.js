@@ -19,7 +19,10 @@ $(document).ready(function () {
 
   },
     function() { console.log('hiding tags');
-    $('#element-and-stategy-tags').css('top', '-1000px');
+    $('#element-and-stategy-tags').delay(300).css('top', '-1000px');
+
+    // view URL elements/tag/environmental
+
   }
   );
 
