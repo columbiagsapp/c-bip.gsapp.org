@@ -78,7 +78,7 @@
                 }
                 print '<ul id="terms_for_elements">';
                 foreach($terms_to_display as $term_item) {
-                  print '<li>' . $term_item[0] . '</li>';
+                  print '<li><a href="/elements/tag/' . strtolower($term_item[0]) . '">' . $term_item[0] . '</a></li>';
                 }
                 print '</ul>';
 

@@ -55,7 +55,9 @@ foreach($tags_a as $inner_array) {
 }
 
 $first = true;
+
 foreach($taxonomy_terms as $name) {
+
   if ($first == true) {
     print '<a href="#">' . $name[0] . '</a>';
     $first = false;
@@ -64,8 +66,6 @@ foreach($taxonomy_terms as $name) {
   }
 }
 print '</div>';
-
-
 
 print '</div>';
 

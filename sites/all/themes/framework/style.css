@@ -334,6 +334,8 @@ body.sidebar-second #sidebar-second {
 
 #lib-work-tag-sort {
   position:relative;
+  height: 20px;
+
 }
 
 #element-and-stategy-tags {
@@ -348,7 +350,9 @@ body.sidebar-second #sidebar-second {
   padding: 5px;
 }
 
-
+#terms_for_elements li a {
+  color: blue;
+}
 
 .breadcrumb {
   clear: both;
@@ -498,6 +502,7 @@ ul.secondary a.active {
 /**
  * C-BIP VIEWS
  */
+
 
  div.element-inner {
   background-color: #fff;
