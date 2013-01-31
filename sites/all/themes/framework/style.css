@@ -521,10 +521,11 @@ ul.secondary a.active {
  }
 
  div.element-data-links {
-background-color: #DDDDDD;
-    height: 18px;
+ background-color: #DDDDDD;
+    height: 20px;
     margin-bottom: 20px;
     margin-top: 6px;
+    overflow: hidden;
     padding: 6px 15px;
     text-align: center;
     width: 200px;
@@ -533,19 +534,21 @@ background-color: #DDDDDD;
  div.data-link {
    color: #AAAAAA;
     float: left;
-    font-family: "Courier New", Courier, monospace;
+    font-family: "Courier New",Courier,monospace;
     font-weight: bold;
-    margin-right: 5px;
+    height: 18px;
+    margin-right: 2px;
+    overflow: hidden;
     width: 29%;
  }
 
 div.data-link a {
   color: blue;
-  padding: 4px;
+  padding: 2px;
 }
 
 div.data-link a:hover {
-  border: 1px solid blue;
+  text-decoration: underline; /* borders start to act crazy when you have links where the overflow text is being clipped */
 
 }
 

@@ -74,10 +74,33 @@ print '</div>';
 
 print '<div class="element-data-links">'; // pdf file etc
 
-$pdf_link = null;
-$code_link = null;
-$file_link = null;
+$external_links = $node->field_links;
 
+if (array_key_exists('und', $node->field_links)) {
+  // print links
+  foreach($node->field_links['und'] as $link) {
+    // link is array
+    print '<div class="data-link"><a href="' .
+          $link['url'] . '" target="_blank" >' .
+          $link['title'] . '</a></div>';
+  }
+
+}
+/*
+
+            [1] => Array
+                (
+                    [url] => http://google.com
+                    [title] => Code
+                    [attributes] => Array
+                        (
+                        )
+
+                )
+*/
+
+
+/*
 
 if (array_key_exists('und', $node->field_link_to_pdf)) {
   $pdf_link = $node->field_link_to_pdf['und'][0]['url'];
@@ -110,6 +133,7 @@ if (strlen($file_link) > 0) {
   print "FILE";
 }
 print '</div>';
+*/
 print '</div>'; // end data-links
 print '</div>'; // close element
 
