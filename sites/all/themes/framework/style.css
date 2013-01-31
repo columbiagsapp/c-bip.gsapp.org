@@ -127,6 +127,31 @@ th { padding-right: 1em; }
 
 }
 
+#about-left-sidebar {
+  width: 250px;
+  margin-right: 80px;
+  float: left;
+}
+
+.about-heading {
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 24px;
+  margin-bottom: 20px;
+}
+
+.about-long-description {
+   margin-bottom: 20px;
+   font-size: 12px;
+
+}
+
+
+#about-right-view {
+  float: right;
+  width: 666px;
+}
 
 /**
  * 3.MAIN
@@ -606,13 +631,35 @@ div.views-field-field-element-tags a {
 }
 
 /** ABOUT **/
-.view-about .view-content .about {
-  float: left;
-  width: 148px;
-  height: 210px;
-  margin-right: 20px;
+
+#about-people-view, #about-affiliates-view, #about-alumni-view {
+
+  display:inline-table;
+  margin-bottom: 20px;
+
 
 }
+
+
+.about-item {
+  float: left;
+  width: 148px;
+  height: 300px;
+  margin-right: 20px;
+  position:relative;
+  top: -40px;
+}
+
+.about-item .views-field-title {
+  position:absolute;
+  bottom: 0;
+}
+
+.about-view-heading {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;  
+}
+
 
 .about .views-field-field-first-name {
   float: left;
@@ -622,11 +669,25 @@ div.views-field-field-element-tags a {
   font-weight: bold;
 }
 
-.about .views-field-title, .about .views-field-field-person-type {
+
+.person-types {
   font-family: "Courier New", Courier, monospace;
   text-transform: uppercase;
   font-weight: bold; 
 }
+.about-title {
+ font-family: "Courier New", Courier, monospace;
+  text-transform: uppercase;
+  font-weight: bold; 
+}
+
+.about-image {}
+.about-description {
+  position:absolute;
+  bottom: 10;
+
+}
+
 
 /**
  * 8.COMMENTS
