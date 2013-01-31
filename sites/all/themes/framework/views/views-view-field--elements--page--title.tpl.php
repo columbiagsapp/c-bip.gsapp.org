@@ -86,54 +86,7 @@ if (array_key_exists('und', $node->field_links)) {
   }
 
 }
-/*
 
-            [1] => Array
-                (
-                    [url] => http://google.com
-                    [title] => Code
-                    [attributes] => Array
-                        (
-                        )
-
-                )
-*/
-
-
-/*
-
-if (array_key_exists('und', $node->field_link_to_pdf)) {
-  $pdf_link = $node->field_link_to_pdf['und'][0]['url'];
-}
-if (array_key_exists('und', $node->field_link_to_code)) {
-  $code_link = $node->field_link_to_pdf['und'][0]['url'];
-}
-if (array_key_exists('und', $node->field_link_to_file)) {
-  $file_link = $node->field_link_to_pdf['und'][0]['url'];
-}
-
-print '<div class="data-link">';
-if (strlen($pdf_link) > 0) {
-  print '<a href="' . $pdf_link . '" target="_blank">PDF</a>';
-} else {
-  print "PDF";
-}
-print '</div>';
-print '<div class="data-link">';
-if (strlen($code_link) > 0) {
-  print '<a href="' . $code_link . '" target="_blank">CODE</a>';
-} else {
-  print "CODE";
-}
-print '</div>';
-print '<div class="data-link">';
-if (strlen($file_link) > 0) {
-  print '<a href="' . $file_link . '" target="_blank">FILE</a>';
-} else {
-  print "FILE";
-}
-print '</div>';
-*/
 print '</div>'; // end data-links
 print '</div>'; // close element
 
