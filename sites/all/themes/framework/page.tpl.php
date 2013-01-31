@@ -1,5 +1,4 @@
 <div id="container" class="clearfix">
-
   <div id="skip-link">
     <a href="#main-content" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a>
     <?php if ($main_menu): ?>
@@ -76,12 +75,28 @@
                 foreach($terms as $term_object) {
                   $terms_to_display[] = array($term_object->name);
                 }
-                print '<ul id="terms_for_elements">';
-                foreach($terms_to_display as $term_item) {
-                  print '<li><a href="/elements/tag/' . strtolower($term_item[0]) . '">' . $term_item[0] . '</a></li>';
-                }
-                print '</ul>';
+                
+                $uri = $_SERVER['REQUEST_URI'];
+                $strategies = false;
 
+                if (strpos($uri, '/building-strategies') !== FALSE) {
+                  $strategies = true;
+                }
+                $element_tag_ul = '<ul id="terms_for_elements">';
+
+                foreach($terms_to_display as $term_item) {
+                  if ($strategies == true) {
+                    $element_tag_ul .= '<li><a href="/building-strategies/tag/' . strtolower($term_item[0]) . '">' . $term_item[0] . '</a></li>';
+                  } else {
+                    $element_tag_ul .= '<li><a href="/elements/tag/' . strtolower($term_item[0]) . '">' . $term_item[0] . '</a></li>';
+                  }
+                }
+                $element_tag_ul .= '</ul>';
+                print $element_tag_ul;
+
+
+
+                
 
               ?>
               </div>
