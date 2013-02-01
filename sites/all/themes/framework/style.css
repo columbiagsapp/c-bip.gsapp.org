@@ -123,14 +123,21 @@ th { padding-right: 1em; }
 #container {
   margin: 0 auto;
   padding: 0 10px;
-  max-width: 1000px;
+  max-width: 1100px;
 
 }
 
+#about-page {
+  position:relative;
+}
+
 #about-left-sidebar {
-  width: 250px;
-  margin-right: 80px;
-  float: left;
+  background-color: #F5F5F5;
+    float: left;
+    margin-right: 80px;
+    position: absolute;
+    width: 250px;
+    z-index: 5;
 }
 
 .about-heading {
@@ -149,8 +156,10 @@ th { padding-right: 1em; }
 
 
 #about-right-view {
-  float: right;
-  width: 666px;
+    left: 280px;
+    max-width: 800px;
+    position: absolute;
+    
 }
 
 /**
@@ -643,11 +652,12 @@ div.views-field-field-element-tags a {
 
 .about-item {
   float: left;
-  width: 148px;
-  height: 300px;
+  height: 230px;
+  margin-bottom: 40px;
   margin-right: 20px;
-  position:relative;
+  position: relative;
   top: -40px;
+  width: 148px;
 }
 
 .about-item .views-field-title {
@@ -658,6 +668,7 @@ div.views-field-field-element-tags a {
 .about-view-heading {
   font-family: "Courier New", Courier, monospace;
   font-weight: bold;  
+  margin-bottom: 40px;
 }
 
 
@@ -686,6 +697,16 @@ div.views-field-field-element-tags a {
   position:absolute;
   bottom: 10;
 
+}
+
+.about-affiliate-url a {
+  color: black;
+  text-decoration: none;
+}
+
+.about-affiliate-url a:hover {
+  color: black;
+  text-decoration: underline;
 }
 
 

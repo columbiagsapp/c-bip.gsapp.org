@@ -21,8 +21,7 @@
       print '<div id="about-people-view"><div class="about-view-heading">PEOPLE</div>' .
             views_embed_view('about', "page") . '</div>';
      
-      print '<div id="about-affiliates-view"><div class="about-view-heading">AFFILIATES</div>' . views_embed_view('affiliates_view', "page") . 
-            '</div>';
+      print '<div id="about-affiliates-view"><div class="about-view-heading">AFFILIATES</div>' .    views_embed_view('affiliates_view', "page_1") . '</div>';
      
       print '<div id="about-alumni-view"><div class="about-view-heading">ALUMNUS</div>' . views_embed_view('alumni_view', "page_1") . '</div>';
 
