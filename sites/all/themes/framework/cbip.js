@@ -28,11 +28,11 @@ $(document).ready(function () {
 
 
   $('#lib-work-tag-sort').hover(
-    function() { 
+    function() { console.log('showing tags')
     $('#element-and-stategy-tags').css('top', '20px');
 
   },
-    function() { 
+    function() { console.log('hiding tags');
     $('#element-and-stategy-tags').delay(300).css('top', '-1000px');
 
     // view URL elements/tag/environmental

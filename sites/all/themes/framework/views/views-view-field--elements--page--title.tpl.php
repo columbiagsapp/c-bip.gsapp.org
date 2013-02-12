@@ -74,18 +74,37 @@ print '</div>';
 
 print '<div class="element-data-links">'; // pdf file etc
 
-$external_links = $node->field_links;
 
-if (array_key_exists('und', $node->field_links)) {
-  // print links
-  foreach($node->field_links['und'] as $link) {
-    // link is array
-    print '<div class="data-link"><a href="' .
-          $link['url'] . '" target="_blank" >' .
-          $link['title'] . '</a></div>';
+  if(isset( $node->field_element_files )){
+    $external_links = $node->field_element_files;
+
+    if (array_key_exists('und', $node->field_element_files)) {
+      // print links
+      foreach($node->field_element_files['und'] as $file) {
+        // file is array
+        print '<div class="data-link"><a href="' .
+              file_create_url($file['uri']) . '" target="_blank" >' .
+              $file['description'] . '</a></div>';
+      }
+    }
   }
 
-}
+  if(isset( $node->field_links )){
+    $external_links = $node->field_links;
+
+    if (array_key_exists('und', $node->field_links)) {
+      // print links
+      foreach($node->field_links['und'] as $link) {
+        // link is array
+        print '<div class="data-link"><a href="' .
+              $link['url'] . '" target="_blank" >' .
+              $link['title'] . '</a></div>';
+      }
+
+    }
+  }
+
+
 
 print '</div>'; // end data-links
 print '</div>'; // close element
