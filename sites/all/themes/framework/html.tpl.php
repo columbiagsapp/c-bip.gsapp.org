@@ -17,6 +17,8 @@
   <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
+
+  <script type="text/javascript" src="http://fast.fonts.com/jsapi/7ae7343d-e0e4-45fd-a488-2bfa26bd5754.js"></script>
 </head>
 
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>

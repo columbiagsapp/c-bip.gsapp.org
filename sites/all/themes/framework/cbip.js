@@ -11,21 +11,6 @@ $(document).ready(function () {
 
 
   
-  // show hide various menus based on pathname
-  switch (pathname) {
-    case '/elements':
-      $("#hidden-lib-of-work-subitems").show();
-      break;
-    case '/building-strategies':
-      $("#hidden-lib-of-work-subitems").show();
-      break;
-  }
-
-  if (/elements./.test(pathname)) {
-    $("#hidden-lib-of-work-subitems").show();
-    // set tags to be bordered by box
-  }
-
 
   $('#lib-work-tag-sort').hover(
     function() { console.log('showing tags')

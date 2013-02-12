@@ -292,25 +292,27 @@ body.sidebar-second #sidebar-second {
   float: left;
   margin: 0;
   padding: 0;
-  font-family: "Courier New", Courier, monospace;
+  font-family: 'OCR B W01 Regular', 'Courier New', Courier, monospace;
   font-weight: bold;
   text-transform: uppercase;
+  font-size: 9px;
 }
 
-#navigation ul#main-menu {
+#navigation #block-system-main-menu ul.menu {
   clear: both;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-#navigation ul#main-menu li {
+#navigation ul.menu li {
   float: left;
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
-#navigation ul#main-menu li a {
+#navigation #block-system-main-menu ul.menu li a {
   border: 1px solid black;
   color: #000000;
   display: block;
@@ -318,7 +320,7 @@ body.sidebar-second #sidebar-second {
   padding: 5px;
 }
 
-#navigation ul#main-menu li a:hover {
+#navigation #block-system-main-menu ul.menu li a:hover {
   border: 1px solid black;
   color: #fff;
   display: block;
@@ -346,9 +348,7 @@ body.sidebar-second #sidebar-second {
   padding: 0 2em 0 0;
 }
 
-#hidden-secondary-nav-items > * {
-  display:none;
-}
+
 
 #hidden-lib-of-work-subitems > div {
   float: left;
@@ -361,15 +361,24 @@ body.sidebar-second #sidebar-second {
   padding: 6px;
 }
 
-#hidden-lib-of-work-subitems > div > a:hover{
+#hidden-lib-of-work-subitems > div > a:hover,
+#hidden-lib-of-work-subitems > div > a.active{
   border: 1px solid blue;
   padding: 5px;
 }
 
-#lib-work-tag-sort {
-  position:relative;
-  height: 20px;
+#lib-work-tag-sort #lib-work-tag-sort-title{
+  border: 1px solid blue;
+  padding: 5px;
+}
 
+#lib-work-tag-caret{
+  padding-left: 3px;
+  vertical-align: text-top;
+  height: 9px;
+  width: auto;
+  position: relative;
+  top: 2px;
 }
 
 #element-and-stategy-tags {
@@ -536,27 +545,25 @@ ul.secondary a.active {
 /**
  * C-BIP VIEWS
  */
-
+ div.element {
+    float: left;
+    height: 368px;
+    margin: 0 22px 22px 0;
+    position: relative;
+    width: 230px;
+ }
 
  div.element-inner {
   background-color: #fff;
-  height: 294px;
+  height: 304px;
   width: 200px;
   padding: 15px;
   position:relative;
  }
 
- div.element-outer {
- float: left;
-    height: 330px;
-    margin: 22px;
-    position: relative;
-    width: 200px;
- }
-
  div.element-data-links {
- background-color: #DDDDDD;
-    height: 20px;
+    background-color: #DDDDDD;
+    height: 16px;
     margin-bottom: 20px;
     margin-top: 6px;
     overflow: hidden;
@@ -568,22 +575,24 @@ ul.secondary a.active {
  div.data-link {
    color: #AAAAAA;
     float: left;
-    font-family: "Courier New",Courier,monospace;
+    font-family: 'OCR B W01 Regular', 'Courier New',Courier,monospace;
     font-weight: bold;
-    height: 18px;
+    height: 17px;
     margin-right: 2px;
     overflow: hidden;
     width: 29%;
+    font-size:9px;
  }
 
 div.data-link a {
   color: blue;
   padding: 2px;
+  position: relative;
+  top:2px;
 }
 
 div.data-link a:hover {
-  text-decoration: underline; /* borders start to act crazy when you have links where the overflow text is being clipped */
-
+  border:1px solid;
 }
 
 
@@ -600,11 +609,11 @@ div.views-field-field-element-image {
 }
 
 div.element div.views-field-title {
-  font-family: "Courier New", Courier, monospace;
+  font-family: 'OCR B W01 Regular', 'Courier New', Courier, monospace;
   font-weight: bold;
   text-transform: uppercase;
   width: 186px;
-  max-height: 30px;
+  max-height: 40px;
   overflow: hidden;
   margin: 0 auto 10px auto;
   text-align: center;
@@ -666,7 +675,7 @@ div.views-field-field-element-tags a {
 }
 
 .about-view-heading {
-  font-family: "Courier New", Courier, monospace;
+  font-family: "OCR B W01 Regular", "Courier New", Courier, monospace;
   font-weight: bold;  
   margin-bottom: 40px;
 }
@@ -675,19 +684,19 @@ div.views-field-field-element-tags a {
 .about .views-field-field-first-name {
   float: left;
   margin-right: 2px;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "OCR B W01 Regular", "Courier New", Courier, monospace;
   text-transform: uppercase;
   font-weight: bold;
 }
 
 
 .person-types {
-  font-family: "Courier New", Courier, monospace;
+  font-family: "OCR B W01 Regular", "Courier New", Courier, monospace;
   text-transform: uppercase;
   font-weight: bold; 
 }
 .about-title {
- font-family: "Courier New", Courier, monospace;
+ font-family: "OCR B W01 Regular", "Courier New", Courier, monospace;
   text-transform: uppercase;
   font-weight: bold; 
 }
