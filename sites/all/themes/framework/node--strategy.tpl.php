@@ -1,8 +1,6 @@
 
-
-<div class="element-outer">
 <div class="element">
-
+  <a href="#" target="_blank">
 
   <div class="element-inner">
 <?php
@@ -74,9 +72,11 @@ print '</div>';
 
 print '</div>';
 
+print '</a>';
+
 print '</div>'; // close element
 
-print '</div>'; // close element-outer
+
 
 
 
