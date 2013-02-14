@@ -46,7 +46,7 @@ Equation for font sizing:
 body {
   background: #f5f5f5;
   color: #222;
-  font-family: "Times New Roman", "Georgia", serif;
+  font-family: 'Plantin W02', 'Times New Roman', Times, serif;
   font-size: 12px;
   line-height: 1.5;
   margin: 0;
@@ -123,7 +123,7 @@ th { padding-right: 1em; }
 #container {
   margin: 0 auto;
   padding: 0 10px;
-  max-width: 1100px;
+  max-width: 1260px;
 
 }
 
@@ -245,7 +245,7 @@ body.sidebar-second #sidebar-second {
  */
 
 #header {
-  margin: 20px auto 20px auto;
+  margin: 20px auto 50px auto;
   padding: 0;
   position: relative;
 }
@@ -289,11 +289,9 @@ body.sidebar-second #sidebar-second {
 
 #navigation {
   clear:right;
-  float: left;
-  margin: 0;
+  float: right;
+  margin: 0 22px 0 0;
   padding: 0;
-  font-family: 'OCR B W01 Regular', 'Courier New', Courier, monospace;
-  font-weight: bold;
   text-transform: uppercase;
   font-size: 9px;
 }
@@ -317,15 +315,12 @@ body.sidebar-second #sidebar-second {
   color: #000000;
   display: block;
   margin-left: 10px;
-  padding: 5px;
+  padding: 3px 10px;
 }
 
 #navigation #block-system-main-menu ul.menu li a:hover {
   border: 1px solid black;
   color: #fff;
-  display: block;
-  margin-left: 10px;
-  padding: 5px;
   background-color: blue;
 }
 
@@ -352,24 +347,55 @@ body.sidebar-second #sidebar-second {
 
 #hidden-lib-of-work-subitems > div {
   float: left;
-  margin: 20px 20px 0 10px;
+  margin: 20px 0 0 10px;
   color: blue;
 }
 
 #hidden-lib-of-work-subitems > div > a{
   color: blue;
-  padding: 6px;
+  padding: 3px 11px;
 }
 
 #hidden-lib-of-work-subitems > div > a:hover,
 #hidden-lib-of-work-subitems > div > a.active{
   border: 1px solid blue;
-  padding: 5px;
+  padding: 3px 10px;
 }
 
-#lib-work-tag-sort #lib-work-tag-sort-title{
+#lib-work-tag-wrapper{
+  float: left;
+  margin: 20px 0 0 10px;
+  padding: 0;
+  position:relative;
+  top:-5px;
+  z-index:10;
+}
+
+#lib-work-tag-sort{
+  color: blue;
+  list-style: none !important;
+  position:absolute;
+  top: 0;
   border: 1px solid blue;
-  padding: 5px;
+  background-color: #f5f5f5;
+  min-width: 87px;
+  margin: 0;
+  padding: 1px 10px 3px;
+  top: 2px;
+}
+
+#lib-work-tag-sort > li.list-heading{
+ 
+}
+
+#lib-work-tag-sort > li.list-item{
+  line-height: 18px;
+  text-transform: none !important;
+  display:none;
+}
+
+#lib-work-tag-sort > li.list-item.first{
+  margin-top:7px;
 }
 
 #lib-work-tag-caret{
@@ -379,18 +405,6 @@ body.sidebar-second #sidebar-second {
   width: auto;
   position: relative;
   top: 2px;
-}
-
-#element-and-stategy-tags {
-  text-transform: none;
-  position: absolute;
-  top: -1000px;
-  background-color: #F5F5F5;
-  border: 1px solid blue;
-  min-height: 200px;
-  width: 200px;
-  z-index: 50;
-  padding: 5px;
 }
 
 #terms_for_elements li a {
@@ -547,7 +561,7 @@ ul.secondary a.active {
  */
  div.element {
     float: left;
-    height: 368px;
+    height: 329px;
     margin: 0 22px 22px 0;
     position: relative;
     width: 230px;
@@ -555,7 +569,7 @@ ul.secondary a.active {
 
  div.element-inner {
   background-color: #fff;
-  height: 304px;
+  height: 259px;
   width: 200px;
   padding: 15px;
   position:relative;
@@ -563,8 +577,7 @@ ul.secondary a.active {
 
  div.element-data-links {
     background-color: #DDDDDD;
-    height: 16px;
-    margin-bottom: 20px;
+    height: 18px;
     margin-top: 6px;
     overflow: hidden;
     padding: 6px 15px;
@@ -575,8 +588,6 @@ ul.secondary a.active {
  div.data-link {
    color: #AAAAAA;
     float: left;
-    font-family: 'OCR B W01 Regular', 'Courier New',Courier,monospace;
-    font-weight: bold;
     height: 17px;
     margin-right: 2px;
     overflow: hidden;
@@ -609,8 +620,6 @@ div.views-field-field-element-image {
 }
 
 div.element div.views-field-title {
-  font-family: 'OCR B W01 Regular', 'Courier New', Courier, monospace;
-  font-weight: bold;
   text-transform: uppercase;
   width: 186px;
   max-height: 40px;
@@ -619,8 +628,8 @@ div.element div.views-field-title {
   text-align: center;
 }
 
-div.views-field-field-element-description, div.views-field-field-student-names {
-  font-size: 12px;
+div.views-field-field-element-description, div.views-field-field-student-names, div.student-names-year {
+  font-size: 11px;
 }
 
 div.views-field-field-student-names {
@@ -638,14 +647,6 @@ div.views-field-field-element-tags {
   position: absolute;
   text-align: center;
   width: 200px;
-}
-
-div.views-field-field-element-tags a {
-
- color: blue;
-    font-family: helvetica,arial,sans-serif;
-    font-size: 11px;
-
 }
 
 /** ABOUT **/
@@ -675,8 +676,6 @@ div.views-field-field-element-tags a {
 }
 
 .about-view-heading {
-  font-family: "OCR B W01 Regular", "Courier New", Courier, monospace;
-  font-weight: bold;  
   margin-bottom: 40px;
 }
 
@@ -684,21 +683,14 @@ div.views-field-field-element-tags a {
 .about .views-field-field-first-name {
   float: left;
   margin-right: 2px;
-  font-family: "OCR B W01 Regular", "Courier New", Courier, monospace;
   text-transform: uppercase;
-  font-weight: bold;
 }
-
 
 .person-types {
-  font-family: "OCR B W01 Regular", "Courier New", Courier, monospace;
   text-transform: uppercase;
-  font-weight: bold; 
 }
 .about-title {
- font-family: "OCR B W01 Regular", "Courier New", Courier, monospace;
   text-transform: uppercase;
-  font-weight: bold; 
 }
 
 .about-image {}
@@ -743,7 +735,7 @@ div.views-field-field-element-tags a {
  */
 
 .block {
-  margin-bottom: 1.5em;
+
 }
 
 /**
@@ -777,3 +769,26 @@ div.views-field-field-element-tags a {
 
 /* display block */
 .display-block { display: block; }
+
+
+#navigation,
+div.data-link,
+div.element div.views-field-title,
+.about-view-heading,
+.about .views-field-field-first-name,
+.person-types,
+.about-title{
+  font-family: 'OCR B W01 Regular', Verdana, monospace;
+  font-size:9px;
+}
+
+
+div.views-field-field-element-tags a,
+#lib-work-tag-sort > li.list-item a{
+  font-size:10px;
+  font-family:'Swiss 721 W01 Condensed', 'Helvetica Neue', Helvetica, sans-serif;
+  color:#3A5BFB !important;
+}
+
+
+

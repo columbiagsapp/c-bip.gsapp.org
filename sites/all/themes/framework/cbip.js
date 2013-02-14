@@ -14,11 +14,11 @@ $(document).ready(function () {
 
   $('#lib-work-tag-sort').hover(
     function() { console.log('showing tags')
-    $('#element-and-stategy-tags').css('top', '20px');
+      $('li.list-item', this).show();
 
   },
     function() { console.log('hiding tags');
-    $('#element-and-stategy-tags').delay(300).css('top', '-1000px');
+      $('li.list-item', this).hide();
 
     // view URL elements/tag/environmental
 
@@ -27,7 +27,7 @@ $(document).ready(function () {
 
   $('#element-and-stategy-tags').hover(
     function() {
-      $(this).css('top', '20px');
+      //$(this).css('top', '20px');
 
     });
 
