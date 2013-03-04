@@ -12,8 +12,13 @@
       <a href="/"><img src="/sites/all/themes/framework/images/cbiplogo.gif" width="289" height="74" alt="C-BIP: Columbia Building Intelligence Project" /></a>
     </div>
 
+    <div id="oldcastle-logo">
+      <a target="_blank" href="http://www.oldcastle.com/index.php"><img src="/sites/all/themes/framework/images/oldcastle.png" width="251" height="21" alt="Oldcastle Building Envelope" /></a>
+    </div>
 
-    <?php print render($page['header']); ?>
+    <div id="carousel">
+      content
+    </div>
 
     <?php if (!empty($page['navigation'])){ ?>
       <nav id="navigation" role="navigation" >

@@ -283,12 +283,29 @@ body.sidebar-second #sidebar-second {
   margin-right: 20px;
 }
 
+#oldcastle-logo{
+  width:251px;
+  height:21px;
+  float:right;
+}
+
+#carousel{
+  width:100%;
+  height:400px;
+  background-color: black;
+  display: block;
+  color:white;
+  float:left;
+  margin-top:40px;
+  margin-bottom:100px;
+}
+
 /**
  * 6.NAVIGATION
  */
 
 #navigation {
-  clear:right;
+  clear:both;
   float: right;
   margin: 0 22px 0 0;
   padding: 0;
