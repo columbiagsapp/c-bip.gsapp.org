@@ -284,12 +284,35 @@ body.sidebar-second #sidebar-second {
 }
 
 #oldcastle-logo{
+  display: none;
+}
+
+.front #oldcastle-logo{
   width:251px;
   height:21px;
   float:right;
+  display: block;
 }
 
+
+#gsapp-logo{
+  display:none;
+}
+
+.front #gsapp-logo{
+  width:70px;
+  height:14px;
+  margin-top: 74px;/* C-BIP logo height */
+  float:left;
+  display: block;
+}
+
+
 #carousel{
+  display:none;
+}
+
+.front #carousel{
   width:100%;
   height:400px;
   background-color: black;
@@ -297,15 +320,17 @@ body.sidebar-second #sidebar-second {
   color:white;
   float:left;
   margin-top:40px;
-  margin-bottom:100px;
 }
 
 /**
  * 6.NAVIGATION
  */
 
+.front #navigation{
+  margin: 74px 0 0 0;/* C-BIP logo height */
+}
+
 #navigation {
-  clear:both;
   float: right;
   margin: 0 22px 0 0;
   padding: 0;

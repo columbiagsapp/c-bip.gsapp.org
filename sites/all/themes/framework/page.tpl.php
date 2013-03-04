@@ -20,6 +20,10 @@
       content
     </div>
 
+    <div id="gsapp-logo">
+      <a target="_blank" href="http://arch.columbia.edu"><img src="/sites/all/themes/framework/images/gsapp-logo.png" width="70" height="14" alt="Columbia University GSAPP" /></a>
+    </div>
+
     <?php if (!empty($page['navigation'])){ ?>
       <nav id="navigation" role="navigation" >
           <?php print render($page['navigation']); ?>
@@ -31,27 +35,6 @@
   <section id="main" role="main" class="clearfix">
     <?php print $messages; ?>
     <a id="main-content"></a>
-    <?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']); ?></div><?php endif; ?>
-    <?php print render($title_prefix); ?>
-
-
-
-  <?php 
-  if (array_key_exists("nodes", $page['content']['system_main'])) {
-    $nodes = $page['content']['system_main']['nodes'];
-    if (array_key_exists(56, $nodes)) {
-        #pass
-      } else {
-          if ($title) {
-            print '<h1 class="title" id="page-title">' . $title . '</h1>';
-          }
-      }  
-  }
-  ?>
-    <?php print render($title_suffix); ?>
-    <?php if (!empty($tabs['#primary'])): ?><div class="tabs-wrapper clearfix"><?php print render($tabs); ?></div><?php endif; ?>
-    <?php print render($page['help']); ?>
-    <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
     <?php print render($page['content']); ?>
   </section> <!-- /#main -->
   
