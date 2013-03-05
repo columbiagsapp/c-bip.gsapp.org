@@ -175,6 +175,7 @@ th { padding-right: 1em; }
   display: block;
   margin: 0;
   margin-top:150px;
+  width:100%;
 }
 
 .front #main{
@@ -509,6 +510,13 @@ body.sidebar-second #sidebar-second {
 
 #terms_for_elements li a {
   color: blue;
+}
+
+#current-tag-in-menu{
+  position: absolute;
+  top: 27px;
+  margin-left: 10px;
+  z-index:9;
 }
 
 .breadcrumb {
@@ -888,10 +896,12 @@ div.element div.views-field-title,
 
 
 div.views-field-field-element-tags a,
-#lib-work-tag-sort > li.list-item a{
+#lib-work-tag-sort > li.list-item a,
+#current-tag-in-menu{
   font-size:10px;
   font-family:'Swiss 721 W01 Condensed', 'Helvetica Neue', Helvetica, sans-serif;
   color:#3A5BFB !important;
+  text-transform: none;
 }
 
 

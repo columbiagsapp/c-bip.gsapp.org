@@ -14,11 +14,12 @@ $(document).ready(function () {
   $('#lib-work-tag-sort').hover(
     function() { console.log('showing tags')
       $('li.list-item', this).show();
+      $('#current-tag-in-menu').hide();
 
   },
     function() { console.log('hiding tags');
       $('li.list-item', this).hide();
-
+      $('#current-tag-in-menu').show();
     // view URL elements/tag/environmental
 
   }
@@ -183,6 +184,33 @@ $(document).ready(function () {
 
   //$('#navigation .menu a').bind('click', closeHomepage);
 
+
+
+
+  function appendTagFilter(){
+    var pathArray = window.document.location.pathname.split('/');
+    console.log('pathArray:');
+    console.dir(pathArray);
+
+    if($.inArray('tag', pathArray) >= 0){
+      var tag = pathArray.pop();
+
+      tag = tag.charAt(0).toUpperCase() + tag.slice(1);//capitalize first letter
+      console.log('tag: ' + tag);
+      switch(pathArray[1]){
+        case 'library':
+          console.log('library');
+          var html = '<div id="current-tag-in-menu">' + tag + "<div>"
+          $('#lib-work-tag-wrapper').append( html );//append to the div that wraps the ul
+          break;
+        default:
+          console.log('default, '+ pathArray[1]);
+          break;
+      }
+    }
+  }
+
+  appendTagFilter();
 
 
 
