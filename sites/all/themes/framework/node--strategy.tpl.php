@@ -1,8 +1,7 @@
 
-<div class="element">
-  <a href="#" target="_blank">
+<div class="strategy" href="#">
 
-  <div class="element-inner">
+  <div class="strategy-inner">
 <?php
 $image_uri = $node->field_element_image['und'][0]['uri'];
 $style = 'element_200x124';
@@ -72,7 +71,6 @@ print '</div>';
 
 print '</div>';
 
-print '</a>';
 
 print '</div>'; // close element
 

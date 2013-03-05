@@ -137,7 +137,7 @@ th { padding-right: 1em; }
 #about-left-sidebar {
   background-color: #F5F5F5;
     float: left;
-    margin-right: 80px;
+    margin-right: 30px;
     position: absolute;
     width: 250px;
     z-index: 5;
@@ -160,7 +160,7 @@ th { padding-right: 1em; }
 
 #about-right-view {
     left: 280px;
-    max-width: 800px;
+    max-width: 980px;
     position: absolute;
     
 }
@@ -387,7 +387,7 @@ body.sidebar-second #sidebar-second {
 
 #navigation {
   float: right;
-  margin: 0 22px 0 0;
+  margin:0;
   padding: 0;
   text-transform: uppercase;
   font-size: 9px;
@@ -667,20 +667,52 @@ ul.secondary a.active {
 /**
  * C-BIP VIEWS
  */
- div.element {
+ div.element,
+ .strategy {
     float: left;
-    height: 329px;
     margin: 0 22px 22px 0;
     position: relative;
-    width: 230px;
+    
+    color:black;
  }
 
- div.element-inner {
+ div.element{
+  height: 329px;
+  width: 230px;
+ }
+
+ .strategy{
+  height:287px;
+  width: 228px;
+  padding:1px;
+ }
+
+ .strategy:hover{
+  border:1px solid #3A5BFB;
+  padding:0 !important;
+ 
+  cursor:pointer;
+ }
+
+ 
+
+  .strategy a,
+  .strategy a:hover{
+  color:black !important;
+ }
+
+
+ div.element-inner,
+ .strategy-inner {
   background-color: #fff;
-  height: 259px;
-  width: 200px;
+  width:198px;
+  height:257px;
   padding: 15px;
   position:relative;
+ }
+
+ .strategy:hover .strategy-inner{
+  padding: 15px !important;
  }
 
  div.element-data-links {
@@ -727,7 +759,8 @@ div.views-field-field-element-image {
   overflow: hidden;
 }
 
-div.element div.views-field-title {
+div.element div.views-field-title,
+.strategy div.views-field-title{
   text-transform: uppercase;
   width: 186px;
   max-height: 40px;
@@ -886,6 +919,7 @@ div.views-field-field-element-tags {
 #navigation,
 div.data-link,
 div.element div.views-field-title,
+div.strategy div.views-field-title,
 .about-view-heading,
 .about .views-field-field-first-name,
 .person-types,
