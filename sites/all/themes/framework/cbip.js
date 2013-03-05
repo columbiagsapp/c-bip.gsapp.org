@@ -5,19 +5,18 @@ $(document).ready(function () {
 
 
   var pathname = window.location.pathname;
-  console.log(pathname);
 
 
   
 
 
   $('#lib-work-tag-sort').hover(
-    function() { console.log('showing tags')
+    function() { 
       $('li.list-item', this).show();
       $('#current-tag-in-menu').hide();
 
   },
-    function() { console.log('hiding tags');
+    function() { 
       $('li.list-item', this).hide();
       $('#current-tag-in-menu').show();
     // view URL elements/tag/environmental
@@ -70,7 +69,6 @@ $(document).ready(function () {
 
     switch(window.document.location.pathname){
       case '/about':
-        console.log('scrollTop: '+ $(document).scrollTop());
         var peopleLocation = parseInt( $("#about-people-view").offset().top ) - parseInt( $('#main').css('marginTop') );
         var affiliatesLocation = parseInt( $("#about-affiliates-view").offset().top ) - parseInt( $('#main').css('marginTop') );
         
@@ -189,22 +187,17 @@ $(document).ready(function () {
 
   function appendTagFilter(){
     var pathArray = window.document.location.pathname.split('/');
-    console.log('pathArray:');
-    console.dir(pathArray);
 
     if($.inArray('tag', pathArray) >= 0){
       var tag = pathArray.pop();
 
       tag = tag.charAt(0).toUpperCase() + tag.slice(1);//capitalize first letter
-      console.log('tag: ' + tag);
       switch(pathArray[1]){
         case 'library':
-          console.log('library');
           var html = '<div id="current-tag-in-menu">' + tag + "<div>"
           $('#lib-work-tag-wrapper').append( html );//append to the div that wraps the ul
           break;
         default:
-          console.log('default, '+ pathArray[1]);
           break;
       }
     }
@@ -212,6 +205,17 @@ $(document).ready(function () {
 
   appendTagFilter();
 
+
+
+  function resizeHeader(){
+    var cellWidth = 230;//parseInt( $('.element').width() );
+    var cellSpacing = 22;//parseInt( $('.element').css('marginRight') );
+    var x = Math.floor( window.innerWidth / (cellWidth + cellSpacing) );
+
+    var newWidth = (x * cellWidth) + ( (x-1) * cellSpacing);
+
+    $('#header').width( newWidth );
+  }
 
 
   //sets the height of the carousel on the homepage
@@ -229,21 +233,55 @@ $(document).ready(function () {
     $('#carousel').height( carouselHeight+'px' );
   }
 
-  if( $('body').hasClass('front')){
-    setCarouselHeight();
-    cycleCarousel();
+
+  function resizeCarouselImage(){
+    var carousel_prev_next_width = parseInt( $('#carousel-prev').width() );
+    var header_width = parseInt( $('#header').width() );
+    var avail_width = header_width - carousel_prev_next_width;
+    var avail_height = parseInt( $('#carousel').height() );
+
+    var imageWidth = 764;//$('#carousel-image-1').width();
+    var imageHeight = 460;//$('#carousel-image-1').height();
+
+    var avail_aspect = avail_width / avail_height;
+    var image_aspect = imageWidth / imageHeight;
+
+    console.log('avail_width: '+ avail_width);
+    console.log('avail_height: '+ avail_height);
+    console.log('avail_aspect: '+ avail_aspect);
+    console.log('imageWidth: '+ imageWidth);
+    console.log('imageHeight: '+ imageHeight);
+    console.log('image_aspect: '+ image_aspect);
+
+    var carousel_images_selector = '#carousel-image-1, #carousel-image-2, #carousel-image-3, #carousel-image-4, #carousel-image-5, #carousel-image-6, #carousel-image-7';
+
+    if(avail_aspect > image_aspect){
+      $(carousel_images_selector).height( avail_height + 'px');
+      $(carousel_images_selector).css('width', 'auto');
+    }else{
+      $(carousel_images_selector).width( avail_width + 'px');
+      $(carousel_images_selector).css('height', 'auto');
+    }
+
+
   }
 
   function resizeFunc(){
     $('#header').width( $('#container').width() );
+    resizeHeader();
     if( $('body').hasClass('front')){
       setCarouselHeight();
+      resizeCarouselImage();
     }
+    
   }
 
   resizeFunc();
-
   $(window).resize( resizeFunc);
+
+  if( $('body').hasClass('front')){
+    cycleCarousel();
+  }
   
 
 });
