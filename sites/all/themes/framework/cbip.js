@@ -33,30 +33,78 @@ $(document).ready(function () {
 
 
 
-  //sets the height of the carousel on the homepage
-  function setCarouselHeight(){
+  
 
-    var headerMarginTop = parseInt( $('#header').css('marginTop') );
-    var cBIPlogoHeight = parseInt( $('#c-bip-logo').height() );
-    var carouselMarginTop = parseInt( $('#carousel').css('marginTop') );
-    var navMarginTop = parseInt( $('#navigation').css('marginTop') );
-    var navHeight = parseInt( $('#navigation').height() );
-    var navBottomOffset = 26;//set by Leigha's design
 
-    var carouselHeight = window.innerHeight - headerMarginTop - cBIPlogoHeight - carouselMarginTop - navMarginTop - navHeight - navBottomOffset;
+  var TOTAL_CAROUSEL_IMAGES = 4;
+  var CURRENT_CAROUSEL_IMAGE_INDEX = 1;
 
-    $('#carousel').height( carouselHeight+'px' );
-  }
+  function incrementCarousel(){
 
-  if( $('body').hasClass('front')){
-    setCarouselHeight();
-  }
+    clearTimeout(current_timeout_id);
 
-  $(window).resize(function() {
-    if( $('body').hasClass('front')){
-      setCarouselHeight();
+    $('#carousel-image-' + CURRENT_CAROUSEL_IMAGE_INDEX ).hide();
+
+    if( CURRENT_CAROUSEL_IMAGE_INDEX >= TOTAL_CAROUSEL_IMAGES ){
+      CURRENT_CAROUSEL_IMAGE_INDEX = 1;
+    }else{
+      CURRENT_CAROUSEL_IMAGE_INDEX++;
     }
-  });
+
+    //need to unload intro1.gif and reload so it starts at the first frame, same for any other animated GIF
+    if(CURRENT_CAROUSEL_IMAGE_INDEX == 1){
+      var uncachedSrc = '/sites/all/themes/framework/images/intro1.gif?' + Math.floor( Math.random()*10000 );
+      $('#carousel-image-1').attr('src', '');
+      $('#carousel-image-1').attr('src', uncachedSrc);
+    }
+    $('#carousel-image-' + CURRENT_CAROUSEL_IMAGE_INDEX ).show();
+
+    //cycleCarousel();
+
+  }
+
+  function decrementCarousel(){
+    clearTimeout(current_timeout_id);
+
+    $('#carousel-image-' + CURRENT_CAROUSEL_IMAGE_INDEX ).hide();
+
+    if( CURRENT_CAROUSEL_IMAGE_INDEX <= 1 ){
+      CURRENT_CAROUSEL_IMAGE_INDEX = TOTAL_CAROUSEL_IMAGES;
+    }else{
+      CURRENT_CAROUSEL_IMAGE_INDEX--;
+    }
+
+    //need to unload intro1.gif and reload so it starts at the first frame, same for any other animated GIF
+    if(CURRENT_CAROUSEL_IMAGE_INDEX == 1){
+      var uncachedSrc = '/sites/all/themes/framework/images/intro1.gif?' + Math.floor( Math.random()*10000 );
+      $('#carousel-image-1').attr('src', '');
+      $('#carousel-image-1').attr('src', uncachedSrc);
+    }
+
+    $('#carousel-image-' + CURRENT_CAROUSEL_IMAGE_INDEX ).show();
+
+    //cycleCarousel();
+  }
+
+  $('#carousel-next').bind('click', incrementCarousel);
+  $('#carousel-prev').bind('click', decrementCarousel);
+
+
+  var carouselImagesTiming = [];
+  carouselImagesTiming[1] = 46000;
+  carouselImagesTiming[2] = 5000;
+  carouselImagesTiming[3] = 5000;
+  carouselImagesTiming[4] = 5000;
+
+  var current_timeout_id;
+
+  function cycleCarousel(){
+    current_timeout_id = setTimeout(function(){
+          incrementCarousel();
+          cycleCarousel();
+        }, carouselImagesTiming[CURRENT_CAROUSEL_IMAGE_INDEX]);
+  }
+
 
 
 
@@ -82,6 +130,37 @@ $(document).ready(function () {
   }
 
   //$('#navigation .menu a').bind('click', closeHomepage);
+
+
+
+
+  //sets the height of the carousel on the homepage
+  function setCarouselHeight(){
+
+    var headerMarginTop = parseInt( $('#header').css('marginTop') );
+    var cBIPlogoHeight = parseInt( $('#c-bip-logo').height() );
+    var carouselMarginTop = parseInt( $('#carousel').css('marginTop') );
+    var navMarginTop = parseInt( $('#navigation').css('marginTop') );
+    var navHeight = parseInt( $('#navigation').height() );
+    var navBottomOffset = 26;//set by Leigha's design
+
+    var carouselHeight = window.innerHeight - headerMarginTop - cBIPlogoHeight - carouselMarginTop - navMarginTop - navHeight - navBottomOffset;
+
+    $('#carousel').height( carouselHeight+'px' );
+  }
+
+  if( $('body').hasClass('front')){
+    setCarouselHeight();
+    cycleCarousel();
+
+
+  }
+
+  $(window).resize(function() {
+    if( $('body').hasClass('front')){
+      setCarouselHeight();
+    }
+  });
   
 
 });
