@@ -760,7 +760,8 @@ div.views-field-field-element-image {
 }
 
 div.element div.views-field-title,
-.strategy div.views-field-title{
+.strategy div.views-field-title,
+.resource .views-field-title{
   text-transform: uppercase;
   width: 186px;
   max-height: 40px;
@@ -769,7 +770,8 @@ div.element div.views-field-title,
   text-align: center;
 }
 
-div.views-field-field-element-description, div.views-field-field-student-names, div.student-names-year {
+div.views-field-field-element-description, div.views-field-field-student-names, div.student-names-year,
+.resource-description {
   font-size: 11px;
 }
 
@@ -781,7 +783,8 @@ div.views-field-field-year {
   padding-left: 2px;
 }
 
-div.views-field-field-element-tags {
+div.views-field-field-element-tags,
+.resource-tags {
   bottom: 10px;
   height: 20px;
   overflow: hidden;
@@ -789,6 +792,36 @@ div.views-field-field-element-tags {
   text-align: center;
   width: 200px;
 }
+
+/** RESOURCES **/
+.resource{
+  padding:1px;
+  width:228px;
+  height:148px;
+  float: left;
+  margin: 0 22px 22px 0;
+  position: relative;
+  color:black;
+}
+
+.resource:hover{
+  cursor:pointer;
+}
+
+.resource.hover{
+  border:1px solid #3A5BFB;
+  padding:0;
+}
+
+.resource-inner{
+  background-color: #fff;
+  width:198px;
+  height:118px;
+  padding: 15px;
+  position:relative;
+}
+
+
 
 /** ABOUT **/
 
@@ -807,17 +840,17 @@ div.views-field-field-element-tags {
   margin-bottom: 40px;
   margin-right: 20px;
   position: relative;
-  top: -40px;
+  /*top: -40px;*/
   width: 148px;
 }
-
+/*
 .about-item .views-field-title {
   position:absolute;
   bottom: 0;
-}
+}*/
 
 .about-view-heading {
-  margin-bottom: 40px;
+  margin-bottom: 7px;
 }
 
 
@@ -920,6 +953,7 @@ div.views-field-field-element-tags {
 div.data-link,
 div.element div.views-field-title,
 div.strategy div.views-field-title,
+.resource .views-field-title,
 .about-view-heading,
 .about .views-field-field-first-name,
 .person-types,
@@ -930,6 +964,7 @@ div.strategy div.views-field-title,
 
 
 div.views-field-field-element-tags a,
+.resource-tags a,
 #lib-work-tag-sort > li.list-item a,
 #current-tag-in-menu{
   font-size:10px;
