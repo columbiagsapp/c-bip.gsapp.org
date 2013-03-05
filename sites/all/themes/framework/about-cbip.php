@@ -21,12 +21,12 @@
   </div>
   <div id="about-right-view">
     <?php
-      print '<div id="about-people-view"><div class="about-view-heading">PEOPLE</div>' .
+      print '<div id="about-people-view"><div id="people" class="about-view-heading">PEOPLE</div>' .
             views_embed_view('about', "page") . '</div>';
      
-      print '<div id="about-affiliates-view"><div class="about-view-heading">AFFILIATES</div>' .    views_embed_view('affiliates_view', "page_1") . '</div>';
-     
-      print '<div id="about-alumni-view"><div class="about-view-heading">ALUMNUS</div>' . views_embed_view('alumni_view', "page_1") . '</div>';
+      print '<div id="about-affiliates-view"><div id="affiliates" class="about-view-heading">AFFILIATES</div>' .    views_embed_view('affiliates_view', "page_1") . '</div>';
+     /*
+      print '<div id="about-alumni-view"><div class="about-view-heading">ALUMNUS</div>' . views_embed_view('alumni_view', "page_1") . '</div>';*/
 
 
       //$people_view = views_get_view('People');

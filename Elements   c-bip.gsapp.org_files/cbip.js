@@ -4,12 +4,13 @@ $(document).ready(function () {
   $("h1#page-title:contains('(hide)')").hide();
 
 
+
+
   var pathname = window.location.pathname;
   console.log(pathname);
 
 
   
-
 
   $('#lib-work-tag-sort').hover(
     function() { console.log('showing tags')
@@ -34,57 +35,18 @@ $(document).ready(function () {
 
 
   /* ABOUT PAGE */
-  $('#secondary-nav-affiliates a').bind('click', function(event){
-    
-    event.preventDefault();
+  $('#secondary-nav-affiliates a').bind('click', function(){
     $('#secondary-nav-people a').removeClass('active');
     $(this).addClass('active');
-
-    var offset = parseInt( $("#about-affiliates-view").offset().top ) - parseInt( $('#main').css('marginTop') );
-
-
-    $('html, body').animate({
-      scrollTop: offset
-    }, 200);
-
-
-    //return false;
-
   });
   $('#secondary-nav-people a').bind('click', function(){
-    event.preventDefault();
     $('#secondary-nav-affiliates a').removeClass('active');
     $(this).addClass('active');
-
-    var offset = parseInt( $("#about-people-view").offset().top ) - parseInt( $('#main').css('marginTop') );
-
-    $('html, body').animate({
-      scrollTop: offset
-    }, 200);
   });
 
 
 
-  function scrollSpy(event){
 
-    switch(window.document.location.pathname){
-      case '/about':
-        console.log('scrollTop: '+ $(document).scrollTop());
-        var peopleLocation = parseInt( $("#about-people-view").offset().top ) - parseInt( $('#main').css('marginTop') );
-        var affiliatesLocation = parseInt( $("#about-affiliates-view").offset().top ) - parseInt( $('#main').css('marginTop') );
-        
-        if( $(document).scrollTop() >= affiliatesLocation ){
-          $('#secondary-nav-people a').removeClass('active');
-          $('#secondary-nav-affiliates a').addClass('active');
-        }else{
-          $('#secondary-nav-affiliates a').removeClass('active');
-          $('#secondary-nav-people a').addClass('active');
-        }
-        break;
-    }
-  }
-
-  $(document).bind('scroll', scrollSpy);
   
 
 
@@ -204,18 +166,15 @@ $(document).ready(function () {
   if( $('body').hasClass('front')){
     setCarouselHeight();
     cycleCarousel();
+
+
   }
 
-  function resizeFunc(){
-    $('#header').width( $('#container').width() );
+  $(window).resize(function() {
     if( $('body').hasClass('front')){
       setCarouselHeight();
     }
-  }
-
-  resizeFunc();
-
-  $(window).resize( resizeFunc);
+  });
   
 
 });
