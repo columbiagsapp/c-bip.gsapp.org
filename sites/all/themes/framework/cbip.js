@@ -206,6 +206,10 @@ $(document).ready(function () {
   appendTagFilter();
 
 
+  $('.strategy').bind('click', function(){
+    window.open($(this).attr("href"),'_blank');
+  });
+
 
   function resizeHeader(){
     var cellWidth = 230;//parseInt( $('.element').width() );

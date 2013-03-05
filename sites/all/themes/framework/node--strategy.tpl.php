@@ -1,5 +1,11 @@
+<?php 
 
-<div class="strategy" href="#">
+  //$pdfUrl = field_get_items('node', $node, 'field_strategy_file', $langcode = NULL);
+  $pdfUrl = file_create_url($node->field_strategy_file['und'][0]['uri'] );
+
+
+?>
+<div class="strategy" href="<?php print $pdfUrl; ?>">
 
   <div class="strategy-inner">
 <?php
