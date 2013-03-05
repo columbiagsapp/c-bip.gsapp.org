@@ -687,7 +687,7 @@ ul.secondary a.active {
   padding:1px;
  }
 
- .strategy:hover{
+ .strategy.hover{
   border:1px solid #3A5BFB;
   padding:0 !important;
  
