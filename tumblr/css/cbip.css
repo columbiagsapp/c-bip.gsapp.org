@@ -1,0 +1,173 @@
+body{
+	color:black;
+	background-color: whitesmoke;
+	font-family:'Plantin W02', Georgia, serif;
+	font-size:11px;
+	line-height: 14px;
+}
+
+.hidden{
+	display: none;
+}
+
+/* HEADER */
+
+#header-wrapper{
+	width:100%;
+	text-align: center;
+	margin:0 auto;
+	position:fixed;
+	z-index:3;
+}
+
+#header-container{
+	background-color: blue;
+	width:1024px;
+	margin:0 auto;
+}
+
+#logo{
+	float:left;
+	margin:20px 0 0 0;
+
+}
+
+#nav{
+	float:right;
+	margin:20px 0 0 0;
+}
+
+#nav form{
+	float: right;
+}
+
+#nav a,
+#nav input{
+	padding:3px 10px;
+	border:1px solid black;
+	color:black;
+	float:right;
+	margin-right:10px;
+	z-index: 3;
+	text-decoration: none !important;
+}
+
+#nav input{
+	background-color: whitesmoke;
+}
+
+#nav a:hover{
+	background-color:#3A5BFB;
+	color:white;
+	text-decoration: none !important;
+}
+
+
+#title{
+	width:100%;
+	text-align: center;
+	height:80px;
+	position:fixed;
+	z-index:2;
+}
+
+#title h1{
+	margin:20px auto 0;
+	font-size:28px;
+	line-height: 28px;
+	text-transform: uppercase;
+	font-family:'Swiss721W01-BlackConden', Helvetica, 'Helvetica Neue', sans-serif;
+	font-weight: normal;
+}
+
+
+
+/* POSTS */
+
+#posts{
+	padding-top:100px;
+	width:545px;
+	text-align: center;
+	margin:0 auto;
+}
+
+#posts .post-wrapper{
+	text-align: left;
+	background-color: white;
+	padding:14px 22px 22px 22px;
+	margin-bottom:20px;
+}
+
+
+.date a,
+.date a:hover{
+	text-decoration: none;
+	border:none;
+}
+
+
+h3,
+h3 a,
+#nav a,
+#nav input{
+	text-transform:uppercase;
+	font-family:'OCR B W01 Regular', Veranda, monospace;
+	font-size:9px;
+	line-height: 12px;
+	
+}
+
+h3{
+	color:black;
+	margin:0 0 15px 0;
+}
+
+h3 a{
+	color:#3A5BFB;
+	margin:0 0 15px 0;
+	text-decoration: none;
+	border:none;
+}
+
+h3 a:hover{
+	border-bottom:1px solid;
+}
+
+
+.post.photo img,
+.post.link img,
+.post.chat img,
+.post.audio img,
+.post.quote img,
+.post.photoset .set,
+.post.video object,
+.post.video iframe{
+	margin-bottom:20px;
+}
+
+.post.text p{
+	margin-bottom:20px;
+}
+
+
+.tags{
+	font-family:'Swiss 721 W01 Condensed', Helvetica, "Helvetica Neue", sans-serif;
+	font-size:10px;
+	line-height: 13px;
+	color:#3A5BFB;
+	margin-top:22px;
+}
+
+.tags a, .tags a:hover{
+	text-decoration: none !important;
+	color:#3A5BFB;
+	text-transform:capitalize;
+}
+
+/* CONTROLS from http://themecandy.tumblr.com/movedash */
+#tumblr_controls { 
+	top: 100% !important; 
+	margin: -28px 0 0 0; 
+	right: 5px !important; 
+	position: fixed !important; 
+}

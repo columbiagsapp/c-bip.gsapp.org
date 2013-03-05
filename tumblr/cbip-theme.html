@@ -1,0 +1,186 @@
+<html>
+    <head>
+        <title>{Title}</title>
+        <meta charset="utf-8">
+        <link rel="shortcut icon" href="{Favicon}">
+        <link rel="alternate" type="application/rss+xml" href="{RSS}">
+        {block:Description}
+            <meta name="description" content="{MetaDescription}" />
+        {/block:Description}
+
+        <!-- HTML5 Shiv -->
+        <!--[if lt IE 9]>
+                <script src="http://static.tumblr.com/hriofhd/Qj0m8pn7q/html5shiv.js"></script>
+        <![endif]-->
+
+        <!-- Reset CSS -->
+        <link rel="stylesheet" href="http://static.tumblr.com/thpaaos/DIcklyl4z/reset.css" type="text/css">
+
+        <link rel="stylesheet" type="text/css" href="http://www.columbia.edu/cu/arch/tumblr/css/cbip.css">
+
+        <script type="text/javascript" src="http://fast.fonts.com/jsapi/7ae7343d-e0e4-45fd-a488-2bfa26bd5754.js"></script>
+
+    </head>
+    <body>
+
+    	<div id="title">
+			{block:Description}
+				<h1>{Description}</h1>
+			{/block:Description}
+		</div>
+    	<header id="header-wrapper">
+    		<div id="header-container">
+    			<a href="/"><img id="logo" src="http://www.columbia.edu/cu/arch/tumblr/assets/cbiplogo.gif"></a>
+    			<nav id='nav'>
+    				<form action="/search" method="get">
+					    <input type="text" name="q" value="Search"/>
+					    <input type="submit" value="Search" class="hidden"/>
+					</form>
+
+    				<a href="http://c-bip.gsapp.org/about" target="_self">About</a>
+    				
+    			</nav>
+    		</div>
+    	</header>
+
+        
+    	<div id="posts">
+    		{block:Posts}
+
+    			<div class="post-wrapper">
+    				{block:Date}
+    					<h3 class="date">
+    						<a href="{Permalink}" target="_self">{MonthNumberWithZero}/{DayOfMonthWithZero}/{Year}
+    						</a>
+    					</h3>
+    				{/block:Date}
+
+
+    			{block:Text}
+                    <div class="post text">
+                    	
+                        {block:Title}
+                            <h3>{Title}</h3>
+                        {/block:Title}
+
+                        {Body}
+                    </div>
+                {/block:Text}
+
+                {block:Photo}
+                    <div class="post photo">
+                        <img src="{PhotoURL-500}" alt="{PhotoAlt}"/>
+
+                        {block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </div>
+                {/block:Photo}
+
+                {block:Panorama}
+                    <div class="post panorama">
+                        {LinkOpenTag}
+                            <img src="{PhotoURL-Panorama}" alt="{PhotoAlt}"/>
+                        {LinkCloseTag}
+
+                        {block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </div>
+                {/block:Panorama}
+
+                {block:Photoset}
+                    <div class="post photoset">
+                    	<div class="set">
+	                        {Photoset-500}
+	                    </div>
+
+                        {block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </div>
+                {/block:Photoset}
+
+                {block:Quote}
+                    <div class="post quote">
+                        "{Quote}"
+
+                        {block:Source}
+                            <div class="source">{Source}</div>
+                        {/block:Source}
+                    </div>
+                {/block:Quote}
+
+                {block:Link}
+                    <div class="post link">
+                        <h3><a target="_blank" href="{URL}" class="link" {Target}>{Name}</a></h3>
+
+                        {block:Description}
+                            <div class="description">{Description}</div>
+                        {/block:Description}
+                    </div>
+                {/block:Link}
+
+                {block:Chat}
+                    <div class="post chat">
+                        {block:Title}
+                            <h3><a href="{Permalink}">{Title}</a></h3>
+                        {/block:Title}
+
+                        <ul class="chat">
+                            {block:Lines}
+                                <li class="{Alt} user_{UserNumber}">
+                                    {block:Label}
+                                        <span class="label">{Label}</span>
+                                    {/block:Label}
+
+                                    {Line}
+                                </li>
+                            {/block:Lines}
+                        </ul>
+                    </div>
+                {/block:Chat}
+
+                {block:Video}
+                    <div class="post video">
+                        {Video-500}
+
+                        {block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </div>
+                {/block:Video}
+
+                {block:Audio}
+                    <div class="post audio">
+                        {AudioPlayerBlack}
+
+                        {block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </div>
+                {/block:Audio}
+
+                {block:HasTags}
+                    <div class="tags">
+                        {block:Tags}
+                            <span>
+                                <a href="{TagURL}">{Tag}</a>&nbsp;&middot;&nbsp;
+                            </span>
+                        {/block:Tags}
+                    </div>
+                {/block:HasTags}
+
+            </div><!-- /.post-wrapper -->
+
+
+
+
+    		{/block:Posts}
+    	</div><!-- /#posts -->
+
+
+
+
+    </body>
+</html>
