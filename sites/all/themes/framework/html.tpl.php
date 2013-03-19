@@ -11,7 +11,7 @@
   <?php print $styles; ?>
 
   <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
-  <script type="text/javascript" src="sites/all/themes/framework/js/lib/require.js"></script>
+  <script type="text/javascript" src="/sites/all/themes/framework/js/lib/require.js"></script>
 
   <?php print $scripts; ?>
   <!-- IE Fix for HTML5 Tags -->
@@ -27,7 +27,7 @@
   <?php print $page; ?>
   <?php print $page_bottom; ?>
 
-  <script type="text/javascript" src="sites/all/themes/framework/js/main.js"></script>
+  <script type="text/javascript" src="/sites/all/themes/framework/js/main.js"></script>
 </body>
 
 </html>

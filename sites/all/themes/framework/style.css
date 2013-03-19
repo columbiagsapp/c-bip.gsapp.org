@@ -319,7 +319,7 @@ body.sidebar-second #sidebar-second {
 .front #gsapp-logo{
   width:70px;
   height:14px;
-  margin-top: 74px;/* C-BIP logo height */
+  margin-top: 0;
   float:left;
   display: block;
 }
@@ -338,6 +338,7 @@ body.sidebar-second #sidebar-second {
   color:white;
   float:left;
   margin-top:40px;
+  margin-bottom:74px;
   text-align: center;
   position: relative;
 }
@@ -346,6 +347,10 @@ body.sidebar-second #sidebar-second {
   margin:0 auto;
   height:100%;
   width:auto;
+}
+
+#carousel-image-container{
+  height:100%;
 }
 
 .front #carousel-image-2,
@@ -383,7 +388,7 @@ body.sidebar-second #sidebar-second {
  */
 
 .front #navigation{
-  margin: 74px 0 0 0;/* C-BIP logo height */
+  margin: 0;/* C-BIP logo height */
 }
 
 #navigation {
