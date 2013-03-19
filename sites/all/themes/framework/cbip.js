@@ -307,8 +307,6 @@ $(document).ready(function () {
   if( $('body').hasClass('front')){
     cycleCarousel();
   }
-
-
   
 
 });
