@@ -1,5 +1,5 @@
 requirejs.config({
-  baseUrl: 'js',
+  baseUrl: 'sites/all/themes/framework/js',
 
   paths: {
   },
