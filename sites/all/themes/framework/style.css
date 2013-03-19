@@ -327,6 +327,7 @@ body.sidebar-second #sidebar-second {
 
 #carousel{
   display:none;
+  overflow: hidden;
 }
 
 .front #carousel{
