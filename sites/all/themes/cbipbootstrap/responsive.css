@@ -1,0 +1,235 @@
+@media screen and (max-width: 767px){
+  #header,
+  #container{
+    width:480px;
+  }
+
+
+
+  #header{
+    position:relative;
+    top:0;
+    left:0;
+  }
+
+
+
+  #main{
+    margin: 20px auto 0;
+    text-align: center;
+  }
+
+  #main > div{
+    text-align: left;
+  }
+
+  #navigation{
+    float:left;
+    margin-top:20px;
+    max-width: 100%;
+  }
+
+  #navigation #block-system-main-menu ul.menu li a,
+  #hidden-lib-of-work-subitems > div, #secondary-nav > div{
+    margin-right:10px;
+    margin-left:0;
+  }
+
+  #lib-work-tag-sort{
+    min-width:93px;
+  }
+
+  .element-inner img,
+  .strategy-inner img{
+    width:100%;
+    max-width: 220px;
+    height:auto;
+  }
+
+  #c-bip-logo img{
+    width:289px;
+  }
+
+  #navigation ul.menu li{
+    margin-bottom:10px;
+  }
+
+  #about-left-sidebar{
+    margin-right:0;
+    width:100%;
+    font-size:1.5em;
+  }
+
+  #about-right-view{
+    width:316px;
+  }
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 1018px){
+  #container,
+  #header{
+    width:728px;
+  }
+
+  #about-right-view{
+    width:316px;
+  }
+}
+
+@media screen and (min-width: 1019px) and (max-width: 1268px){
+  #container,
+  #header{
+    width:978px;
+  }
+
+  #about-right-view{
+    width:652px;
+  }
+}
+
+@media screen and (min-width: 1269px) {
+  #container,
+  #header{
+    width:1228px;
+  }
+
+  #about-right-view{
+    width:820px;
+  }
+}
+
+
+
+
+.views-field-field-element-image {
+  width: 200px;
+  height: 124px;
+  margin-bottom:10px;
+  overflow: hidden;
+}
+
+div.element div.views-field-title,
+.strategy div.views-field-title,
+.resource .views-field-title{
+  text-transform: uppercase;
+  width: 186px;
+  max-height: 40px;
+  overflow: hidden;
+  margin: 0 auto 10px auto;
+  text-align: center;
+}
+
+div.views-field-field-element-description, div.views-field-field-student-names, div.student-names-year,
+.resource-description {
+  font-size: 11px;
+}
+
+div.views-field-field-student-names {
+  float: left;
+}
+
+div.views-field-field-year {
+  padding-left: 2px;
+}
+
+div.views-field-field-element-tags,
+.resource-tags {
+  bottom: 10px;
+  height: 20px;
+  overflow: hidden;
+  position: absolute;
+  text-align: center;
+  width: 200px;
+}
+
+/** RESOURCES **/
+.resource{
+  padding:1px;
+  width:228px;
+  height:148px;
+  float: left;
+  margin: 0 22px 22px 0;
+  position: relative;
+  color:black;
+}
+
+.resource:hover{
+  cursor:pointer;
+}
+
+.resource.hover{
+  border:1px solid #3A5BFB;
+  padding:0;
+}
+
+.resource-inner{
+  background-color: #fff;
+  width:198px;
+  height:118px;
+  padding: 15px;
+  position:relative;
+}
+
+
+
+/** ABOUT **/
+
+#about-people-view, #about-affiliates-view, #about-alumni-view {
+
+  display:inline-table;
+  margin-bottom: 20px;
+
+
+}
+
+
+.about-item {
+  float: left;
+  height: 230px;
+  margin-bottom: 40px;
+  margin-right: 20px;
+  position: relative;
+  /*top: -40px;*/
+  width: 148px;
+}
+/*
+.about-item .views-field-title {
+  position:absolute;
+  bottom: 0;
+}*/
+
+.about-view-heading {
+  margin-bottom: 7px;
+}
+
+
+.about .views-field-field-first-name {
+  float: left;
+  margin-right: 2px;
+  text-transform: uppercase;
+}
+
+.person-types {
+  text-transform: uppercase;
+}
+.about-title {
+  text-transform: uppercase;
+}
+
+.about-image {}
+.about-description {
+  position:absolute;
+  bottom: 10;
+
+}
+
+.about-affiliate-url a {
+  color: black;
+  text-decoration: none;
+}
+
+.about-affiliate-url a:hover {
+  color: black;
+  text-decoration: underline;
+}
