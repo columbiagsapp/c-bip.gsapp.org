@@ -25,6 +25,17 @@ define([ 'config' ], function(config) {
 		$('#lib-work-tag-sort').hover(config.showTagMenu, config.hideTagMenu);
 
 
+		/////// RESOURCES ///////
+
+		//clicking on resource should open in a new window
+		//@todo: do i need this? can't it be in the template file?
+		$('.resource').bind('click', function(){
+			window.open($(this).attr("href"),'_blank');
+		});
+
+		$('.resource').hover(config.hoverOn, config.hoverOff);
+
+
 
 		/////// CAROUSEL ///////
 
@@ -44,6 +55,10 @@ define([ 'config' ], function(config) {
 		//call the resizeFunc on page load and bind to window resize events
 		config.resizeFunc();
   		$(window).resize( config.resizeFunc);
+
+
+  		/////// GLOBAL INIT ///////
+  		$("h1#page-title:contains('(hide)')").hide();
 
  	}
 

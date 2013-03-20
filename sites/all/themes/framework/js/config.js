@@ -154,7 +154,7 @@ define([], function() {
 	      }
 	    }
 	}
-	
+
 	//reveals tag menu on hover
 	config.showTagMenu = function(){
 		$('li.list-item', this).show();
@@ -166,6 +166,11 @@ define([], function() {
 		$('li.list-item', this).hide();
 		$('#current-tag-in-menu').show();
 	}
+
+
+
+	/////// RESOURCES ///////
+	
 
 
 
@@ -224,6 +229,16 @@ define([], function() {
 		}
 	}
 
+
+	/////// GLOBAL HELPERS ///////
+
+	config.hoverOn = function(){
+		$(this).addClass('hover');
+	}
+
+	config.hoverOff = function(){
+		$(this).removeClass('hover');
+	}
 
 
   return config;
