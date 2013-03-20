@@ -181,26 +181,31 @@ define([], function() {
 		$('#main .view-library-elements .views-row .element').css('marginRight', '');
 		$('#main .view-library-strategies .views-row .strategy').css('marginRight', '');
 		$('#main #about-right-view .about-item').css('marginRight', '');
+		$('#main .view-resources-view .views-row .resource').css('marginRight', '');
 
 		if(ww <= config.WINDOW_WIDTHS['tablet']){
 			$('#main .view-library-elements .views-row:nth-child(2n)').find('.element').css('marginRight', '0');
 			$('#main .view-library-strategies .views-row:nth-child(2n)').find('.strategy').css('marginRight', '0');
 
 			$('#main #about-right-view .about-item:nth-child(3n)').css('marginRight', '0');
+			$('#main .view-resources-view .views-row:nth-child(2n)').find('.resource').css('marginRight', '0');
 		}else if(ww <= config.WINDOW_WIDTHS['min']){
 			$('#main .view-library-elements .views-row:nth-child(3n)').find('.element').css('marginRight', '0');
 			$('#main .view-library-strategies .views-row:nth-child(3n)').find('.strategy').css('marginRight', '0');
 
+			$('#main .view-resources-view .views-row:nth-child(3n)').find('.resource').css('marginRight', '0');
 			$('#main #about-right-view .about-item:nth-child(2n)').css('marginRight', '0');
 		}else if(ww <= config.WINDOW_WIDTHS['max']){
 			$('#main .view-library-elements .views-row:nth-child(4n)').find('.element').css('marginRight', '0');
 			$('#main .view-library-strategies .views-row:nth-child(4n)').find('.strategy').css('marginRight', '0');
 
+			$('#main .view-resources-view .views-row:nth-child(4n)').find('.resource').css('marginRight', '0');
 			$('#main #about-right-view .about-item:nth-child(4n)').css('marginRight', '0');
 		}else{
 			$('#main .view-library-elements .views-row:nth-child(5n)').find('.element').css('marginRight', '0');
 			$('#main .view-library-strategies .views-row:nth-child(5n)').find('.strategy').css('marginRight', '0');
 
+			$('#main .view-resources-view .views-row:nth-child(5n)').find('.resource').css('marginRight', '0');
 			$('#main #about-right-view .about-item:nth-child(5n)').css('marginRight', '0');
 		}
 		
