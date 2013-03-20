@@ -14,7 +14,6 @@ $(document).ready(function () {
     function() { 
       $('li.list-item', this).show();
       $('#current-tag-in-menu').hide();
-
   },
     function() { 
       $('li.list-item', this).hide();
@@ -29,40 +28,6 @@ $(document).ready(function () {
       //$(this).css('top', '20px');
 
     });
-
-
-
-
-  /* ABOUT PAGE */
-  $('#secondary-nav-affiliates a').bind('click', function(event){
-    
-    event.preventDefault();
-    $('#secondary-nav-people a').removeClass('active');
-    $(this).addClass('active');
-
-    var offset = parseInt( $("#about-affiliates-view").offset().top ) - parseInt( $('#main').css('marginTop') );
-
-
-    $('html, body').animate({
-      scrollTop: offset
-    }, 200);
-
-
-    //return false;
-
-  });
-  $('#secondary-nav-people a').bind('click', function(){
-    event.preventDefault();
-    $('#secondary-nav-affiliates a').removeClass('active');
-    $(this).addClass('active');
-
-    var offset = parseInt( $("#about-people-view").offset().top ) - parseInt( $('#main').css('marginTop') );
-
-    $('html, body').animate({
-      scrollTop: offset
-    }, 200);
-  });
-
 
 
 

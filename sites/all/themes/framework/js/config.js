@@ -1,6 +1,7 @@
 define([], function() {
 	var config = {};
 
+	config.SCROLL_TIME = 200;
 
 	/////// HOME PAGE ///////
 
@@ -106,6 +107,30 @@ define([], function() {
 				}
 				break;
 		}
+	}
+
+	config.scrollToAffiliates = function(event){
+		event.preventDefault();
+		$('#secondary-nav-people a').removeClass('active');
+		$(this).addClass('active');
+
+		var offset = parseInt( $("#about-affiliates-view").offset().top ) - parseInt( $('#main').css('marginTop') );
+
+		$('html, body').animate({
+			scrollTop: offset
+		}, config.SCROLL_TIME);
+	}
+
+	config.scrollToPeople = function(event){
+		event.preventDefault();
+		$('#secondary-nav-affiliates a').removeClass('active');
+		$(this).addClass('active');
+
+		var offset = parseInt( $("#about-people-view").offset().top ) - parseInt( $('#main').css('marginTop') );
+
+		$('html, body').animate({
+			scrollTop: offset
+		}, config.SCROLL_TIME);
 	}
 
 

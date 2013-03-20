@@ -15,6 +15,9 @@ define([ 'config' ], function(config) {
 		});
 
 
+		/////// ABOUT ///////
+		$('#secondary-nav-affiliates a').bind('click', config.scrollToAffiliates);
+		$('#secondary-nav-people a').bind('click', config.scrollToPeople);
 		$(document).bind('scroll', config.scrollSpy);
 
 		/////// LIBRARY OF WORK ///////
