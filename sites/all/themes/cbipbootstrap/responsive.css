@@ -56,12 +56,17 @@
 
   #about-left-sidebar{
     margin-right:0;
-    width:100%;
+    width:480px;
     font-size:1.5em;
   }
 
   #about-right-view{
-    width:316px;
+    width:480px;
+    float:left;
+  }
+
+  #about-right-view .about-item{
+    margin-right:18px;
   }
 
 }
@@ -101,135 +106,3 @@
 
 
 
-
-.views-field-field-element-image {
-  width: 200px;
-  height: 124px;
-  margin-bottom:10px;
-  overflow: hidden;
-}
-
-div.element div.views-field-title,
-.strategy div.views-field-title,
-.resource .views-field-title{
-  text-transform: uppercase;
-  width: 186px;
-  max-height: 40px;
-  overflow: hidden;
-  margin: 0 auto 10px auto;
-  text-align: center;
-}
-
-div.views-field-field-element-description, div.views-field-field-student-names, div.student-names-year,
-.resource-description {
-  font-size: 11px;
-}
-
-div.views-field-field-student-names {
-  float: left;
-}
-
-div.views-field-field-year {
-  padding-left: 2px;
-}
-
-div.views-field-field-element-tags,
-.resource-tags {
-  bottom: 10px;
-  height: 20px;
-  overflow: hidden;
-  position: absolute;
-  text-align: center;
-  width: 200px;
-}
-
-/** RESOURCES **/
-.resource{
-  padding:1px;
-  width:228px;
-  height:148px;
-  float: left;
-  margin: 0 22px 22px 0;
-  position: relative;
-  color:black;
-}
-
-.resource:hover{
-  cursor:pointer;
-}
-
-.resource.hover{
-  border:1px solid #3A5BFB;
-  padding:0;
-}
-
-.resource-inner{
-  background-color: #fff;
-  width:198px;
-  height:118px;
-  padding: 15px;
-  position:relative;
-}
-
-
-
-/** ABOUT **/
-
-#about-people-view, #about-affiliates-view, #about-alumni-view {
-
-  display:inline-table;
-  margin-bottom: 20px;
-
-
-}
-
-
-.about-item {
-  float: left;
-  height: 230px;
-  margin-bottom: 40px;
-  margin-right: 20px;
-  position: relative;
-  /*top: -40px;*/
-  width: 148px;
-}
-/*
-.about-item .views-field-title {
-  position:absolute;
-  bottom: 0;
-}*/
-
-.about-view-heading {
-  margin-bottom: 7px;
-}
-
-
-.about .views-field-field-first-name {
-  float: left;
-  margin-right: 2px;
-  text-transform: uppercase;
-}
-
-.person-types {
-  text-transform: uppercase;
-}
-.about-title {
-  text-transform: uppercase;
-}
-
-.about-image {}
-.about-description {
-  position:absolute;
-  bottom: 10;
-
-}
-
-.about-affiliate-url a {
-  color: black;
-  text-decoration: none;
-}
-
-.about-affiliate-url a:hover {
-  color: black;
-  text-decoration: underline;
-}

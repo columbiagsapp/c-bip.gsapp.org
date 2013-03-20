@@ -135,13 +135,8 @@ th { padding-right: 1em; }
 }
 
 #about-left-sidebar {
-  background-color: #F5F5F5;
-    float: left;
-    margin-right: 30px;
-    position: absolute;
-    width: 250px;
-    z-index: 5;
-    height:100%;
+  float: left;
+  width: 250px;
 }
 
 .about-heading {

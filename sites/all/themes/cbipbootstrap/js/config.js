@@ -186,7 +186,7 @@ define([], function() {
 			$('#main .view-library-elements .views-row:nth-child(2n)').find('.element').css('marginRight', '0');
 			$('#main .view-library-strategies .views-row:nth-child(2n)').find('.strategy').css('marginRight', '0');
 
-			$('#main #about-right-view .about-item:nth-child(2n)').css('marginRight', '0');
+			$('#main #about-right-view .about-item:nth-child(3n)').css('marginRight', '0');
 		}else if(ww <= config.WINDOW_WIDTHS['min']){
 			$('#main .view-library-elements .views-row:nth-child(3n)').find('.element').css('marginRight', '0');
 			$('#main .view-library-strategies .views-row:nth-child(3n)').find('.strategy').css('marginRight', '0');
