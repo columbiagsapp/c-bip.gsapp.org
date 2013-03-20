@@ -947,11 +947,19 @@ div.strategy div.views-field-title,
 div.views-field-field-element-tags a,
 .resource-tags a,
 #lib-work-tag-sort > li.list-item a,
-#current-tag-in-menu{
+#current-tag-in-menu,
+.about-item .about-description,
+.about-item .about-affiliate-url a{
   font-size:10px;
   font-family:'Swiss 721 W01 Condensed', 'Helvetica Neue', Helvetica, sans-serif;
-  color:#3A5BFB !important;
   text-transform: none;
+}
+
+div.views-field-field-element-tags a,
+.resource-tags a,
+#lib-work-tag-sort > li.list-item a,
+#current-tag-in-menu{
+  color:#3A5BFB !important;
 }
 
 
