@@ -154,6 +154,18 @@ define([], function() {
 	      }
 	    }
 	}
+	
+	//reveals tag menu on hover
+	config.showTagMenu = function(){
+		$('li.list-item', this).show();
+		$('#current-tag-in-menu').hide();
+	}
+
+	//hides tag menu on hover off
+	config.hideTagMenu = function(){
+		$('li.list-item', this).hide();
+		$('#current-tag-in-menu').show();
+	}
 
 
 

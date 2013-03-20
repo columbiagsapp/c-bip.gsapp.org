@@ -22,6 +22,7 @@ define([ 'config' ], function(config) {
 
 		/////// LIBRARY OF WORK ///////
 		config.appendTagFilter();
+		$('#lib-work-tag-sort').hover(config.showTagMenu, config.hideTagMenu);
 
 
 

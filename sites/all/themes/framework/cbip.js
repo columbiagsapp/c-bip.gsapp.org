@@ -10,26 +10,10 @@ $(document).ready(function () {
   
 
 
-  $('#lib-work-tag-sort').hover(
-    function() { 
-      $('li.list-item', this).show();
-      $('#current-tag-in-menu').hide();
-  },
-    function() { 
-      $('li.list-item', this).hide();
-      $('#current-tag-in-menu').show();
-    // view URL elements/tag/environmental
-
-  }
-  );
-
-  $('#element-and-stategy-tags').hover(
-    function() {
-      //$(this).css('top', '20px');
-
-    });
+  
 
 
+  
 
   
 
