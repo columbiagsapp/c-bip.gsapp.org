@@ -73,7 +73,7 @@ print '</div>';
 
 
 
-print '</div>';
+print '</div>';// /.element-inner
 
 
 print '<div class="element-data-links">'; // pdf file etc

@@ -1,11 +1,4 @@
-<?php 
-
-  //$pdfUrl = field_get_items('node', $node, 'field_strategy_file', $langcode = NULL);
-  $pdfUrl = file_create_url($node->field_strategy_file['und'][0]['uri'] );
-
-
-?>
-<div class="strategy" href="<?php print $pdfUrl; ?>">
+<div class="strategy">
 
   <div class="strategy-inner">
 <?php
@@ -75,17 +68,24 @@ print '</div>';
 
 
 
-print '</div>';
+print '</div>';//close element-inner
+
+print '<div class="strategy-data-links">'; // pdf file etc
+
+
+if(isset($node->field_strategy_file['und'][0]['uri'])){
+  //$pdfUrl = field_get_items('node', $node, 'field_strategy_file', $langcode = NULL);
+  $pdfUrl = file_create_url($node->field_strategy_file['und'][0]['uri'] );
+
+  print '<div class="data-link"><a href="' .
+        $pdfUrl . '" target="_blank" >' .
+        'PDF' . '</a></div>';
+}
+
+print '</div>';//close data-links
 
 
 print '</div>'; // close element
-
-
-
-
-
-
-
 
 
 
