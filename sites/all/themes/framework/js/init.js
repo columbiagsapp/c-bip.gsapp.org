@@ -15,6 +15,7 @@ define([ 'config' ], function(config) {
 		});
 
 
+		$(document).bind('scroll', config.scrollSpy);
 
 		/////// LIBRARY OF WORK ///////
 		config.appendTagFilter();

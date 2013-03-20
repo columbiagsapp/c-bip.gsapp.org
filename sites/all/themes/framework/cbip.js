@@ -65,32 +65,6 @@ $(document).ready(function () {
 
 
 
-  function scrollSpy(event){
-
-    switch(window.document.location.pathname){
-      case '/about':
-        var peopleLocation = parseInt( $("#about-people-view").offset().top ) - parseInt( $('#main').css('marginTop') );
-        var affiliatesLocation = parseInt( $("#about-affiliates-view").offset().top ) - parseInt( $('#main').css('marginTop') );
-        
-        if( $(document).scrollTop() >= affiliatesLocation ){
-          $('#secondary-nav-people a').removeClass('active');
-          $('#secondary-nav-affiliates a').addClass('active');
-        }else{
-          $('#secondary-nav-affiliates a').removeClass('active');
-          $('#secondary-nav-people a').addClass('active');
-        }
-        break;
-    }
-  }
-
-  $(document).bind('scroll', scrollSpy);
-  
-
-
-  
-
-
-
 
   
 

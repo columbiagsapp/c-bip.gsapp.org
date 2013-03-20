@@ -1,32 +1,12 @@
 define([], function() {
 	var config = {};
 
+
+	/////// HOME PAGE ///////
+
 	config.PAGE_TRANSITION_TIME = 500;
 
-
-	/////// LIBRARY OF WORK ///////
-
-	//if element or strategy is sorted by tag, adds it to the sub nav menu
-	config.appendTagFilter = function(){
-	    var pathArray = window.document.location.pathname.split('/');
-
-	    if($.inArray('tag', pathArray) >= 0){
-	      var tag = pathArray.pop();
-
-	      tag = tag.charAt(0).toUpperCase() + tag.slice(1);//capitalize first letter
-	      switch(pathArray[1]){
-	        case 'library':
-	          var html = '<div id="current-tag-in-menu">' + tag + "<div>"
-	          $('#lib-work-tag-wrapper').append( html );//append to the div that wraps the ul
-	          break;
-	        default:
-	          break;
-	      }
-	    }
-	}
-
-
-	//CAROUSEL
+	//CAROUSEL CONSTANTS
 	config.TOTAL_CAROUSEL_IMAGES = 4;
 	config.CURRENT_CAROUSEL_IMAGE_INDEX = 1;
 
@@ -35,12 +15,6 @@ define([], function() {
 	config.CAROUSEL_IMAGES_TIMING[2] = 5000;
 	config.CAROUSEL_IMAGES_TIMING[3] = 5000;
 	config.CAROUSEL_IMAGES_TIMING[4] = 5000;
-
-
-
-
-
-	/////// CAROUSEL ///////
 
 	//sets the height of the carousel on the homepage
 	config.setCarouselHeight = function(){
@@ -110,6 +84,50 @@ define([], function() {
 			config.incrementCarousel();
 			config.cycleCarousel();
 		}, config.CAROUSEL_IMAGES_TIMING[ config.CURRENT_CAROUSEL_IMAGE_INDEX ]);
+	}
+
+
+
+	/////// ABOUT ///////
+
+	//pages the sub menu when the user scrolls to new sections as each page requires
+	config.scrollSpy = function(event){
+		switch(window.document.location.pathname){
+			case '/about':
+				var peopleLocation = parseInt( $("#about-people-view").offset().top ) - parseInt( $('#main').css('marginTop') );
+				var affiliatesLocation = parseInt( $("#about-affiliates-view").offset().top ) - parseInt( $('#main').css('marginTop') );
+
+				if( $(document).scrollTop() >= affiliatesLocation ){
+					$('#secondary-nav-people a').removeClass('active');
+					$('#secondary-nav-affiliates a').addClass('active');
+				}else{
+					$('#secondary-nav-affiliates a').removeClass('active');
+					$('#secondary-nav-people a').addClass('active');
+				}
+				break;
+		}
+	}
+
+
+	/////// LIBRARY OF WORK ///////
+
+	//if element or strategy is sorted by tag, adds it to the sub nav menu
+	config.appendTagFilter = function(){
+	    var pathArray = window.document.location.pathname.split('/');
+
+	    if($.inArray('tag', pathArray) >= 0){
+	      var tag = pathArray.pop();
+
+	      tag = tag.charAt(0).toUpperCase() + tag.slice(1);//capitalize first letter
+	      switch(pathArray[1]){
+	        case 'library':
+	          var html = '<div id="current-tag-in-menu">' + tag + "<div>"
+	          $('#lib-work-tag-wrapper').append( html );//append to the div that wraps the ul
+	          break;
+	        default:
+	          break;
+	      }
+	    }
 	}
 
 
