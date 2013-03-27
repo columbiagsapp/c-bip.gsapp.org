@@ -29,9 +29,9 @@ function(template, Views) {
 				}
 	      		return this;
 			},
-			renderLinks: function(){
+			renderFiles: function(){
 				for(var i = 0; i < this._itemViews.length; i++){
-					this._itemViews[i].renderLinks();
+					this._itemViews[i].renderFiles();
 				}
 	      		return this;
 			}

@@ -22,7 +22,7 @@ function(globals, ElementView, Elements, ElementsView) {
 			elements_view.addOne(element);
 		});
 
-		elements_view.renderTags().renderImages().renderStudentNames();
+		elements_view.renderTags().renderImages().renderStudentNames().renderFiles();
 
 
 		//.renderTags();//.renderImages().renderStudentNames();

@@ -13,9 +13,13 @@ define([
 	'models/tag',
 	'views/tagview',
 	'collections/tags',
-	'views/tagsview'
+	'views/tagsview',
+	'models/elementfile',
+	'views/elementfileview',
+	'collections/elementfiles',
+	'views/elementfilesview'
 ],
-function(globals, config, Element, template, View, ElementImage, ElementImageView, StudentName, StudentNameView, StudentNames, StudentNamesView, Tag, TagView, Tags, TagsView) {
+function(globals, config, Element, template, View, ElementImage, ElementImageView, StudentName, StudentNameView, StudentNames, StudentNamesView, Tag, TagView, Tags, TagsView, ElementFile, ElementFileView, ElementFiles, ElementFilesView) {
 
 
   var ElementView = View.extend({
@@ -27,6 +31,7 @@ function(globals, config, Element, template, View, ElementImage, ElementImageVie
     studentNamesModel: null,
     tag_array: [],
     TaxonomyTerms: null,
+    files_array: [],
 
     initialize: function(opts) {
     	_.bindAll(this, 'renderTags', 'renderStudentNames', 'renderImage');
@@ -36,8 +41,6 @@ function(globals, config, Element, template, View, ElementImage, ElementImageVie
     },
 
     render: function(variables, el){
-    	console.log('');
-    	console.log('elementview render()');
 		variables = (typeof variables === "object") ? variables : {};
 		el = (typeof el === "undefined") ? this.el : el;
 		if (this.model && (variables !=={})) {
@@ -45,8 +48,6 @@ function(globals, config, Element, template, View, ElementImage, ElementImageVie
 		}
 
 		var content = _.template(this.template, variables);
-
-		console.dir(this.model);
 
 		$(this.el).html(content);
 
@@ -152,36 +153,51 @@ function(globals, config, Element, template, View, ElementImage, ElementImageVie
 
 		return this;
 
+    },
 
-		/*
+    renderFiles: function(){
+    	var element_files = this.model.get('field_element_files');
 
-		var _this = this;
+    	var elementFilesViewEl = '#node-' + this.model.get('nid') + ' .element-data-links';
 
-		var studentNames = _this.model.get('field_student_names');
-		var studentNameViewEl = '#node-' + _this.model.get('nid') + ' .student-name';
+    	var files = new ElementFiles();
+		var files_view = new ElementFilesView({
+			collection: files,
+			el: elementFilesViewEl,
+			itemParent: '#element-files-anchor',
+			ItemView: ElementFileView
+		});
 
-		if(studentNames != undefined){
-			for(var i = 0; i < studentNames.length; i++){
-				var studentNameTid = studentNames[i].id;
+		files_view.render();
 
-				_this.studentNamesModel = new StudentName({tid: studentNameTid});
+		var desc = [];
 
+    	for(var i = 0; i < element_files.length; i++){
+    	
+    		if(element_files[i].file.id != undefined){
 
-				_this.studentNamesModel.fetch({
-					success: function(model, response, options){
+    			var file_model = new ElementFile({fid: element_files[i].file.id});
+    			desc[ element_files[i].file.id ] = element_files[i].description.toUpperCase();
 
-						_this.studentNameView = new StudentNameView({ 
-							model: _this.studentNamesModel,
-							el: studentNameViewEl
-						});
+				var _this = this;
 
-						_this.studentNameView.render();
-					}
-				});
-			}
-		}
+				
+				file_model.fetch({
+						success: function(model, response, options){
+							var fid = model.get('fid');
+							model.set({'description': desc[ fid ]});
 
-		*/
+							console.log( desc[ fid ] );
+
+							files_view.addOne( model );
+
+							//$('.preloader', imageViewEl).remove();
+						}
+					});
+    		}
+
+    	}
+    	console.log('');console.log('');
 
     }
 
