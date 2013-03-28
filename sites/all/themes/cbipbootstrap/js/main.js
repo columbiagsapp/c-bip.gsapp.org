@@ -18,9 +18,14 @@ requirejs.config({
   }
 });
 
-require(['app'],
+require([
+  'config',
+  'init',
+  'app'
+],
 
-function(App) {
+function(config, init, App) {
 
-  window.bb = Backbone;
+  init();
+  App();
 });
