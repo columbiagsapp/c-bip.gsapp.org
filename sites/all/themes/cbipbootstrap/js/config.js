@@ -54,11 +54,13 @@ define([], function() {
 
 		//need to unload intro1.gif and reload so it starts at the first frame, same for any other animated GIF
 		if(config.CURRENT_CAROUSEL_IMAGE_INDEX == 1){
-			var uncachedSrc = '/sites/all/themes/framework/images/intro1.gif?' + Math.floor( Math.random()*10000 );
+			var uncachedSrc = '/sites/all/themes/cbipbootstrap/images/intro1.gif?' + Math.floor( Math.random()*10000 );
 			$('#carousel-image-1').attr('src', '');
 			$('#carousel-image-1').attr('src', uncachedSrc);
 		}
 		$('#carousel-image-' + config.CURRENT_CAROUSEL_IMAGE_INDEX ).show();
+
+		config.resizeCarouselImage();
 	}//end incrementCarousel()
 
 
@@ -77,12 +79,13 @@ define([], function() {
 
 		//need to unload intro1.gif and reload so it starts at the first frame, same for any other animated GIF
 		if(config.CURRENT_CAROUSEL_IMAGE_INDEX == 1){
-			var uncachedSrc = '/sites/all/themes/framework/images/intro1.gif?' + Math.floor( Math.random()*10000 );
+			var uncachedSrc = '/sites/all/themes/cbipbootstrap/images/intro1.gif?' + Math.floor( Math.random()*10000 );
 			$('#carousel-image-1').attr('src', '');
 			$('#carousel-image-1').attr('src', uncachedSrc);
 		}
 
 		$('#carousel-image-' + config.CURRENT_CAROUSEL_IMAGE_INDEX ).show();
+		config.resizeCarouselImage();
 	}//end decrementCarousel()
 
 	//regularly cycle the carousel images
@@ -233,25 +236,30 @@ define([], function() {
 
 	//resizes the image in the carousel preserving its aspect ratio
 	config.resizeCarouselImage = function(){
+		console.log('resizeCarouselImage()');
 		var carousel_prev_next_width = parseInt( $('#carousel-prev').width() );
-		var header_width = parseInt( $('#header').width() );
-		var avail_width = header_width - carousel_prev_next_width;
-		var avail_height = parseInt( $('#carousel').height() );
 
-		var imageWidth = 764;//$('#carousel-image-1').width();
-		var imageHeight = 460;//$('#carousel-image-1').height();
+		var carousel_image_div_selector = '#carousel-image-1:visible, #carousel-image-2:visible, #carousel-image-3:visible, #carousel-image-4:visible, #carousel-image-5:visible, #carousel-image-6:visible, #carousel-image-7:visible';
 
-		var avail_aspect = avail_width / avail_height;
-		var image_aspect = imageWidth / imageHeight;
+		var carousel_images_selector = '#carousel-image-1:visible img, #carousel-image-2:visible img, #carousel-image-3:visible img, #carousel-image-4:visible img, #carousel-image-5:visible img, #carousel-image-6:visible img, #carousel-image-7:visible img';
 
-		var carousel_images_selector = '#carousel-image-1, #carousel-image-2, #carousel-image-3, #carousel-image-4, #carousel-image-5, #carousel-image-6, #carousel-image-7';
-
-		if(avail_aspect > image_aspect){
-			$(carousel_images_selector).height( avail_height + 'px');
+		var w = $('#carousel').width();
+		var h = $('#carousel').height();
+		
+		if($(carousel_image_div_selector).attr('scaleto') == 'height'){
+			$(carousel_images_selector).height( h + 'px');
 			$(carousel_images_selector).css('width', 'auto');
 		}else{
-			$(carousel_images_selector).width( avail_width + 'px');
+			console.log('scaleto width');
+			$(carousel_images_selector).width( w + 'px');
 			$(carousel_images_selector).css('height', 'auto');
+
+			var imageHeight = $(carousel_images_selector).height();
+			var carouselHeight = $('#carousel').height();
+			if(imageHeight > carouselHeight){
+				var topOffset = -1* Math.floor( (imageHeight - carouselHeight)/2 );
+				$(carousel_images_selector).css('marginTop', topOffset);
+			}
 		}
 	}
 
@@ -455,8 +463,8 @@ define([], function() {
 		/////// CAROUSEL ///////
 
 		//Bind carousel buttons to actions
-		$('#carousel-next').bind('click', config.incrementCarousel);
-		$('#carousel-prev').bind('click', config.decrementCarousel);
+		$('#carousel-next').bind('click', config.incrementCarousel).css('opacity', '0.7');
+		$('#carousel-prev').bind('click', config.decrementCarousel).css('opacity', '0.7');
 
 		//begin the carousel cycle if home page
 		if( $('body').hasClass('front')){

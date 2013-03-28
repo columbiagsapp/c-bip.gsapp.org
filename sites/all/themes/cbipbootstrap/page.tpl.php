@@ -18,10 +18,18 @@
 
     <div id="carousel">
       <div id="carousel-image-container">
-        <img id="carousel-image-1" class="carousel-image" src="/sites/all/themes/framework/images/intro1.gif?<?php print rand(10000,99999); ?>" alt="C-BIP: Columbia Building Intelligence Project" />
-        <img id="carousel-image-2" class="carousel-image" src="/sites/all/themes/framework/images/intro2.gif" alt="C-BIP: Columbia Building Intelligence Project" />
-        <img id="carousel-image-3" class="carousel-image" src="/sites/all/themes/framework/images/intro3.gif" alt="C-BIP: Columbia Building Intelligence Project" />
-        <img id="carousel-image-4" class="carousel-image" src="/sites/all/themes/framework/images/intro4.gif" alt="C-BIP: Columbia Building Intelligence Project" />
+        <div id="carousel-image-1" style="background-color:#000;" scaleto="height">
+          <img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/intro1.gif?<?php print rand(10000,99999); ?>" alt="C-BIP: Columbia Building Intelligence Project" />
+        </div>
+        <div id="carousel-image-2" style="background-color:#fff;" scaleto="height">
+          <img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/130319_Element4.gif" alt="C-BIP: Columbia Building Intelligence Project" />
+        </div>
+        <div id="carousel-image-3" scaleto="width">
+          <img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/intro3.gif" alt="C-BIP: Columbia Building Intelligence Project" />
+        </div>
+        <div id="carousel-image-4" scaleto="width">
+          <img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/intro4.gif" alt="C-BIP: Columbia Building Intelligence Project" />
+        </div>
       </div>
       <div id="carousel-prev"></div>
       <div id="carousel-next"></div>
