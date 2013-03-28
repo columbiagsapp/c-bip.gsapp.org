@@ -29,9 +29,9 @@ function(template, Views) {
 				}
 	      		return this;
 			},
-			renderFiles: function(){
+			compareFiles: function(){
 				for(var i = 0; i < this._itemViews.length; i++){
-					this._itemViews[i].renderFiles();
+					this._itemViews[i].compareFiles();
 				}
 	      		return this;
 			}

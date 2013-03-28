@@ -6,8 +6,18 @@ define([
 	'collections/taxonomyterms',
 	'collections/files',
 	'collections/elements',
+	'models/element'
 ],
-function(globals, config, init, renderElements, TaxonomyTerms, Files, Elements) {
+function(globals, config, init, renderElements, TaxonomyTerms, Files, Elements, Element) {
+
+
+	$.ajax(
+		'http://c-bip.gsappcloud.org/restws/session/token', {
+		success: function(data, textStatus, jqXHR ){
+			console.log('returned with token! '+ data);
+			globals.CSRF_TOKEN = data;
+		}
+	});
 
 	var pathArray = window.location.pathname.split('/');
 
@@ -134,7 +144,10 @@ function(globals, config, init, renderElements, TaxonomyTerms, Files, Elements) 
 	*/
 
 
+	
 
+
+	
 
 
 

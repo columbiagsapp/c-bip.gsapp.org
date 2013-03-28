@@ -22,7 +22,7 @@
   <script type="text/javascript" src="http://fast.fonts.com/jsapi/7ae7343d-e0e4-45fd-a488-2bfa26bd5754.js"></script>
 </head>
 
-<body class="<?php print $classes; ?>" <?php print $attributes;?>>
+<body class="<?php print $classes; ?><?php if($user->uid != 0){ print ' user-'.$user->uid; } ?>" <?php print $attributes;?>>
   <?php print $page_top; ?>
   <?php print $page; ?>
   <?php print $page_bottom; ?>

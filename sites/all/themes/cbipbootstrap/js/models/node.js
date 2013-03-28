@@ -1,7 +1,58 @@
 define([
+	'globals',
 	'lib/backbone-min'
 ],
-function(Backbone) {
+function(globals, Backbone) {
+	Backbone.old_sync = Backbone.sync;
+	Backbone.sync = function(method, model, options) {
+	    var new_options =  _.extend({
+	        beforeSend: function(xhr) {
+	            if (globals.CSRF_TOKEN) xhr.setRequestHeader('X-CSRF-Token', globals.CSRF_TOKEN);
+	        }
+	    }, options);
+	    Backbone.old_sync(method, model, new_options);
+	};
+
+	// Set up some Utility functions
+	_.mixin({
+	    // ### _.objMap
+	    //
+	    // _.map for objects, keeps key/value associations
+	    // and changes the value via function.
+	    // Adapted from https://github.com/documentcloud/underscore/issues/220
+	    objMap: function (input, mapper, context) {
+	      return _.reduce(input, function (obj, v, k) {
+	        obj[k] = mapper.call(context, v, k, input);
+	        return obj;
+	      }, {}, context);
+	    },
+	    // ### _.objFilter
+	    //
+	    // _.filter for objects, keeps key/value associations
+	    // but only includes the properties that pass test().
+	    // Adapted from https://github.com/documentcloud/underscore/issues/220
+	    objFilter: function (input, test, context) {
+	      return _.reduce(input, function (obj, v, k) {
+	        if (test.call(context, v, k, input)) {
+	          obj[k] = v;
+	        }
+	        return obj;
+	      }, {}, context);
+	    },
+	    // ### _.objReject
+	    //
+	    // _.reject for objects, keeps key/value associations
+	    // but only includes the properties that pass test().
+	    // Adapted from https://github.com/documentcloud/underscore/issues/220
+	    objReject: function (input, test, context) {
+	      return _.reduce(input, function (obj, v, k) {
+	        if (!test.call(context, v, k, input)) {
+	          obj[k] = v;
+	        }
+	        return obj;
+	      }, {}, context);
+	    }
+	});
 	
 	var Node = Backbone.Model.extend({
 		// Base endpoint, used to create full url for each collection.

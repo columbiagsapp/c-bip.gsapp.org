@@ -32,9 +32,10 @@ function(globals, config, Element, template, View, ElementImage, ElementImageVie
     tag_array: [],
     TaxonomyTerms: null,
     files_array: [],
+    _Files: [],
 
     initialize: function(opts) {
-    	_.bindAll(this, 'renderTags', 'renderStudentNames', 'renderImage');
+    	_.bindAll(this, 'renderTags', 'renderStudentNames', 'renderImage', 'compareFiles', 'updateFiles');
 		View.prototype.initialize.call(this, opts);
 		this.model.bind('change', this.render, this);//this calls the fetch
 
@@ -199,6 +200,90 @@ function(globals, config, Element, template, View, ElementImage, ElementImageVie
     	}
     	console.log('');console.log('');
 
+    },
+
+    compareFiles: function(){
+    	var element_files_field = this.model.get('field_element_files_text');
+
+    	console.log('field_element_files_text: '+ element_files_field);
+
+
+
+    	var element_files = this.model.get('field_element_files');
+
+    	var discrepancy = false;
+
+    	//Check to see if any discrepancies between text field and Drupal Files DB
+    	for(var i = 0; i < element_files.length; i++){
+    		if(element_files_field[i] != undefined){
+	    		if(element_files[i] != element_files_field[i]){
+	    			discrepancy = true;
+	    		}
+	    	}else{
+	    		discrepancy = true;
+	    	}
+    	}
+
+
+
+    	if(discrepancy){
+    		console.log('*****DISCREP');
+
+    		
+
+
+			var desc = [];
+			this.totalFiles = element_files.length;
+			this.filesFetched = 0;
+
+	    	for(var i = 0; i < this.totalFiles; i++){
+	    	
+	    		if(element_files[i].file.id != undefined){
+	    			var file_model = new ElementFile({fid: element_files[i].file.id});
+	    			desc[ element_files[i].file.id ] = element_files[i].description.toUpperCase();
+
+					var _this = this;
+
+					file_model.fetch({
+						success: function(model, response, options){
+							var fid = model.get('fid');
+							model.set({'description': desc[ fid ]});
+
+							_this.filesFetched++;
+							_this._Files[fid] = model;
+							console.log('fetch success! '+ this.filesFetched);
+							_this.updateFiles();
+						}
+					});
+	    		}
+	    	}
+	    }//end if discrepancy
+    	console.log('');console.log('');
+
+    },
+
+    updateFiles: function(){
+    	console.log( 'updateFiles() ');
+    	if(this.filesFetched >= this.totalFiles){
+    		console.log('fetched all files');
+
+    		this.new_elements_files_value = [];
+
+    		for(var fid in this._Files){
+    			this.new_elements_files_value.push(this._Files[fid]);
+    		}
+
+    		//this.model.set({field_element_files_text: this.new_elements_files_value});
+    		this.model.set({ type: "element" });
+    		var bla = [];
+    		bla[0] = 'somevalue';
+    		bla[1] = 'second';
+    		this.model.set({field_element_files_text: bla});
+
+    		this.render();
+
+    		this.model.save();
+    	}
     }
 
   });
