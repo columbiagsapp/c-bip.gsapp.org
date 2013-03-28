@@ -1,10 +1,11 @@
 define([
 	'globals',
+	'config',
 	'views/elementview',
 	'collections/elements',
 	'views/elementsview'
 ],
-function(globals, ElementView, Elements, ElementsView) {
+function(globals, config, ElementView, Elements, ElementsView) {
 	var renderElements = function(){
 		console.dir(globals.ELEMENTS);
 
@@ -22,7 +23,9 @@ function(globals, ElementView, Elements, ElementsView) {
 			elements_view.addOne(element);
 		});
 
-		elements_view.renderTags().renderImages().renderStudentNames().renderFiles();
+		config.resizeFunc();
+
+		//elements_view.renderTags().renderImages().renderStudentNames().renderFiles();
 
 
 		//.renderTags();//.renderImages().renderStudentNames();

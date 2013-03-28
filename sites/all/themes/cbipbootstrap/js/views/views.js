@@ -43,7 +43,6 @@ function(View) {
 	    addOne: function(newModel) {
 	      var myItemView = new this.ItemView({
 	        model: newModel,
-	        renderer: this.options.renderer // this is a cheat, assume same renderer for children (specifying renderer via extend isn't working)
 	      });
 
 	      // Store pointer to this view in a private variable.

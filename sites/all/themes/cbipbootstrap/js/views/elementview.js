@@ -51,8 +51,6 @@ function(globals, config, Element, template, View, ElementImage, ElementImageVie
 
 		$(this.el).html(content);
 
-		config.resizeFunc();
-
 
 		// return ```this``` so calls can be chained.
 		return this;
@@ -117,6 +115,7 @@ function(globals, config, Element, template, View, ElementImage, ElementImageVie
 			});
 			
 		}
+		return this;
     },
 
     renderStudentNames: function(){
@@ -155,49 +154,70 @@ function(globals, config, Element, template, View, ElementImage, ElementImageVie
 
     },
 
-    renderFiles: function(){
-    	var element_files = this.model.get('field_element_files');
+    renderFiles: function(itr){
+    	var itr = itr || 1;
+    	console.log('+++++++element.renderFiles()');
+    	console.dir(this.model);
 
-    	var elementFilesViewEl = '#node-' + this.model.get('nid') + ' .element-data-links';
+    	if(this.model != undefined){
 
-    	var files = new ElementFiles();
-		var files_view = new ElementFilesView({
-			collection: files,
-			el: elementFilesViewEl,
-			itemParent: '#element-files-anchor',
-			ItemView: ElementFileView
-		});
+	    	if(this.model._ElementFiles != null){
+		    	var elementFilesViewEl = '#node-' + this.model.get('nid') + ' .element-data-links';
 
-		files_view.render();
+		    	if($(elementFilesViewEl).length > 0){
 
-		var desc = [];
-
-    	for(var i = 0; i < element_files.length; i++){
-    	
-    		if(element_files[i].file.id != undefined){
-
-    			var file_model = new ElementFile({fid: element_files[i].file.id});
-    			desc[ element_files[i].file.id ] = element_files[i].description.toUpperCase();
-
-				var _this = this;
-
-				
-				file_model.fetch({
-						success: function(model, response, options){
-							var fid = model.get('fid');
-							model.set({'description': desc[ fid ]});
-
-							console.log( desc[ fid ] );
-
-							files_view.addOne( model );
-
-							//$('.preloader', imageViewEl).remove();
-						}
+			    	var files = new ElementFiles();
+					var files_view = new ElementFilesView({
+						collection: files,
+						el: elementFilesViewEl,
+						itemParent: '#element-files-anchor',
+						ItemView: ElementFileView
 					});
-    		}
 
-    	}
-    	console.log('');console.log('');
+					files_view.render();
+
+					console.log('files_view for '+ elementFilesViewEl);
+					console.log('with total files: '+ this.model._ElementFiles.models.length);
+					console.log('this.model:');
+					console.dir(this.model);
+					console.log('this.model._ElementFiles');
+					console.dir(this.model._ElementFiles);
+
+
+					_.each(this.model._ElementFiles.models, function(element, index){
+						console.log('about to add element!!!!!!!');
+						console.dir(element);
+						files_view.addOne(element);
+					});
+				}else{
+					console.log('renderFiles - element not yet rendered');
+					setTimeout(function(){
+						console.log('********looping!');
+						console.dir(this);
+						itr++;
+						this.renderFiles(itr);
+					}, 100);//keep trying until all downloaded
+				}
+			}else{
+				console.log('renderFiles - no this.model._ElementFiles yet');
+				setTimeout(function(){
+					console.log('********looping!');
+					console.dir(this);
+					itr++;
+					this.renderFiles(itr);
+				}, 100);//keep trying until all downloaded
+			}
+		}else{
+			console.log('renderFiles - no this.model yet');
+			setTimeout(function(){
+				console.log('********looping!');
+				console.dir(this);
+				itr++;
+				this.renderFiles(itr);
+			}, 100);//keep trying until all downloaded
+		}
+
+		return this;
 
     }
 

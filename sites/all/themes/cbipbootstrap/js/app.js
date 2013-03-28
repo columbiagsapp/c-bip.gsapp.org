@@ -6,25 +6,91 @@ define([
 	'collections/taxonomyterms',
 	'collections/files',
 	'collections/elements',
+	'models/elementfile',
+	'views/elementfileview',
+	'collections/elementfiles',
+	'views/elementfilesview'
 ],
-function(globals, config, init, renderElements, TaxonomyTerms, Files, Elements) {
+function(globals, config, init, renderElements, TaxonomyTerms, Files, Elements, ElementFile, ElementFileView, ElementFiles, ElementFilesView) {
 
-	
+
+		//attach fetched Element Files to Element
+		function attachElementFiles(element, elementfiles){
+			console.log('attachElementFiles(), showing element');
+			element._ElementFiles = elementfiles;
+			console.dir(element);
+			console.log('');console.log('');
+		}
+
+		function fetchElementFiles(){
+			//console.log('fetchElementFiles()');
+			//console.dir(globals.ELEMENTS);
+
+			_.each(globals.ELEMENTS.models, function(element, index, list){
+				//console.log('element number: '+ index);
+				//console.dir(element);
+
+				var _elementFiles = element.get('field_element_files');
+				var _elementFilesViewEl = '#node-' + element.get('nid') + ' .element-data-links';
+
+				//console.log('_elementFilesViewEl: '+ _elementFilesViewEl);
+				
+				var element_files = new ElementFiles();
+
+				var _descriptions = [];
+				var _filesTotal = _elementFiles.length;
+				var _filesCount = 0;
+
+				//console.log('_filesTotal: '+ _filesTotal);
+
+				for(var i = 0; i < _elementFiles.length; i++){
+					var file_model = new ElementFile({fid: _elementFiles[i].file.id});
+					_descriptions[ _elementFiles[i].file.id ] = _elementFiles[i].description.toUpperCase();
+
+					file_model.fetch({
+						success: function(model, response, options){
+
+							_filesCount++;
+							var fid = model.get('fid');
+							model.set({'description': _descriptions[ fid ]});
+							
+							element_files.add(model);
+							//console.log('fetched! model with fid: '+fid);
+							//console.log('*******element_files_view:');
+							//console.dir(element_files_view);
+							
+
+							if(_filesCount == _filesTotal){
+								attachElementFiles(element, element_files);
+							}
+							//$('.preloader', imageViewEl).remove();
+						}
+					});
+				}
+			});
+		}
 
 	var App = function() {
 		var pathArray = window.location.pathname.split('/');
-		
+
 		var flag = {};
 		flag.TAXONOMY_TERMS = false;
 		flag.FILES = true;
 		flag.ELEMENTS = false;
 
 
+
+		//STEP
+		//Ferch all collections
+
 		var ELEMENTS = new Elements();
 		ELEMENTS.fetchQuery({ type: "element" }, {
 			success: function(collection, response, options){
 				globals.ELEMENTS = collection;
 				flag.ELEMENTS = true;
+
+				fetchElementFiles();
+
 			}
 		});
 
@@ -105,25 +171,9 @@ function(globals, config, init, renderElements, TaxonomyTerms, Files, Elements) 
 
 			}
 		}
-	};
-
-	App.prototype = {
-	};
+	}
 
 	
-
-	
-	
-
-
-
-
-
-
-
-
-
-
 	
 
 
