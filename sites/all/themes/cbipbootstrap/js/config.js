@@ -275,6 +275,208 @@ define([], function() {
 		$(this).removeClass('hover');
 	}
 
+	
+
+    config.getTumblrFeed = function(){
+
+    	myJsonpCallback = function(data){
+	        console.dir(data);
+	        var posts = data.response.posts;
+
+	        var fullHTML = [];
+	        fullHTML.push('<div id="posts">');
+
+	        for(var i = 0; i < posts.length; i++){
+	          var d = new Date(posts[i].date);
+	          var month = d.getMonth() + 1;
+	          month = ''+ month;
+	          if(month.length == 1){
+	            month = '0' + month;
+	          }
+	          var day = '' + d.getDate();
+	          if(day.length == 1){
+	            day = '0' + day;
+	          }
+	          var year = '' + d.getFullYear();
+
+	          var html = [];
+	          html.push('<div class="post-wrapper">');
+	            //render the date
+	            html.push('<h3 class="date">');
+	              html.push('<a href="' + posts[i].post_url + '" target="_self">');
+	                html.push(month+'/'+day+'/'+year);
+	              html.push('</a>');
+	            html.push('</h3>');
+
+
+	          switch(posts[i].type){
+	            case 'photo':
+	              console.log('photo');
+	              html.push('<div class="post photo">');
+
+	                for(var j = 0; j < posts[i].photos.length; j++){
+	                  html.push('<img src="'+ posts[i].photos[j].alt_sizes[1].url + '" width="'+posts[i].photos[j].alt_sizes[1].width+'" height="' + posts[i].photos[j].alt_sizes[1].height+'">');
+	                }
+
+	                if(posts[i].caption != ''){
+	                  html.push('<div class="caption">'+posts[i].caption+'</div>')
+	                }
+
+	              html.push('</div>');
+	              break;
+	            case 'text':
+	              console.log('text');
+	              html.push('<div class="post text">');
+	                if(posts[i].title != null && posts[i].title != ''){
+	                  html.push('<h3>'+ posts[i].title +'</h3>');
+	                }
+	                html.push(posts[i].body);
+	              html.push('</div>');
+	              break;
+	            case 'video':
+	              console.log('video');
+	              html.push('<div class="post video">');
+
+	                html.push(posts[i].player[2].embed_code);
+
+	                if(posts[i].caption != ''){
+	                  html.push('<div class="caption">'+posts[i].caption+'</div>')
+	                }
+
+	              html.push('</div>');
+	              break;
+	          }
+
+	          if(posts[i].tags.length > 0){
+	            html.push('<div class="tags">');
+	            for(var t = 0; t < posts[i].tags.length; t++){
+	              if(t != (posts[i].tags.length-1)){
+	                html.push('<span class="tag">'+ posts[i].tags[t] + ' &middot; </span>');
+	              }else{
+	                html.push('<span class="tag">'+ posts[i].tags[t] + '</span>');
+	              }
+	            }
+	            html.push('</div>');
+	          }
+
+	          html.push('</div>');
+
+	          var htmlString = html.join('');
+	          fullHTML.push(htmlString);
+	          
+	        }//end main for
+
+	        var html = [];
+	        html.push('<div class="post-wrapper continue-reading">');
+	          html.push('<h3><a href="http://cbip2013.tumblr.com/">CONTINUE READING THE BLOG</a></h3>');
+	        html.push('</div>');
+
+	        fullHTML.push( html.join('') );
+
+	        fullHTML.push('</div>');// /#posts
+	        var fullHTMLstring = fullHTML.join('');
+	        console.log(fullHTMLstring);
+	        $('#main').html( fullHTMLstring ).css('opacity', '1');
+
+	        $('body').removeClass('front');
+	        config.init();
+	     	
+	    }//end myJsonpCallback
+
+		$.ajax({
+			type: "GET",
+			url : "http://api.tumblr.com/v2/blog/cbip2013.tumblr.com/posts",
+			dataType: "jsonp",
+			data: {
+				api_key : "hWkC4wLaBW4c9ifzdFahAN7rLNMsEUH0l1uuAca6SVhhxufgwA",
+				jsonp : "myJsonpCallback"
+			}
+		});
+    }
+
+    config.init = function(){
+
+ 		// Update the submenu tct2003
+        var path = window.location.pathname.split('/');
+        switch(path[1]){
+          case 'library':
+            $('#navigation #block-block-1').show();
+            $('#navigation #block-block-2').hide();
+            break;
+          case 'about':
+            $('#navigation #block-block-2').show();
+            $('#navigation #block-block-1').hide();
+            break;
+          case 'work':
+          	config.getTumblrFeed();
+          	$('#navigation #block-block-1').hide();
+            $('#navigation #block-block-2').hide();
+          	break;
+          default:
+            $('#navigation #block-block-1').hide();
+            $('#navigation #block-block-2').hide();
+            break;
+        }
+
+ 		/////// HOME PAGE ///////
+
+		//Clicking on main menu on home page
+		$('.front #navigation .menu li a').bind('click', function(event){
+			//event.preventDefault();
+			$('#carousel').slideToggle(config.PAGE_TRANSITION_TIME, function(){
+				$('#oldcastle-logo').hide();
+				$('#gsapp-logo').hide();
+			});
+		});
+
+
+		/////// ABOUT ///////
+		$('#secondary-nav-affiliates a').bind('click', config.scrollToAffiliates);
+		$('#secondary-nav-people a').bind('click', config.scrollToPeople);
+		$(document).bind('scroll', config.scrollSpy);
+
+		/////// LIBRARY OF WORK ///////
+		config.appendTagFilter();
+		$('#lib-work-tag-sort').hover(config.showTagMenu, config.hideTagMenu);
+
+
+		/////// RESOURCES ///////
+
+		//clicking on resource should open in a new window
+		//@todo: do i need this? can't it be in the template file?
+		$('.resource').bind('click', function(){
+			window.open($(this).attr("href"),'_blank');
+		});
+
+		$('.resource').hover(config.hoverOn, config.hoverOff);
+
+
+
+		/////// CAROUSEL ///////
+
+		//Bind carousel buttons to actions
+		$('#carousel-next').bind('click', config.incrementCarousel);
+		$('#carousel-prev').bind('click', config.decrementCarousel);
+
+		//begin the carousel cycle if home page
+		if( $('body').hasClass('front')){
+			config.cycleCarousel();
+		}
+
+
+
+		/////// RESIZE FUNCTIONS ///////
+
+		//call the resizeFunc on page load and bind to window resize events
+		config.resizeFunc();
+  		$(window).resize( config.resizeFunc);
+
+
+  		/////// GLOBAL INIT ///////
+  		$("h1#page-title:contains('(hide)')").hide();
+
+ 	}
+
 
   return config;
 });

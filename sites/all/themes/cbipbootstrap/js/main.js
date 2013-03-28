@@ -4,14 +4,13 @@ requirejs.config({
 
 require([
   'config',
-  'init',
   'jquery.history',
   'jquery.scrollto.min'
 ],
 
-function(config, init, History) {
+function(config, History) {
 
-  init();
+  config.init();
 
   // Ajaxify
   // v1.0.1 - 30 September, 2012
@@ -167,123 +166,7 @@ function(config, init, History) {
         //check if work in progress tumblr feed or regular page transition
         if(relativeUrl == 'work/progress'){
         
-
-          myJsonpCallback = function(data)
-          {
-            console.dir(data);
-              var posts = data.response.posts;
-
-              var fullHTML = [];
-              fullHTML.push('<div id="posts">');
-
-              for(var i = 0; i < posts.length; i++){
-                var d = new Date(posts[i].date);
-                var month = d.getMonth() + 1;
-                month = ''+ month;
-                if(month.length == 1){
-                  month = '0' + month;
-                }
-                var day = '' + d.getDate();
-                if(day.length == 1){
-                  day = '0' + day;
-                }
-                var year = '' + d.getFullYear();
-
-
-
-
-                var html = [];
-                html.push('<div class="post-wrapper">');
-                  //render the date
-                  html.push('<h3 class="date">');
-                    html.push('<a href="' + posts[i].post_url + '" target="_self">');
-                      html.push(month+'/'+day+'/'+year);
-                    html.push('</a>');
-                  html.push('</h3>');
-
-
-                switch(posts[i].type){
-                  case 'photo':
-                    console.log('photo');
-                    html.push('<div class="post photo">');
-
-                      for(var j = 0; j < posts[i].photos.length; j++){
-                        html.push('<img src="'+ posts[i].photos[j].alt_sizes[1].url + '" width="'+posts[i].photos[j].alt_sizes[1].width+'" height="' + posts[i].photos[j].alt_sizes[1].height+'">');
-                      }
-
-                      if(posts[i].caption != ''){
-                        html.push('<div class="caption">'+posts[i].caption+'</div>')
-                      }
-
-                    html.push('</div>');
-                    break;
-                  case 'text':
-                    console.log('text');
-                    html.push('<div class="post text">');
-                      if(posts[i].title != null && posts[i].title != ''){
-                        html.push('<h3>'+ posts[i].title +'</h3>');
-                      }
-                      html.push(posts[i].body);
-                    html.push('</div>');
-                    break;
-                  case 'video':
-                    console.log('video');
-                    html.push('<div class="post video">');
-
-                      html.push(posts[i].player[2].embed_code);
-
-                      if(posts[i].caption != ''){
-                        html.push('<div class="caption">'+posts[i].caption+'</div>')
-                      }
-
-                    html.push('</div>');
-                    break;
-                }
-
-                if(posts[i].tags.length > 0){
-                  html.push('<div class="tags">');
-                  for(var t = 0; t < posts[i].tags.length; t++){
-                    if(t != (posts[i].tags.length-1)){
-                      html.push('<span class="tag">'+ posts[i].tags[t] + ' &middot; </span>');
-                    }else{
-                      html.push('<span class="tag">'+ posts[i].tags[t] + '</span>');
-                    }
-                  }
-                  html.push('</div>');
-                }
-
-                html.push('</div>');
-
-                var htmlString = html.join('');
-                fullHTML.push(htmlString);
-                
-              }//end main for
-
-              var html = [];
-              html.push('<div class="post-wrapper continue-reading">');
-                html.push('<h3><a href="http://cbip2013.tumblr.com/">CONTINUE READING THE BLOG</a></h3>');
-              html.push('</div>');
-
-              fullHTML.push( html.join('') );
-
-              fullHTML.push('</div>');// /#posts
-              var fullHTMLstring = fullHTML.join('');
-              console.log(fullHTMLstring);
-              $('#main').html( fullHTMLstring ).css('opacity', '1');
-
-              $('body').removeClass('front');
-              init();
-          }
-
-          $.ajax({
-              type: "GET",
-              url : "http://api.tumblr.com/v2/blog/cbip2013.tumblr.com/posts",
-              dataType: "jsonp",
-              data: {
-                  api_key : "hWkC4wLaBW4c9ifzdFahAN7rLNMsEUH0l1uuAca6SVhhxufgwA",
-                  jsonp : "myJsonpCallback"
-              }
-          });
+          config.getTumblrFeed();
         }else{
         
           // Ajax Request the Traditional Page
@@ -346,7 +229,7 @@ function(config, init, History) {
               }
 
               $('body').removeClass('front');
-              init();
+              config.init();
             },
             error: function(jqXHR, textStatus, errorThrown){
               document.location.href = url;
