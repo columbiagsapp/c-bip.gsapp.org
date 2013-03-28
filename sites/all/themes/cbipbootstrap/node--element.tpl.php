@@ -87,7 +87,7 @@ print '<div class="element-data-links">'; // pdf file etc
       foreach($node->field_element_files['und'] as $file) {
         // file is array
         print '<div class="data-link"><a href="' .
-              file_create_url($file['uri']) . '" target="_blank" >' .
+              file_create_url($file['uri']) . '" class="no-ajaxy" target="_blank" >' .
               $file['description'] . '</a></div>';
       }
     }
@@ -101,7 +101,7 @@ print '<div class="element-data-links">'; // pdf file etc
       foreach($node->field_links['und'] as $link) {
         // link is array
         print '<div class="data-link"><a href="' .
-              $link['url'] . '" target="_blank" >' .
+              $link['url'] . '" class="no-ajaxy" target="_blank" >' .
               $link['title'] . '</a></div>';
       }
 

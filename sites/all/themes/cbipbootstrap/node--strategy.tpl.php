@@ -82,7 +82,7 @@ if(isset($node->field_strategy_file['und'][0]['uri'])){
   $pdfUrl = file_create_url($node->field_strategy_file['und'][0]['uri'] );
 
   print '<div class="data-link"><a href="' .
-        $pdfUrl . '" target="_blank" >' .
+        $pdfUrl . '" class="no-ajaxy" target="_blank" >' .
         'PDF' . '</a></div>';
 }
 
