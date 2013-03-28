@@ -11,7 +11,7 @@ define([], function() {
 
 	/////// HOME PAGE ///////
 
-	config.PAGE_TRANSITION_TIME = 500;
+	config.PAGE_TRANSITION_TIME = 200;
 
 	//CAROUSEL CONSTANTS
 	config.TOTAL_CAROUSEL_IMAGES = 4;
@@ -144,6 +144,7 @@ define([], function() {
 
 	//if element or strategy is sorted by tag, adds it to the sub nav menu
 	config.appendTagFilter = function(){
+	    $('#current-tag-in-menu').remove();
 	    var pathArray = window.document.location.pathname.split('/');
 
 	    if($.inArray('tag', pathArray) >= 0){

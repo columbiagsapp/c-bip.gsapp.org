@@ -1,7 +1,26 @@
-define([ 'config' ], function(config) {
+define([ 
+	'config'
+], function(config) {
  
 
  	var init = function(){
+
+ 		// Update the submenu tct2003
+        var path = window.location.pathname.split('/');
+        switch(path[1]){
+          case 'library':
+            $('#navigation #block-block-1').show();
+            $('#navigation #block-block-2').hide();
+            break;
+          case 'about':
+            $('#navigation #block-block-2').show();
+            $('#navigation #block-block-1').hide();
+            break;
+          default:
+            $('#navigation #block-block-1').hide();
+            $('#navigation #block-block-2').hide();
+            break;
+        }
 
  		/////// HOME PAGE ///////
 

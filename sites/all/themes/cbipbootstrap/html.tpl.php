@@ -10,8 +10,9 @@
   <title><?php print $head_title; ?></title>
   <?php print $styles; ?>
 
-  <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script type="text/javascript" src="/sites/all/themes/cbipbootstrap/js/lib/require.js"></script>
+ 
 
   <?php print $scripts; ?>
   <!-- IE Fix for HTML5 Tags -->

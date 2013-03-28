@@ -51,10 +51,16 @@ body {
   line-height: 1.5;
   margin: 0;
   padding: 0;
+  position:relative;
+}
+
+body{
+  min-height:101%;
 }
 
 body.front{
   height:100%;
+  max-height: 100%;
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -414,7 +420,8 @@ body.sidebar-second #sidebar-second {
   padding: 3px 10px;
 }
 
-#navigation #block-system-main-menu ul.menu li a:hover {
+#navigation #block-system-main-menu ul.menu li a:hover,
+#navigation #block-system-main-menu ul.menu li a.active {
   border: 1px solid black;
   color: #fff;
   background-color: blue;
@@ -967,4 +974,8 @@ div.views-field-field-element-tags a,
   margin-top:200px;
 }
 
+#block-block-1,
+#block-block-2{
+  display: none;
+}
 

@@ -9,7 +9,7 @@
   <header id="header" role="banner" class="clearfix">
 	
     <div id="c-bip-logo">
-      <a href="/"><img src="/sites/all/themes/framework/images/cbiplogo.gif" width="289" height="74" alt="C-BIP: Columbia Building Intelligence Project" /></a>
+      <a class="no-ajaxy" href="/"><img src="/sites/all/themes/framework/images/cbiplogo.gif" width="289" height="74" alt="C-BIP: Columbia Building Intelligence Project" /></a>
     </div>
 
     <div id="oldcastle-logo">
