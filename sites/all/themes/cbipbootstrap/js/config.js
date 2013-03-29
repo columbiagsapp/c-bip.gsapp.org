@@ -18,10 +18,16 @@ define([], function() {
 	config.CURRENT_CAROUSEL_IMAGE_INDEX = 1;
 
 	config.CAROUSEL_IMAGES_TIMING = [];
-	config.CAROUSEL_IMAGES_TIMING[1] = 4000;//was 46000
-	config.CAROUSEL_IMAGES_TIMING[2] = 5000;
-	config.CAROUSEL_IMAGES_TIMING[3] = 5000;
-	config.CAROUSEL_IMAGES_TIMING[4] = 5000;
+
+	config.setCarouselCycleTiming = function(){
+		console.log('setCarouselCycleTiming()');
+
+		$('.carousel-image-container').each(function(i){
+			config.CAROUSEL_IMAGES_TIMING[i] = $(this).attr('time');
+			console.log(config.CAROUSEL_IMAGES_TIMING[i]);
+		});
+	}
+
 
 	//sets the height of the carousel on the homepage
 	config.setCarouselHeight = function(){
@@ -60,7 +66,6 @@ define([], function() {
 		}
 		$('#carousel-image-' + config.CURRENT_CAROUSEL_IMAGE_INDEX ).show();
 
-		config.resizeCarouselImage();
 	}//end incrementCarousel()
 
 
@@ -85,7 +90,6 @@ define([], function() {
 		}
 
 		$('#carousel-image-' + config.CURRENT_CAROUSEL_IMAGE_INDEX ).show();
-		config.resizeCarouselImage();
 	}//end decrementCarousel()
 
 	//regularly cycle the carousel images
@@ -235,40 +239,55 @@ define([], function() {
 
 
 	//resizes the image in the carousel preserving its aspect ratio
-	config.resizeCarouselImage = function(){
-		console.log('resizeCarouselImage()');
-		var carousel_prev_next_width = parseInt( $('#carousel-prev').width() );
+	config.resizeCarouselImages = function(){
+		console.log('resizeCarouselImages()');
 
-		var carousel_image_div_selector = '#carousel-image-1:visible, #carousel-image-2:visible, #carousel-image-3:visible, #carousel-image-4:visible, #carousel-image-5:visible, #carousel-image-6:visible, #carousel-image-7:visible';
+		var cw = $('#carousel').width();
+		var ch = $('#carousel').height();
+		var caspect = cw/ch;
 
-		var carousel_images_selector = '#carousel-image-1:visible img, #carousel-image-2:visible img, #carousel-image-3:visible img, #carousel-image-4:visible img, #carousel-image-5:visible img, #carousel-image-6:visible img, #carousel-image-7:visible img';
+		var availw = Math.floor( cw - ( 2*$('#carousel-prev').width() ) );
 
-		var w = $('#carousel').width();
-		var h = $('#carousel').height();
-		
-		if($(carousel_image_div_selector).attr('scaleto') == 'height'){
-			$(carousel_images_selector).height( h + 'px');
-			$(carousel_images_selector).css('width', 'auto');
-		}else{
-			console.log('scaleto width');
-			$(carousel_images_selector).width( w + 'px');
-			$(carousel_images_selector).css('height', 'auto');
+		$('.carousel-image-container').each(function(i){
+			var iw = $("img", this).width();
+			var ih = $("img", this).height();
+			var iaspect = iw/ih;
 
-			var imageHeight = $(carousel_images_selector).height();
-			var carouselHeight = $('#carousel').height();
-			if(imageHeight > carouselHeight){
-				var topOffset = -1* Math.floor( (imageHeight - carouselHeight)/2 );
-				$(carousel_images_selector).css('marginTop', topOffset);
+			if( $(this).attr('crop') == 'true'){
+				if(iaspect > caspect){
+					$("img", this).height( ch );
+					$("img", this).width( 'auto' );
+				}else{
+					$("img", this).width( cw );
+					$("img", this).height( 'auto' );
+				}
+			}else{//crop == false
+				if(iaspect > caspect){
+					$("img", this).width( availw );
+					$("img", this).height( 'auto' );
+					ih = $("img", this).height();
+
+					//vertically center the image
+					var margin_top = Math.floor( (ch - ih) / 2 );
+					$("img", this).css( 'marginTop', margin_top );
+				}else{
+					$("img", this).height( ch );
+					$("img", this).width( 'auto' );
+					//reset marginTop incase was set in previous resize
+					$("img", this).css( 'marginTop', '' );
+				}
 			}
-		}
-	}
+
+
+		});//end each .carousel-image-container
+	}// end resizeCarouselImages()
 
 	//main window resize function
 	config.resizeFunc = function(){
 		config.pruneComponentMargin();
 		if( $('body').hasClass('front')){
 			config.setCarouselHeight();
-			config.resizeCarouselImage();
+			config.resizeCarouselImages();
 		}
 	}
 
@@ -427,6 +446,7 @@ define([], function() {
         }
 
  		/////// HOME PAGE ///////
+ 		config.setCarouselCycleTiming();
 
 		//Clicking on main menu on home page
 		$('.front #navigation .menu li a').bind('click', function(event){

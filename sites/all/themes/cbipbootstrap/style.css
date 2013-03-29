@@ -352,6 +352,12 @@ body.sidebar-second #sidebar-second {
   height:100%;
 }
 
+.carousel-image-container{
+  text-align: center;
+  width:100%;
+  height:100%;
+}
+
 .front #carousel-image-2,
 .front #carousel-image-3,
 .front #carousel-image-4

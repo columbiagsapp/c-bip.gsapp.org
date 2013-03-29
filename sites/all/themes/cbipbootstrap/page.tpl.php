@@ -18,16 +18,16 @@
 
     <div id="carousel">
       <div id="carousel-image-container">
-        <div id="carousel-image-1" style="background-color:#000;" scaleto="height">
+        <div id="carousel-image-1" class="carousel-image-container" style="background-color:#000;" crop="false" time="40000">
           <img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/intro1.gif?<?php print rand(10000,99999); ?>" alt="C-BIP: Columbia Building Intelligence Project" />
         </div>
-        <div id="carousel-image-2" style="background-color:#fff;" scaleto="height">
+        <div id="carousel-image-2" class="carousel-image-container" style="background-color:#fff;" crop="false" time="5000">
           <img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/130319_Element4.gif" alt="C-BIP: Columbia Building Intelligence Project" />
         </div>
-        <div id="carousel-image-3" scaleto="width">
+        <div id="carousel-image-3" class="carousel-image-container" crop="true" time="5000">
           <img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/intro3.gif" alt="C-BIP: Columbia Building Intelligence Project" />
         </div>
-        <div id="carousel-image-4" scaleto="width">
+        <div id="carousel-image-4" class="carousel-image-container" crop="true" time="5000">
           <img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/intro4.gif" alt="C-BIP: Columbia Building Intelligence Project" />
         </div>
       </div>
