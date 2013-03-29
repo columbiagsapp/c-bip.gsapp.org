@@ -9,11 +9,11 @@
   <header id="header" role="banner" class="clearfix">
 	
     <div id="c-bip-logo">
-      <a class="no-ajaxy" href="/"><img src="/sites/all/themes/framework/images/cbiplogo.gif" width="289" height="74" alt="C-BIP: Columbia Building Intelligence Project" /></a>
+      <a class="no-ajaxy" href="/"><img src="/sites/all/themes/cbipbootstrap/images/cbiplogo.gif" width="289" height="74" alt="C-BIP: Columbia Building Intelligence Project" /></a>
     </div>
 
     <div id="oldcastle-logo">
-      <a target="_blank" href="http://www.oldcastle.com/index.php"><img src="/sites/all/themes/framework/images/oldcastle.png" width="251" height="21" alt="Oldcastle Building Envelope" /></a>
+      <a target="_blank" href="http://www.oldcastle.com/index.php"><img src="/sites/all/themes/cbipbootstrap/images/oldcastle.png" width="363" height="31" alt="Oldcastle Building Envelope" /></a>
     </div>
 
     <div id="carousel">
@@ -53,7 +53,7 @@
     <div id="carousel-label"></div>
 
     <div id="gsapp-logo">
-      <a target="_blank" href="http://arch.columbia.edu"><img src="/sites/all/themes/framework/images/gsapp-logo.png" width="70" height="14" alt="Columbia University GSAPP" /></a>
+      <a target="_blank" href="http://arch.columbia.edu"><img src="/sites/all/themes/cbipbootstrap/images/gsapp-logo.png" width="70" height="14" alt="Columbia University GSAPP" /></a>
     </div>
 
     <?php if (!empty($page['navigation'])){ ?>

@@ -42,7 +42,15 @@ define([], function() {
 		var headerPaddingBottom = parseInt( $('#header').css('paddingBottom') );
 
 		//create carousel height from the available height minus all other elements to make as high as possible
-		var carouselHeight = window.innerHeight - headerPaddingTop - cBIPlogoHeight - carouselMarginTop - carouselLabelMarginTop - carouselLabelHeight - carouselLabelMarginBottom - navHeight - headerPaddingBottom;
+		var carouselHeight = window.innerHeight - headerPaddingTop - cBIPlogoHeight - carouselMarginTop - carouselLabelMarginTop - carouselLabelHeight - carouselLabelMarginBottom - navHeight - headerPaddingBottom - 20;
+		var w = $('#carousel').width();
+		var aspect = w/carouselHeight;
+		var min_aspect = 1;
+
+		if( aspect < min_aspect){
+			carouselHeight = w/min_aspect;
+		}
+
 		$('#carousel').height( carouselHeight+'px' );
 	}
 
