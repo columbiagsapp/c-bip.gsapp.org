@@ -23,27 +23,21 @@
         </div>
 
         <div id="carousel-image-2" class="carousel-image-container" style="background-color:#fff;" crop="false" time="5000" label="Building Element">
-          <img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/130319_Element4.gif" alt="C-BIP: Columbia Building Intelligence Project" />
         </div>
 
-        <div id="carousel-image-3" class="carousel-image-container" style="background-color:#bfbfbf;" crop="false" time="5000" label="Building Element">
-          <img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/130319_Element_3.gif" alt="C-BIP: Columbia Building Intelligence Project" />
+        <div id="carousel-image-3" class="carousel-image-container" style="background-color:#bfbfbf;" crop="false" time="5000" label="Building Element"> 
         </div>
 
-        <div id="carousel-image-4" class="carousel-image-container" crop="true" time="5000" label="Building Strategy">
-          <img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/intro4.gif" alt="C-BIP: Columbia Building Intelligence Project" />
+        <div id="carousel-image-4" class="carousel-image-container" crop="true" time="5000" label="Building Strategy"> 
         </div>
 
         <div id="carousel-image-5" class="carousel-image-container" crop="true" time="5000" label="Collaboration">
-          <img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/130319_Collaboration.gif" alt="C-BIP: Columbia Building Intelligence Project" />
         </div>
 
         <div id="carousel-image-6" class="carousel-image-container" crop="true" time="5000" label="Building Strategy">
-          <img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/Habitat_1.png" alt="C-BIP: Columbia Building Intelligence Project" />
         </div>
 
         <div id="carousel-image-7" class="carousel-image-container" style="background-color:#ccc;" crop="false" time="5000" label="Building Element">
-          <img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/130319_Element_2.gif" alt="C-BIP: Columbia Building Intelligence Project" />
         </div>
       </div>
       <div id="carousel-prev"></div>

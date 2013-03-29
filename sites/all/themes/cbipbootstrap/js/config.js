@@ -465,6 +465,22 @@ define([], function() {
  		/////// HOME PAGE ///////
  		config.setCarouselCycleTiming();
 
+ 		$('#carousel-image-2').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/130319_Element4.gif" alt="C-BIP: Columbia Building Intelligence Project" />');
+
+ 		$('#carousel-image-3').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/130319_Element_3.gif" alt="C-BIP: Columbia Building Intelligence Project" />');
+
+ 		$('#carousel-image-4').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/intro4.gif" alt="C-BIP: Columbia Building Intelligence Project" />');
+
+ 		$('#carousel-image-5').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/130319_Collaboration.gif" alt="C-BIP: Columbia Building Intelligence Project" />');
+
+ 		$('#carousel-image-5').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/130319_Collaboration.gif" alt="C-BIP: Columbia Building Intelligence Project" />');
+
+ 		$('#carousel-image-6').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/Habitat_1.png" alt="C-BIP: Columbia Building Intelligence Project" />');
+
+ 		$('#carousel-image-7').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/130319_Element_2.gif" alt="C-BIP: Columbia Building Intelligence Project" />');
+
+		
+
 		//Clicking on main menu on home page
 		$('.front #navigation .menu li a').bind('click', function(event){
 			//event.preventDefault();

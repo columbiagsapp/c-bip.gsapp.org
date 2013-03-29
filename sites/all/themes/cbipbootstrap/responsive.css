@@ -5,7 +5,6 @@
   }
 
 
-
   #header{
     position:relative;
     top:0;
@@ -24,9 +23,8 @@
   }
 
   #navigation{
-    float:left;
-    margin-top:20px;
-    max-width: 100%;
+    margin-top: 20px;
+    max-width: 70%;
   }
 
   #navigation #block-system-main-menu ul.menu li a,
@@ -73,6 +71,15 @@
     font-size: 8px;
   }
 
+  .front #oldcastle-logo{
+    float:left !important;
+    margin-top:20px !important;
+  }
+
+  .front #carousel-prev, .front #carousel-next{
+    width:80px;
+  }
+
 }
 
 @media screen and (min-width: 768px) and (max-width: 1018px){
@@ -84,6 +91,11 @@
   #about-right-view{
     width:316px;
   }
+
+  .front #carousel-prev, .front #carousel-next{
+    width:80px;
+  }
+
 }
 
 @media screen and (min-width: 1019px) and (max-width: 1268px){
@@ -95,6 +107,11 @@
   #about-right-view{
     width:652px;
   }
+
+  .front #carousel-prev, .front #carousel-next{
+    width:80px;
+  }
+
 }
 
 @media screen and (min-width: 1269px) {
