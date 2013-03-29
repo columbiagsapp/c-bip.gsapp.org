@@ -1076,7 +1076,10 @@ h3 a:hover{
 .continue-reading h3{
   margin-bottom:0;
 }
-.continue-reading h3 a:hover{
+.continue-reading h3 a,
+.continue-reading h3 a:hover,
+.continue-reading h3 a:visited{
   border:none;
   text-decoration: none;
+  color:#3A5BFB;
 }

@@ -395,7 +395,7 @@ define([], function() {
 
 	        var html = [];
 	        html.push('<div class="post-wrapper continue-reading">');
-	          html.push('<h3><a href="http://cbip2013.tumblr.com/">CONTINUE READING THE BLOG</a></h3>');
+	          html.push('<h3><a href="http://cbip2013.tumblr.com/" target="_blank">CONTINUE READING THE BLOG</a></h3>');
 	        html.push('</div>');
 
 	        fullHTML.push( html.join('') );
