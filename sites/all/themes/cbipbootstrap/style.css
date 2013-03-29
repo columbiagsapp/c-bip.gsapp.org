@@ -145,13 +145,22 @@ th { padding-right: 1em; }
   width: 250px;
 }
 
-.about-heading {
-  font-family: Arial,Helvetica,sans-serif;
-  font-size: 20px;
-  font-weight: bold;
-  line-height: 24px;
-  margin-bottom: 20px;
+#about-left-sidebar .about-heading{
+  font-family:'Swiss721W01-BlackConden', Helvetica, "Helvetica Neue", sans-serif;
+  font-size:14px;
+  line-height: 17px;
+  color:black;
 }
+
+#about-left-sidebar .about-heading{
+  margin-bottom:14px;
+}
+
+#about-left-sidebar .about-heading:first-child{
+  margin-bottom:35px;
+}
+
+
 
 .about-long-description {
    margin-bottom: 20px;
@@ -337,9 +346,20 @@ body.sidebar-second #sidebar-second {
   color:white;
   float:left;
   margin-top:40px;
-  margin-bottom:74px;
+  margin-bottom:0;
   text-align: center;
   position: relative;
+}
+
+.front #carousel-label{
+  margin-bottom:40px;
+  height:14px;
+  margin-top:20px;
+  text-transform: uppercase;
+  display: block;
+  text-align: center;
+  width:100%;
+  float:left;
 }
 
 .front .carousel-image{
@@ -951,7 +971,8 @@ div.strategy div.views-field-title,
 .about-view-heading,
 .about .views-field-field-first-name,
 .person-types,
-.about-title{
+.about-title,
+#carousel-label{
   font-family: 'OCR B W01 Regular', Verdana, monospace;
   font-size:9px;
 }
@@ -1063,6 +1084,8 @@ h3 a:hover{
   color:#3A5BFB;
   margin-top:22px;
 }
+
+
 
 .tags a, .tags a:hover{
   text-decoration: none !important;

@@ -5,7 +5,7 @@
 <div id="about-page">
   <div id="about-left-sidebar">
     <div class="about-sidebar about-heading">
-      The Columbia Building Intelligence Project<br>(C BIP) is a research program designed to explore new forms of technology-enabled collaborative design workflows within architectural education.
+      The Columbia Building Intelligence Project (C BIP) is a research program designed to explore new forms of technology-enabled collaborative design workflows within architectural education.
     </div>
     <div class="about-sidebar about-long-description">
       The project grew out of an interest in using emerging technologies and the increasing trends toward more integrated forms of practice to address the chronic adversarial structure that has inhibited the progress of the AEC industry for many years. In response to this, C BIP works with the premise that we cannot change the future of industry without transforming the education of future leaders, which begins with a renewed engagement between academia and industry.

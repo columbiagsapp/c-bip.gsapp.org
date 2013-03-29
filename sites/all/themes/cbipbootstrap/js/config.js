@@ -14,7 +14,7 @@ define([], function() {
 	config.PAGE_TRANSITION_TIME = 200;
 
 	//CAROUSEL CONSTANTS
-	config.TOTAL_CAROUSEL_IMAGES = 4;
+	config.TOTAL_CAROUSEL_IMAGES = $('.carousel-image-container').length;
 	config.CURRENT_CAROUSEL_IMAGE_INDEX = 1;
 
 	config.CAROUSEL_IMAGES_TIMING = [];
@@ -35,12 +35,14 @@ define([], function() {
 		var headerPaddingTop = parseInt( $('#header').css('paddingTop') );
 		var cBIPlogoHeight = parseInt( $('#c-bip-logo').height() );
 		var carouselMarginTop = parseInt( $('#carousel').css('marginTop') );
-		var carouselMarginBottom = parseInt( $('#carousel').css('marginBottom') );
+		var carouselLabelMarginTop = parseInt( $('#carousel-label').css('marginTop') );
+		var carouselLabelHeight = parseInt( $('#carousel-label').height() );
+		var carouselLabelMarginBottom = parseInt( $('#carousel-label').css('marginBottom') );
 		var navHeight = parseInt( $('#navigation').height() );
 		var headerPaddingBottom = parseInt( $('#header').css('paddingBottom') );
 
 		//create carousel height from the available height minus all other elements to make as high as possible
-		var carouselHeight = window.innerHeight - headerPaddingTop - cBIPlogoHeight - carouselMarginTop - carouselMarginBottom - navHeight - headerPaddingBottom;
+		var carouselHeight = window.innerHeight - headerPaddingTop - cBIPlogoHeight - carouselMarginTop - carouselLabelMarginTop - carouselLabelHeight - carouselLabelMarginBottom - navHeight - headerPaddingBottom;
 		$('#carousel').height( carouselHeight+'px' );
 	}
 
@@ -66,6 +68,8 @@ define([], function() {
 		}
 		$('#carousel-image-' + config.CURRENT_CAROUSEL_IMAGE_INDEX ).show();
 
+		$('#carousel-label').text( $('#carousel-image-' + config.CURRENT_CAROUSEL_IMAGE_INDEX ).attr('label') );
+
 	}//end incrementCarousel()
 
 
@@ -90,14 +94,19 @@ define([], function() {
 		}
 
 		$('#carousel-image-' + config.CURRENT_CAROUSEL_IMAGE_INDEX ).show();
+		$('#carousel-label').text( $('#carousel-image-' + config.CURRENT_CAROUSEL_IMAGE_INDEX ).attr('label') );
 	}//end decrementCarousel()
 
 	//regularly cycle the carousel images
 	config.cycleCarousel = function(){
+		var timing = $('.carousel-image-container:nth-child('+config.CURRENT_CAROUSEL_IMAGE_INDEX+')').attr('time');
+
+		console.log('timing: '+ timing);
+
 		config.CURRENT_TIMEOUT_ID = setTimeout(function(){
 			config.incrementCarousel();
 			config.cycleCarousel();
-		}, config.CAROUSEL_IMAGES_TIMING[ config.CURRENT_CAROUSEL_IMAGE_INDEX ]);
+		}, timing);
 	}
 
 

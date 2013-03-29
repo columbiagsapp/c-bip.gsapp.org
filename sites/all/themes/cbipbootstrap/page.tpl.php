@@ -18,22 +18,39 @@
 
     <div id="carousel">
       <div id="carousel-image-container">
-        <div id="carousel-image-1" class="carousel-image-container" style="background-color:#000;" crop="false" time="40000">
+        <div id="carousel-image-1" class="carousel-image-container" style="background-color:#000;" crop="false" time="40000" label="">
           <img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/intro1.gif?<?php print rand(10000,99999); ?>" alt="C-BIP: Columbia Building Intelligence Project" />
         </div>
-        <div id="carousel-image-2" class="carousel-image-container" style="background-color:#fff;" crop="false" time="5000">
+
+        <div id="carousel-image-2" class="carousel-image-container" style="background-color:#fff;" crop="false" time="5000" label="Building Element">
           <img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/130319_Element4.gif" alt="C-BIP: Columbia Building Intelligence Project" />
         </div>
-        <div id="carousel-image-3" class="carousel-image-container" crop="true" time="5000">
-          <img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/intro3.gif" alt="C-BIP: Columbia Building Intelligence Project" />
+
+        <div id="carousel-image-3" class="carousel-image-container" style="background-color:#bfbfbf;" crop="false" time="5000" label="Building Element">
+          <img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/130319_Element_3.gif" alt="C-BIP: Columbia Building Intelligence Project" />
         </div>
-        <div id="carousel-image-4" class="carousel-image-container" crop="true" time="5000">
+
+        <div id="carousel-image-4" class="carousel-image-container" crop="true" time="5000" label="Building Strategy">
           <img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/intro4.gif" alt="C-BIP: Columbia Building Intelligence Project" />
+        </div>
+
+        <div id="carousel-image-5" class="carousel-image-container" crop="true" time="5000" label="Collaboration">
+          <img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/130319_Collaboration.gif" alt="C-BIP: Columbia Building Intelligence Project" />
+        </div>
+
+        <div id="carousel-image-6" class="carousel-image-container" crop="true" time="5000" label="Building Strategy">
+          <img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/Habitat_1.png" alt="C-BIP: Columbia Building Intelligence Project" />
+        </div>
+
+        <div id="carousel-image-7" class="carousel-image-container" style="background-color:#ccc;" crop="false" time="5000" label="Building Element">
+          <img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/130319_Element_2.gif" alt="C-BIP: Columbia Building Intelligence Project" />
         </div>
       </div>
       <div id="carousel-prev"></div>
       <div id="carousel-next"></div>
     </div>
+
+    <div id="carousel-label"></div>
 
     <div id="gsapp-logo">
       <a target="_blank" href="http://arch.columbia.edu"><img src="/sites/all/themes/framework/images/gsapp-logo.png" width="70" height="14" alt="Columbia University GSAPP" /></a>
