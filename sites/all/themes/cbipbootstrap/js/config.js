@@ -1,4 +1,5 @@
-define([], function() {
+define([],
+function() {
 	var config = {};
 
 	config.SCROLL_TIME = 200;
@@ -47,6 +48,37 @@ define([], function() {
 
 	config.CAROUSEL_IMAGES_TIMING = [];
 
+	config.CAROUSEL_IMAGES = [];
+	config.CAROUSEL_IMAGES[0] = {
+		src: 'intro1.gif',
+		backgroundColor: '#000',
+		crop: false,
+		time: 2000,
+		label: '',
+		width: 764,
+		height: 460
+	};
+
+	config.CAROUSEL_IMAGES[1] = {
+		src: 'intro2.gif',
+		backgroundColor: '#FFF',
+		crop: false,
+		time: 4000,
+		label: 'label 1',
+		width: 3286,
+		height: 2183
+	};
+
+	config.CAROUSEL_IMAGES[2] = {
+		src: 'intro3.png',
+		backgroundColor: '#333',
+		crop: true,
+		time: 2000,
+		label: 'label 1',
+		width: 936,
+		height: 509
+	};
+
 	config.setCarouselCycleTiming = function(){
 		console.log('setCarouselCycleTiming()');
 
@@ -62,7 +94,7 @@ define([], function() {
 		//sum all vertical dimensions of elements on the home page
 		var headerPaddingTop = parseInt( $('#header').css('paddingTop') );
 		var cBIPlogoHeight = parseInt( $('#c-bip-logo').height() );
-		var carouselMarginTop = parseInt( $('#carousel').css('marginTop') );
+		var carouselMarginTop = parseInt( $('#jcarousel').css('marginTop') );
 		var carouselLabelMarginTop = parseInt( $('#carousel-label').css('marginTop') );
 		var carouselLabelHeight = parseInt( $('#carousel-label').height() );
 		var carouselLabelMarginBottom = parseInt( $('#carousel-label').css('marginBottom') );
@@ -71,7 +103,7 @@ define([], function() {
 
 		//create carousel height from the available height minus all other elements to make as high as possible
 		var carouselHeight = window.innerHeight - headerPaddingTop - cBIPlogoHeight - carouselMarginTop - carouselLabelMarginTop - carouselLabelHeight - carouselLabelMarginBottom - navHeight - headerPaddingBottom - 20;
-		var w = $('#carousel').width();
+		var w = $('#jcarousel').width();
 		var aspect = w/carouselHeight;
 		var min_aspect = 1;
 
@@ -79,16 +111,17 @@ define([], function() {
 			carouselHeight = w/min_aspect;
 		}
 
-		$('#carousel').height( carouselHeight+'px' );
+		$('#jcarousel').height( carouselHeight+'px' );
 	}
 
 
 	//slide the image carousel forward one image
 	config.incrementCarousel = function(){
+		console.log('clicked next');
 		//cancel the autocycle as soon as user has interacted with the carousel
 		clearTimeout(config.CURRENT_TIMEOUT_ID);
 
-		$('#carousel-image-' + config.CURRENT_CAROUSEL_IMAGE_INDEX ).hide();
+		//$('#carousel-image-' + config.CURRENT_CAROUSEL_IMAGE_INDEX ).hide();
 
 		if( config.CURRENT_CAROUSEL_IMAGE_INDEX >= config.TOTAL_CAROUSEL_IMAGES ){
 			config.CURRENT_CAROUSEL_IMAGE_INDEX = 1;
@@ -97,15 +130,21 @@ define([], function() {
 		}
 
 		//need to unload intro1.gif and reload so it starts at the first frame, same for any other animated GIF
-		if(config.CURRENT_CAROUSEL_IMAGE_INDEX == 1){
+		/*if(config.CURRENT_CAROUSEL_IMAGE_INDEX == 1){
 			var uncachedSrc = '/sites/all/themes/cbipbootstrap/images/intro1.gif?' + Math.floor( Math.random()*10000 );
 			$('#carousel-image-1').attr('src', '');
 			$('#carousel-image-1').attr('src', uncachedSrc);
-		}
-		$('#carousel-image-' + config.CURRENT_CAROUSEL_IMAGE_INDEX ).show();
+		}*/
+		//$('#carousel-image-' + config.CURRENT_CAROUSEL_IMAGE_INDEX ).show();
 
-		$('#carousel-label').text( $('#carousel-image-' + config.CURRENT_CAROUSEL_IMAGE_INDEX ).attr('label') );
-
+		$('#jcarousel').jcarousel('scroll', '+=1', true, function(scrolled) {
+		    if (scrolled) {
+		        console.log('The carousel has been scrolled');
+		        $('#carousel-label').text( $('#carousel-image-' + config.CURRENT_CAROUSEL_IMAGE_INDEX ).attr('label') );
+		    } else {
+		        console.log('The carousel has not been scrolled');
+		    }
+		});
 	}//end incrementCarousel()
 
 
@@ -316,57 +355,65 @@ define([], function() {
 		$('#header').width( newWidth );
 	}
 
-
+	
 	//resizes the image in the carousel preserving its aspect ratio
 	config.resizeCarouselImages = function(){
 		console.log('resizeCarouselImages()');
 
-		var cw = $('#carousel').width();
-		var ch = $('#carousel').height();
+		var cw = $('#jcarousel').width();
+		var ch = $('#jcarousel').height();
 		var caspect = cw/ch;
+		console.log('caspect: '+ caspect);
 
 		var availw = Math.floor( cw - ( 2*$('#carousel-prev').width() ) );
 
-		$('.carousel-image-container').each(function(i){
+		$('.carousel-item').each(function(i){
 			var iw = $("img", this).width();
 			var ih = $("img", this).height();
 			var iaspect = iw/ih;
 
-			if( $(this).attr('crop') == 'true'){
+			
+
+			//reset marginTop incase was set in previous resize
+			$("img", this).css( 'marginLeft', '' ).css( 'marginTop', '' );
+
+			if(config.CAROUSEL_IMAGES[i].crop){
 				if(iaspect > caspect){
 					$("img", this).height( ch );
 					$("img", this).width( 'auto' );
+					//horizontally center the image
+					var margin_left = Math.floor( (cw - iw) / 2 );
+					$("img", this).css( 'marginLeft', margin_left );
 				}else{
 					$("img", this).width( cw );
 					$("img", this).height( 'auto' );
+					//vertically center the image
+					var margin_top = Math.floor( (ch - ih) / 2 );
+					$("img", this).css( 'marginTop', margin_top );
 				}
 			}else{//crop == false
 				if(iaspect > caspect){
 					$("img", this).width( availw );
 					$("img", this).height( 'auto' );
 					ih = $("img", this).height();
-
-					//vertically center the image
-					var margin_top = Math.floor( (ch - ih) / 2 );
-					$("img", this).css( 'marginTop', margin_top );
 				}else{
 					$("img", this).height( ch );
 					$("img", this).width( 'auto' );
-					//reset marginTop incase was set in previous resize
-					$("img", this).css( 'marginTop', '' );
 				}
 			}
 
 
 		});//end each .carousel-image-container
 	}// end resizeCarouselImages()
+	
 
 	//main window resize function
 	config.resizeFunc = function(){
 		config.pruneComponentMargin();
 		if( $('body').hasClass('front')){
 			config.setCarouselHeight();
-			config.resizeCarouselImages();
+			//config.resizeCarouselImages();
+			$('#jcarousel').jcarousel('reload', {});
 		}
 	}
 
@@ -379,6 +426,77 @@ define([], function() {
 
 	config.hoverOff = function(){
 		$(this).removeClass('hover');
+	}
+
+
+	config.initCarousel = function(){
+
+		config.setCarouselHeight();
+
+		var $carousel = $('#jcarousel');
+		var $carouselList = $('#jcarousel #carousel-list');
+		//remove all other carousel-item just in case
+		$carouselList.find('.carousel-item:not(.intro)').remove();
+
+		for(var i = 0; i < config.CAROUSEL_IMAGES.length; i++){
+			var $item = $('<div class="carousel-item"></div>');
+			$item
+				.css('backgroundColor', config.CAROUSEL_IMAGES[i].backgroundColor)
+				.html('<img alt="C-BIP: Columbia Building Intelligence Project" src="/sites/all/themes/cbipbootstrap/images/' + config.CAROUSEL_IMAGES[i].src + '" width="'+config.CAROUSEL_IMAGES[i].width+'" height="'+config.CAROUSEL_IMAGES[i].height+'">');
+			var $img = $item.find("img");
+
+			var cw = $('#jcarousel').width();
+			var ch = $('#jcarousel').height();
+			var caspect = cw/ch;
+
+			var availw = Math.floor( cw - ( 2*$('#carousel-prev').width() ) );
+
+			var iaspect = config.CAROUSEL_IMAGES[i].width / config.CAROUSEL_IMAGES[i].height;
+
+			console.log('iaspect: '+ iaspect);
+
+
+			if(config.CAROUSEL_IMAGES[i].crop){
+				if(iaspect > caspect){
+					$img.height( ch );
+					$img.width( 'auto' );
+					//vertically center the image
+					var margin_left = Math.floor( (cw - $img.width() ) / 2 );
+					$img.css( 'marginLeft', margin_left );
+				}else{
+					$img.width( cw );
+					$img.height( 'auto' );
+					//vertically center the image
+					var margin_top = Math.floor( (ch - $img.height() ) / 2 );
+					$img.css( 'marginTop', margin_top );
+				}
+			}else{//crop == false
+				if(iaspect > caspect){
+					$img.width( availw );
+					$img.height( 'auto' );
+					ih = $img.height();
+				}else{
+					$img.height( ch );
+					$img.width( 'auto' );
+					//reset marginTop incase was set in previous resize
+					$img.css( 'marginTop', '' );
+				}
+			}
+
+			$carouselList.append($item);
+		}
+
+		$('.carousel-item').css('width', $('#jcarousel').width());
+		$carousel.jcarousel({
+			list: '#carousel-list',
+			items: '.carousel-item',
+			'animation': 'slow',
+		    wrap: 'circular'
+		});
+
+		//Bind carousel buttons to actions
+		$('#carousel-next').css('opacity', '0.7').bind('click', config.incrementCarousel);
+		$('#carousel-prev').css('opacity', '0.7').bind('click', config.decrementCarousel);
 	}
 
     config.getTumblrFeed = function(){
@@ -419,7 +537,7 @@ define([], function() {
 	              html.push('<div class="post photo">');
 
 	                for(var j = 0; j < posts[i].photos.length; j++){
-	                  html.push('<img src="'+ posts[i].photos[j].alt_sizes[1].url + '" width="'+posts[i].photos[j].alt_sizes[1].width+'" height="' + posts[i].photos[j].alt_sizes[1].height+'">');
+	                  html.push('<a target="_blank" href="'+ posts[i].post_url +'"><img src="'+ posts[i].photos[j].alt_sizes[1].url + '" width="'+posts[i].photos[j].alt_sizes[1].width+'" height="' + posts[i].photos[j].alt_sizes[1].height+'"></a>');
 	                }
 
 	                if(posts[i].caption != ''){
@@ -498,6 +616,14 @@ define([], function() {
 		});
     }
 
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////     INIT     //////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+
     config.init = function(){
 
  		// Update the submenu tct2003
@@ -505,6 +631,9 @@ define([], function() {
         console.log('path[1] '+ path[1]);
         console.log('path[2] '+ path[2]);
         switch(path[1]){
+        	case '':
+        		config.initCarousel();
+        		break;
           case 'library':
             $('#navigation #block-block-1').show();
             $('#navigation #block-block-2').hide();
@@ -536,8 +665,9 @@ define([], function() {
 
 
  		/////// HOME PAGE ///////
- 		config.setCarouselCycleTiming();
-
+ 		
+ 		//config.setCarouselCycleTiming();
+ 		/*
  		$('#carousel-image-2').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/130319_Element4.gif" alt="C-BIP: Columbia Building Intelligence Project" />');
 
  		$('#carousel-image-3').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/130319_Element_3.gif" alt="C-BIP: Columbia Building Intelligence Project" />');
@@ -551,7 +681,20 @@ define([], function() {
  		$('#carousel-image-6').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/Habitat_1.png" alt="C-BIP: Columbia Building Intelligence Project" />');
 
  		$('#carousel-image-7').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/130319_Element_2.gif" alt="C-BIP: Columbia Building Intelligence Project" />');
+*/
+		$('#carousel-image-2').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/intro2.png" alt="C-BIP: Columbia Building Intelligence Project" />');
 
+ 		$('#carousel-image-3').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/intro3.png" alt="C-BIP: Columbia Building Intelligence Project" />');
+
+ 		$('#carousel-image-4').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/intro4.png" alt="C-BIP: Columbia Building Intelligence Project" />');
+
+ 		$('#carousel-image-5').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/intro2.png" alt="C-BIP: Columbia Building Intelligence Project" />');
+
+ 		$('#carousel-image-5').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/intro2.png" alt="C-BIP: Columbia Building Intelligence Project" />');
+
+ 		$('#carousel-image-6').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/intro2.png" alt="C-BIP: Columbia Building Intelligence Project" />');
+
+ 		$('#carousel-image-7').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/intro2.png" alt="C-BIP: Columbia Building Intelligence Project" />');
 		
 
 		//Clicking on main menu on home page
@@ -588,13 +731,9 @@ define([], function() {
 
 		/////// CAROUSEL ///////
 
-		//Bind carousel buttons to actions
-		$('#carousel-next').bind('click', config.incrementCarousel).css('opacity', '0.7');
-		$('#carousel-prev').bind('click', config.decrementCarousel).css('opacity', '0.7');
-
 		//begin the carousel cycle if home page
 		if( $('body').hasClass('front')){
-			config.cycleCarousel();
+			//config.cycleCarousel();
 		}
 
 

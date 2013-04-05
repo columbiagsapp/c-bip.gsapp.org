@@ -334,12 +334,38 @@ body.sidebar-second #sidebar-second {
 }
 
 
-#carousel{
+/* JCAROUSEL */
+.jcarousel {
+    position: relative;
+    overflow: hidden;
+    /* You need at least a height, adjust this to your needs */
+    height: 400px;
+}
+
+#carousel-list {
+    width: 20000em;
+    position: absolute;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.carousel-item {
+    float: left;
+    text-align: center;
+}
+
+.carousel-item img{
+  margin:0 auto;
+}
+
+
+#jcarousel{
   display:none;
   overflow: hidden;
 }
 
-.front #carousel{
+.front #jcarousel{
   width:100%;
   height:400px;
   background-color: black;
@@ -1107,3 +1133,5 @@ h3 a:hover{
   text-decoration: none;
   color:#3A5BFB;
 }
+
+
