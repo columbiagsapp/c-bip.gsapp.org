@@ -13,6 +13,34 @@ define([], function() {
 
 	config.PAGE_TRANSITION_TIME = 200;
 
+	/////// LIBRARY CONSTANTS ///////
+	config.ELEMENT_TAGS = [];
+	config.ELEMENT_TAGS.push('Atrium');
+	config.ELEMENT_TAGS.push('Courtyard');
+	config.ELEMENT_TAGS.push('Facade');
+	config.ELEMENT_TAGS.push('Roof');
+	config.ELEMENT_TAGS.push('');
+	config.ELEMENT_TAGS.push('Air');
+	config.ELEMENT_TAGS.push('Light');
+	config.ELEMENT_TAGS.push('Solar');
+	config.ELEMENT_TAGS.push('Water');
+	config.ELEMENT_TAGS.push('Insulation');
+	config.ELEMENT_TAGS.push('Vegetation');
+	config.ELEMENT_TAGS.push('Energy Generated');
+	config.ELEMENT_TAGS.push('');
+	config.ELEMENT_TAGS.push('Program');
+	config.ELEMENT_TAGS.push('Structural');
+	config.ELEMENT_TAGS.push('Zoning');
+
+	config.STRATEGY_TAGS = [];
+	config.STRATEGY_TAGS.push('Glass Tower');
+	config.STRATEGY_TAGS.push('Mid-Rise Residential');
+	config.STRATEGY_TAGS.push('High-Rise Residential');
+	config.STRATEGY_TAGS.push('School');
+	config.STRATEGY_TAGS.push('Loft');
+	config.STRATEGY_TAGS.push('Industrial');
+
+
 	//CAROUSEL CONSTANTS
 	config.TOTAL_CAROUSEL_IMAGES = $('.carousel-image-container').length;
 	config.CURRENT_CAROUSEL_IMAGE_INDEX = 1;
@@ -167,23 +195,57 @@ define([], function() {
 	/////// LIBRARY OF WORK ///////
 
 	//if element or strategy is sorted by tag, adds it to the sub nav menu
-	config.appendTagFilter = function(){
+	config.appendTagMenuContent = function(){
 	    $('#current-tag-in-menu').remove();
 	    var pathArray = window.document.location.pathname.split('/');
 
-	    if($.inArray('tag', pathArray) >= 0){
-	      var tag = pathArray.pop();
-
-	      tag = tag.charAt(0).toUpperCase() + tag.slice(1);//capitalize first letter
-	      switch(pathArray[1]){
-	        case 'library':
-	          var html = '<div id="current-tag-in-menu">' + tag + "<div>"
-	          $('#lib-work-tag-wrapper').append( html );//append to the div that wraps the ul
-	          break;
-	        default:
-	          break;
-	      }
-	    }
+	    switch(pathArray[1]){
+			case 'library':
+				$('#lib-work-tag-sort li:not(.list-heading)').remove();
+				if(pathArray[2] == 'elements'){
+					for(var i = 0; i < config.ELEMENT_TAGS.length; i++){
+						console.log('appending! '+ i);
+						var $li = $('<li style="display:none;"></li>');
+						$li.addClass('list-item');
+						if(i == 0){
+							$li.addClass('first');
+						}
+						if(config.ELEMENT_TAGS[i] == ''){
+							$li.html('&middot;');
+						}else{
+							$li.html('<a href="/library/elements/tag/'+config.ELEMENT_TAGS[i].toLowerCase()+'">'+config.ELEMENT_TAGS[i]+'</a>');
+						}
+						
+						$('#lib-work-tag-sort').append($li);
+					}
+				}else if(pathArray[2] == 'strategies'){
+					for(var i = 0; i < config.STRATEGY_TAGS.length; i++){
+						console.log('appending! '+ i);
+						var $li = $('<li style="display:none;"></li>');
+						$li.addClass('list-item');
+						if(i == 0){
+							$li.addClass('first');
+						}
+						if(config.ELEMENT_TAGS[i] == ''){
+							$li.html('&middot;');
+						}else{
+							$li.html('<a href="/library/elements/tag/'+config.STRATEGY_TAGS[i].toLowerCase()+'">'+config.STRATEGY_TAGS[i]+'</a>');
+						}
+						
+						$('#lib-work-tag-sort').append($li);
+					}
+				}
+				//append current tag if sorted by tag
+				if($.inArray('tag', pathArray) >= 0){
+					var tag = pathArray.pop();
+					tag = tag.charAt(0).toUpperCase() + tag.slice(1);//capitalize first letter
+					var html = '<div id="current-tag-in-menu">' + tag + "<div>"
+					$('#lib-work-tag-sort').append( html );//append to the div that wraps the ul
+				}
+				break;
+			default:
+				break;
+		}
 	}
 
 	//reveals tag menu on hover
@@ -319,8 +381,6 @@ define([], function() {
 		$(this).removeClass('hover');
 	}
 
-	
-
     config.getTumblrFeed = function(){
 
     	myJsonpCallback = function(data){
@@ -442,14 +502,26 @@ define([], function() {
 
  		// Update the submenu tct2003
         var path = window.location.pathname.split('/');
+        console.log('path[1] '+ path[1]);
+        console.log('path[2] '+ path[2]);
         switch(path[1]){
           case 'library':
             $('#navigation #block-block-1').show();
             $('#navigation #block-block-2').hide();
+            if(path[2] == 'elements'){
+            	console.log('elements+');
+				$('#hidden-lib-of-work-subitems > div a').removeClass('active');
+				$('#lib-work-elements a').addClass('active');
+			}else if(path[2] == 'strategies'){
+				$('#hidden-lib-of-work-subitems > div a').removeClass('active');
+				$('#lib-work-strategies a').addClass('active');
+			}
             break;
           case 'about':
             $('#navigation #block-block-2').show();
             $('#navigation #block-block-1').hide();
+            $('#secondary-nav a.active').removeClass('active');
+			$('#secondary-nav #secondary-nav-people a.active').addClass('active');
             break;
           case 'work':
           	config.getTumblrFeed();
@@ -461,6 +533,7 @@ define([], function() {
             $('#navigation #block-block-2').hide();
             break;
         }
+
 
  		/////// HOME PAGE ///////
  		config.setCarouselCycleTiming();
@@ -497,7 +570,7 @@ define([], function() {
 		$(document).bind('scroll', config.scrollSpy);
 
 		/////// LIBRARY OF WORK ///////
-		config.appendTagFilter();
+		config.appendTagMenuContent();
 		$('#lib-work-tag-sort').hover(config.showTagMenu, config.hideTagMenu);
 
 

@@ -7,11 +7,11 @@ $style = 'element_200x124';
 print '<img src="' . image_style_url($style, $image_uri) . '" />';
 
 
-if(isset($node->field_building_type['und'][0]['value'])){
-  print '<div class="views-field-title">' . $node->title . '<br>'. $node->field_building_type['und'][0]['value'] . '</div>';
-}else{
+//if(isset($node->field_building_type['und'][0]['value'])){
+//  print '<div class="views-field-title">' . $node->title . '<br>'. $node->field_building_type['und'][0]['value'] . '</div>';
+//}else{
   print '<div class="views-field-title">' . $node->title . '</div>';
-}
+//}
 //description
 print '<div class="views-field-field-element-description">' . 
       $node->field_element_description['und'][0]['value'] . 
