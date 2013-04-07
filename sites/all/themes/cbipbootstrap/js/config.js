@@ -189,23 +189,20 @@ function() {
 	/////// ABOUT ///////
 
 	//pages the sub menu when the user scrolls to new sections as each page requires
-	config.scrollSpy = function(event){
-		switch(window.document.location.pathname){
-			case '/about':
-				var peopleLocation = parseInt( $("#about-people-view").offset().top ) - parseInt( $('#main').css('marginTop') );
-				var affiliatesLocation = parseInt( $("#about-affiliates-view").offset().top ) - parseInt( $('#main').css('marginTop') );
+	config.scrollSpy = function(event){		
+		var peopleLocation = parseInt( $("#about-people-view").offset().top ) - parseInt( $('#main').css('marginTop') );
+		var affiliatesLocation = parseInt( $("#about-affiliates-view").offset().top ) - parseInt( $('#main').css('marginTop') );
 
-				if( $(document).scrollTop() >= affiliatesLocation ){
-					$('#secondary-nav-people a').removeClass('active');
-					$('#secondary-nav-affiliates a').addClass('active');
-				}else{
-					$('#secondary-nav-affiliates a').removeClass('active');
-					$('#secondary-nav-people a').addClass('active');
-				}
-				break;
-		}
+		if( $(document).scrollTop() >= affiliatesLocation ){
+			$('#secondary-nav-people a').removeClass('active');
+			$('#secondary-nav-affiliates a').addClass('active');
+		}else{
+			$('#secondary-nav-affiliates a').removeClass('active');
+			$('#secondary-nav-people a').addClass('active');
+		}	
 	}
 
+	//auto-scroll to affiliates on about page
 	config.scrollToAffiliates = function(event){
 		event.preventDefault();
 		$('#secondary-nav-people a').removeClass('active');
@@ -218,6 +215,7 @@ function() {
 		}, config.SCROLL_TIME);
 	}
 
+	//auto-scroll to people on about page
 	config.scrollToPeople = function(event){
 		event.preventDefault();
 		$('#secondary-nav-affiliates a').removeClass('active');
@@ -651,6 +649,11 @@ function() {
             $('#navigation #block-block-1').hide();
             $('#secondary-nav a.active').removeClass('active');
 			$('#secondary-nav #secondary-nav-people a.active').addClass('active');
+
+			/////// SCROLL-SPY ///////
+			$('#secondary-nav-affiliates a').bind('click', config.scrollToAffiliates);
+			$('#secondary-nav-people a').bind('click', config.scrollToPeople);
+			$(document).bind('scroll', config.scrollSpy);
             break;
           case 'work':
           	config.getTumblrFeed();
@@ -706,11 +709,6 @@ function() {
 			});
 		});
 
-
-		/////// ABOUT ///////
-		$('#secondary-nav-affiliates a').bind('click', config.scrollToAffiliates);
-		$('#secondary-nav-people a').bind('click', config.scrollToPeople);
-		$(document).bind('scroll', config.scrollSpy);
 
 		/////// LIBRARY OF WORK ///////
 		config.appendTagMenuContent();
