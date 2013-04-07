@@ -49,34 +49,119 @@ function() {
 	config.CAROUSEL_IMAGES_TIMING = [];
 
 	config.CAROUSEL_IMAGES = [];
+
+	//INTRO
 	config.CAROUSEL_IMAGES[0] = {
-		src: 'intro1.gif',
+		src: 'intro.gif',
 		backgroundColor: '#000',
 		crop: false,
-		time: 2000,
+		time: 35000,
 		label: '',
 		width: 764,
 		height: 460
 	};
 
 	config.CAROUSEL_IMAGES[1] = {
-		src: 'intro2.gif',
-		backgroundColor: '#FFF',
+		src: 'studio-structure.gif',
+		backgroundColor: '#000',
 		crop: false,
-		time: 4000,
-		label: 'Building Element',
-		width: 3286,
-		height: 2183
+		time: 11300,
+		label: 'Studio Structure',
+		width: 1500,
+		height: 1013
 	};
 
+	//ELEMENTS
 	config.CAROUSEL_IMAGES[2] = {
-		src: 'intro3.png',
-		backgroundColor: '#333',
+		src: 'element1.gif',
+		backgroundColor: '#e3e3e3',
+		crop: false,
+		time: 7000,
+		label: 'Building Element',
+		width: 1200,
+		height: 776
+	};
+
+	config.CAROUSEL_IMAGES[3] = {
+		src: 'element2.gif',
+		backgroundColor: '#000',
 		crop: true,
-		time: 60000,
+		time: 5000,
+		label: 'Building Element',
+		width: 1200,
+		height: 567
+	};
+
+	config.CAROUSEL_IMAGES[4] = {
+		src: 'element3.gif',
+		backgroundColor: '#FFF',
+		crop: false,
+		time: 5000,
+		label: 'Building Element',
+		width: 1200,
+		height: 776
+	};
+
+	//STRATEGIES
+	config.CAROUSEL_IMAGES[5] = {
+		src: 'strategy1.png',
+		backgroundColor: '#000',
+		crop: true,
+		time: 3000,
 		label: 'Building Strategy',
-		width: 936,
-		height: 509
+		width: 1200,
+		height: 785
+	};
+
+	config.CAROUSEL_IMAGES[6] = {
+		src: 'strategy2.gif',
+		backgroundColor: '#ffffbb',
+		crop: false,
+		time: 19000,
+		label: 'Building Strategy',
+		width: 1200,
+		height: 669
+	};
+
+	config.CAROUSEL_IMAGES[7] = {
+		src: 'strategy3.png',
+		backgroundColor: '#000',
+		crop: true,
+		time: 3000,
+		label: 'Building Strategy',
+		width: 1043,
+		height: 700
+	};
+
+	config.CAROUSEL_IMAGES[8] = {
+		src: 'strategy4.gif',
+		backgroundColor: '#FFF',
+		crop: false,
+		time: 7000,
+		label: 'Building Strategy',
+		width: 1200,
+		height: 710
+	};
+
+	config.CAROUSEL_IMAGES[9] = {
+		src: 'strategy5.png',
+		backgroundColor: '#000',
+		crop: true,
+		time: 3000,
+		label: 'Building Strategy',
+		width: 1200,
+		height: 580
+	};
+
+	//COLLABORATION
+	config.CAROUSEL_IMAGES[10] = {
+		src: 'collaboration.gif',
+		backgroundColor: '#000',
+		crop: true,
+		time: 7000,
+		label: 'Collaboration',
+		width: 945,
+		height: 629
 	};
 
 
@@ -113,6 +198,7 @@ function() {
 		console.log('incrementCarousel()');
 
 		clearTimeout( config.CURRENT_TIMEOUT_ID );
+		$('#carousel-label').text('');
 
 		$('#jcarousel').jcarousel('scroll', '+=1', true, function(scrolled) {
 		    if (scrolled) {
@@ -144,6 +230,7 @@ function() {
 		console.log('decrementCarousel()');
 
 		clearTimeout( config.CURRENT_TIMEOUT_ID );
+		$('#carousel-label').text('');
 
 		$('#jcarousel').jcarousel('scroll', '-=1', true, function(scrolled) {
 		    if (scrolled) {
@@ -627,8 +714,10 @@ function() {
 				$('.front #navigation .menu li a').bind('click', function(event){
 					//event.preventDefault();
 					$('#jcarousel').slideToggle(config.PAGE_TRANSITION_TIME, function(){
-						$('#oldcastle-logo').hide();
-						$('#gsapp-logo').hide();
+						$('#oldcastle-logo').remove();
+						$('#gsapp-logo').remove();
+						$('#carousel-label').remove();
+						$(this).remove();
 					});
 				});
         		
