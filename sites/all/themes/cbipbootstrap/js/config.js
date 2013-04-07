@@ -44,7 +44,7 @@ function() {
 
 	//CAROUSEL CONSTANTS
 	config.TOTAL_CAROUSEL_IMAGES = $('.carousel-image-container').length;
-	config.CURRENT_CAROUSEL_IMAGE_INDEX = 1;
+	config.CAROUSEL_INDEX = 0;
 
 	config.CAROUSEL_IMAGES_TIMING = [];
 
@@ -64,7 +64,7 @@ function() {
 		backgroundColor: '#FFF',
 		crop: false,
 		time: 4000,
-		label: 'label 1',
+		label: 'Building Element',
 		width: 3286,
 		height: 2183
 	};
@@ -73,21 +73,14 @@ function() {
 		src: 'intro3.png',
 		backgroundColor: '#333',
 		crop: true,
-		time: 2000,
-		label: 'label 1',
+		time: 60000,
+		label: 'Building Strategy',
 		width: 936,
 		height: 509
 	};
 
-	config.setCarouselCycleTiming = function(){
-		console.log('setCarouselCycleTiming()');
 
-		$('.carousel-image-container').each(function(i){
-			config.CAROUSEL_IMAGES_TIMING[i] = $(this).attr('time');
-			console.log(config.CAROUSEL_IMAGES_TIMING[i]);
-		});
-	}
-
+	/////// HOME ///////
 
 	//sets the height of the carousel on the homepage
 	config.setCarouselHeight = function(){
@@ -117,30 +110,28 @@ function() {
 
 	//slide the image carousel forward one image
 	config.incrementCarousel = function(){
-		console.log('clicked next');
-		//cancel the autocycle as soon as user has interacted with the carousel
-		clearTimeout(config.CURRENT_TIMEOUT_ID);
+		console.log('incrementCarousel()');
 
-		//$('#carousel-image-' + config.CURRENT_CAROUSEL_IMAGE_INDEX ).hide();
-
-		if( config.CURRENT_CAROUSEL_IMAGE_INDEX >= config.TOTAL_CAROUSEL_IMAGES ){
-			config.CURRENT_CAROUSEL_IMAGE_INDEX = 1;
-		}else{
-			config.CURRENT_CAROUSEL_IMAGE_INDEX++;
-		}
-
-		//need to unload intro1.gif and reload so it starts at the first frame, same for any other animated GIF
-		/*if(config.CURRENT_CAROUSEL_IMAGE_INDEX == 1){
-			var uncachedSrc = '/sites/all/themes/cbipbootstrap/images/intro1.gif?' + Math.floor( Math.random()*10000 );
-			$('#carousel-image-1').attr('src', '');
-			$('#carousel-image-1').attr('src', uncachedSrc);
-		}*/
-		//$('#carousel-image-' + config.CURRENT_CAROUSEL_IMAGE_INDEX ).show();
+		clearTimeout( config.CURRENT_TIMEOUT_ID );
 
 		$('#jcarousel').jcarousel('scroll', '+=1', true, function(scrolled) {
 		    if (scrolled) {
 		        console.log('The carousel has been scrolled');
-		        $('#carousel-label').text( $('#carousel-image-' + config.CURRENT_CAROUSEL_IMAGE_INDEX ).attr('label') );
+
+		        config.CAROUSEL_INDEX++;
+		        if(config.CAROUSEL_INDEX >= $('.carousel-item').length){
+		        	config.CAROUSEL_INDEX = 0;
+		        }
+
+		        console.log('idx: '+ config.CAROUSEL_INDEX);
+
+		        console.log(config.CAROUSEL_IMAGES[ config.CAROUSEL_INDEX ].label);
+		        $('#carousel-label').text( config.CAROUSEL_IMAGES[ config.CAROUSEL_INDEX ].label);
+
+		        config.CURRENT_TIMEOUT_ID = setTimeout(function(){
+		        	config.incrementCarousel();
+		        }, config.CAROUSEL_IMAGES[ config.CAROUSEL_INDEX ].time);
+
 		    } else {
 		        console.log('The carousel has not been scrolled');
 		    }
@@ -150,40 +141,30 @@ function() {
 
 
 	config.decrementCarousel = function(){
-		//cancel the autocycle as soon as user has interacted with the carousel
-		clearTimeout(config.CURRENT_TIMEOUT_ID);
+		console.log('decrementCarousel()');
 
-		$('#carousel-image-' + config.CURRENT_CAROUSEL_IMAGE_INDEX ).hide();
+		clearTimeout( config.CURRENT_TIMEOUT_ID );
 
-		if( config.CURRENT_CAROUSEL_IMAGE_INDEX <= 1 ){
-			config.CURRENT_CAROUSEL_IMAGE_INDEX = config.TOTAL_CAROUSEL_IMAGES;
-		}else{
-			config.CURRENT_CAROUSEL_IMAGE_INDEX--;
-		}
+		$('#jcarousel').jcarousel('scroll', '-=1', true, function(scrolled) {
+		    if (scrolled) {
+		        console.log('The carousel has been scrolled');
 
-		//need to unload intro1.gif and reload so it starts at the first frame, same for any other animated GIF
-		if(config.CURRENT_CAROUSEL_IMAGE_INDEX == 1){
-			var uncachedSrc = '/sites/all/themes/cbipbootstrap/images/intro1.gif?' + Math.floor( Math.random()*10000 );
-			$('#carousel-image-1').attr('src', '');
-			$('#carousel-image-1').attr('src', uncachedSrc);
-		}
+		        config.CAROUSEL_INDEX--;
+		        if(config.CAROUSEL_INDEX < 0){
+		        	config.CAROUSEL_INDEX = $('.carousel-item').length-1;
+		        }
 
-		$('#carousel-image-' + config.CURRENT_CAROUSEL_IMAGE_INDEX ).show();
-		$('#carousel-label').text( $('#carousel-image-' + config.CURRENT_CAROUSEL_IMAGE_INDEX ).attr('label') );
+		        $('#carousel-label').text( config.CAROUSEL_IMAGES[ config.CAROUSEL_INDEX ].label);
+
+		        config.CURRENT_TIMEOUT_ID = setTimeout(function(){
+		        	config.incrementCarousel();
+		        }, config.CAROUSEL_IMAGES[ config.CAROUSEL_INDEX ].time);
+
+		    } else {
+		        console.log('The carousel has not been scrolled');
+		    }
+		});
 	}//end decrementCarousel()
-
-	//regularly cycle the carousel images
-	config.cycleCarousel = function(){
-		var timing = $('.carousel-image-container:nth-child('+config.CURRENT_CAROUSEL_IMAGE_INDEX+')').attr('time');
-
-		console.log('timing: '+ timing);
-
-		config.CURRENT_TIMEOUT_ID = setTimeout(function(){
-			config.incrementCarousel();
-			config.cycleCarousel();
-		}, timing);
-	}
-
 
 
 	/////// ABOUT ///////
@@ -335,10 +316,6 @@ function() {
 		
 	}
 
-	/////// RESOURCES ///////
-	
-
-
 
 	/////// RESIZE FUNCTIONS ///////
 
@@ -361,45 +338,47 @@ function() {
 		var cw = $('#jcarousel').width();
 		var ch = $('#jcarousel').height();
 		var caspect = cw/ch;
-		console.log('caspect: '+ caspect);
 
 		var availw = Math.floor( cw - ( 2*$('#carousel-prev').width() ) );
 
+		//rest the carousel-item to the carousel width/height
+		$('.carousel-item').width(cw).height(ch);
+
 		$('.carousel-item').each(function(i){
-			var iw = $("img", this).width();
-			var ih = $("img", this).height();
-			var iaspect = iw/ih;
+			var iaspect = config.CAROUSEL_IMAGES[i].width / config.CAROUSEL_IMAGES[i].height;
 
-			
+			var iw,
+				ih, 
+				margin_left = 0,
+				margin_top = 0;
 
-			//reset marginTop incase was set in previous resize
-			$("img", this).css( 'marginLeft', '' ).css( 'marginTop', '' );
-
-			if(config.CAROUSEL_IMAGES[i].crop){
+			if($(this).attr('crop') == 'true'){
 				if(iaspect > caspect){
-					$("img", this).height( ch );
-					$("img", this).width( 'auto' );
-					//horizontally center the image
-					var margin_left = Math.floor( (cw - iw) / 2 );
-					$("img", this).css( 'marginLeft', margin_left );
-				}else{
-					$("img", this).width( cw );
-					$("img", this).height( 'auto' );
+					ih = ch;
+					iw = ih * iaspect;
 					//vertically center the image
-					var margin_top = Math.floor( (ch - ih) / 2 );
-					$("img", this).css( 'marginTop', margin_top );
+					margin_left = Math.floor( (cw - iw ) / 2 );
+				}else{
+					iw = cw;
+					ih = iw/iaspect;
+					//vertically center the image
+					margin_top = Math.floor( (ch - ih ) / 2 );
 				}
 			}else{//crop == false
 				if(iaspect > caspect){
-					$("img", this).width( availw );
-					$("img", this).height( 'auto' );
-					ih = $("img", this).height();
+					iw = availw;
+					ih = iw/iaspect;
 				}else{
-					$("img", this).height( ch );
-					$("img", this).width( 'auto' );
+					ih = ch;
+					iw = ih * iaspect;
 				}
 			}
 
+			$('img', this)
+				.width(iw)
+				.height(ih)
+				.css('marginTop', margin_top)
+				.css('marginLeft', margin_left);
 
 		});//end each .carousel-image-container
 	}// end resizeCarouselImages()
@@ -410,8 +389,7 @@ function() {
 		config.pruneComponentMargin();
 		if( $('body').hasClass('front')){
 			config.setCarouselHeight();
-			//config.resizeCarouselImages();
-			$('#jcarousel').jcarousel('reload', {});
+			config.resizeCarouselImages();
 		}
 	}
 
@@ -433,15 +411,15 @@ function() {
 
 		var $carousel = $('#jcarousel');
 		var $carouselList = $('#jcarousel #carousel-list');
-		//remove all other carousel-item just in case
-		$carouselList.find('.carousel-item:not(.intro)').remove();
 
 		for(var i = 0; i < config.CAROUSEL_IMAGES.length; i++){
-			var $item = $('<div class="carousel-item"></div>');
-			$item
-				.css('backgroundColor', config.CAROUSEL_IMAGES[i].backgroundColor)
-				.html('<img alt="C-BIP: Columbia Building Intelligence Project" src="/sites/all/themes/cbipbootstrap/images/' + config.CAROUSEL_IMAGES[i].src + '" width="'+config.CAROUSEL_IMAGES[i].width+'" height="'+config.CAROUSEL_IMAGES[i].height+'">');
-			var $img = $item.find("img");
+			var $item = $('<div class="carousel-item" crop="'+config.CAROUSEL_IMAGES[i].crop+'"></div>');
+			if(i == 0){
+				$item.addClass('first');
+			}else if(i == config.CAROUSEL_IMAGES.length -1){
+				$item.addClass('last');
+			}
+
 
 			var cw = $('#jcarousel').width();
 			var ch = $('#jcarousel').height();
@@ -451,40 +429,46 @@ function() {
 
 			var iaspect = config.CAROUSEL_IMAGES[i].width / config.CAROUSEL_IMAGES[i].height;
 
-			console.log('iaspect: '+ iaspect);
-
+			var iw,
+				ih, 
+				margin_left = 0,
+				margin_top = 0;
 
 			if(config.CAROUSEL_IMAGES[i].crop){
 				if(iaspect > caspect){
-					$img.height( ch );
-					$img.width( 'auto' );
+					ih = ch;
+					iw = ih * iaspect;
 					//vertically center the image
-					var margin_left = Math.floor( (cw - $img.width() ) / 2 );
-					$img.css( 'marginLeft', margin_left );
+					margin_left = Math.floor( (cw - iw ) / 2 );
 				}else{
-					$img.width( cw );
-					$img.height( 'auto' );
+					iw = cw;
+					ih = iw/iaspect;
 					//vertically center the image
-					var margin_top = Math.floor( (ch - $img.height() ) / 2 );
-					$img.css( 'marginTop', margin_top );
+					margin_top = Math.floor( (ch - ih ) / 2 );
 				}
 			}else{//crop == false
 				if(iaspect > caspect){
-					$img.width( availw );
-					$img.height( 'auto' );
-					ih = $img.height();
+					iw = availw;
+					ih = iw/iaspect;
 				}else{
-					$img.height( ch );
-					$img.width( 'auto' );
-					//reset marginTop incase was set in previous resize
-					$img.css( 'marginTop', '' );
+					ih = ch;
+					iw = ih * iaspect;
 				}
 			}
+
+			var $img = $('<img alt="C-BIP: Columbia Building Intelligence Project" src="/sites/all/themes/cbipbootstrap/images/' + config.CAROUSEL_IMAGES[i].src + '" width="'+iw+'" height="'+ih+'">');
+			$img.css('marginLeft', margin_left).css('marginTop', margin_top);
+
+			$item
+				.css('backgroundColor', config.CAROUSEL_IMAGES[i].backgroundColor)
+				.width(cw)
+				.height(ch)
+				.append( $img );
 
 			$carouselList.append($item);
 		}
 
-		$('.carousel-item').css('width', $('#jcarousel').width());
+		//initialize jcarousel
 		$carousel.jcarousel({
 			list: '#carousel-list',
 			items: '.carousel-item',
@@ -495,6 +479,11 @@ function() {
 		//Bind carousel buttons to actions
 		$('#carousel-next').css('opacity', '0.7').bind('click', config.incrementCarousel);
 		$('#carousel-prev').css('opacity', '0.7').bind('click', config.decrementCarousel);
+
+		//begin auto-cycle through carousel
+		config.CURRENT_TIMEOUT_ID = setTimeout(function(){
+			config.incrementCarousel();
+		}, config.CAROUSEL_IMAGES[0].time);
 	}
 
     config.getTumblrFeed = function(){
@@ -615,7 +604,6 @@ function() {
     }
 
 
-
     //////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////     INIT     //////////////////////////////////////////
@@ -629,114 +617,91 @@ function() {
         console.log('path[1] '+ path[1]);
         console.log('path[2] '+ path[2]);
         switch(path[1]){
+        	//////////////////////////
+        	///////    HOME    ///////
+        	//////////////////////////
         	case '':
         		config.initCarousel();
+
+        		//Clicking on main menu on home page
+				$('.front #navigation .menu li a').bind('click', function(event){
+					//event.preventDefault();
+					$('#jcarousel').slideToggle(config.PAGE_TRANSITION_TIME, function(){
+						$('#oldcastle-logo').hide();
+						$('#gsapp-logo').hide();
+					});
+				});
+        		
         		break;
-          case 'library':
-            $('#navigation #block-block-1').show();
-            $('#navigation #block-block-2').hide();
-            if(path[2] == 'elements'){
-            	console.log('elements+');
-				$('#hidden-lib-of-work-subitems > div a').removeClass('active');
-				$('#lib-work-elements a').addClass('active');
-			}else if(path[2] == 'strategies'){
-				$('#hidden-lib-of-work-subitems > div a').removeClass('active');
-				$('#lib-work-strategies a').addClass('active');
-			}
-            break;
-          case 'about':
-            $('#navigation #block-block-2').show();
-            $('#navigation #block-block-1').hide();
-            $('#secondary-nav a.active').removeClass('active');
-            //initialize subnav active to people
-			$('#secondary-nav-people a').addClass('active');
-			
-			/////// SCROLL-SPY ///////
-			$('#secondary-nav-affiliates a').bind('click', config.scrollToAffiliates);
-			$('#secondary-nav-people a').bind('click', config.scrollToPeople);
-			$(document).bind('scroll', config.scrollSpy);
-            break;
-          case 'work':
-          	config.getTumblrFeed();
-          	$('#navigation #block-block-1').hide();
-            $('#navigation #block-block-2').hide();
-          	break;
-          default:
-            $('#navigation #block-block-1').hide();
-            $('#navigation #block-block-2').hide();
-            break;
+
+	    	//////////////////////////
+	    	///////  LIBRARY  ////////
+	    	//////////////////////////
+          	case 'library':
+	            $('#navigation #block-block-1').show();
+	            $('#navigation #block-block-2').hide();
+
+	            //prepare tag menu
+	            config.appendTagMenuContent();
+				$('#lib-work-tag-sort').hover(config.showTagMenu, config.hideTagMenu);
+
+	            if(path[2] == 'elements'){
+	            	console.log('elements+');
+					$('#hidden-lib-of-work-subitems > div a').removeClass('active');
+					$('#lib-work-elements a').addClass('active');
+				}else if(path[2] == 'strategies'){
+					$('#hidden-lib-of-work-subitems > div a').removeClass('active');
+					$('#lib-work-strategies a').addClass('active');
+				}
+	            break;
+
+	        //////////////////////////
+	    	////////  ABOUT  /////////
+	    	//////////////////////////
+          	case 'about':
+	            $('#navigation #block-block-2').show();
+	            $('#navigation #block-block-1').hide();
+	            $('#secondary-nav a.active').removeClass('active');
+	            //initialize subnav active to people
+				$('#secondary-nav-people a').addClass('active');
+				
+				/////// SCROLL-SPY ///////
+				$('#secondary-nav-affiliates a').bind('click', config.scrollToAffiliates);
+				$('#secondary-nav-people a').bind('click', config.scrollToPeople);
+				$(document).bind('scroll', config.scrollSpy);
+	            break;
+
+	        //////////////////////////
+        	///////    WORK    ///////
+        	//////////////////////////
+          	case 'work':
+	          	config.getTumblrFeed();
+	          	$('#navigation #block-block-1').hide();
+	            $('#navigation #block-block-2').hide();
+	          	break;
+
+	        //////////////////////////
+        	//////  RESOURCES  ///////
+        	//////////////////////////
+          	case 'resources':
+	        	//clicking on resource should open in a new window
+				//@todo: do i need this? can't it be in the template file?
+				$('.resource').bind('click', function(){
+					window.open($(this).attr("href"),'_blank');
+				});
+
+				$('.resource').hover(config.hoverOn, config.hoverOff);
+	          	break;
+
+	        //////////////////////////
+	    	///////  DEFAULT  ////////
+	    	////////////////////////// 	
+          	default:
+	            $('#navigation #block-block-1').hide();
+	            $('#navigation #block-block-2').hide();
+	            break;
         }
-
-
- 		/////// HOME PAGE ///////
- 		
- 		//config.setCarouselCycleTiming();
- 		/*
- 		$('#carousel-image-2').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/130319_Element4.gif" alt="C-BIP: Columbia Building Intelligence Project" />');
-
- 		$('#carousel-image-3').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/130319_Element_3.gif" alt="C-BIP: Columbia Building Intelligence Project" />');
-
- 		$('#carousel-image-4').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/intro4.gif" alt="C-BIP: Columbia Building Intelligence Project" />');
-
- 		$('#carousel-image-5').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/130319_Collaboration.gif" alt="C-BIP: Columbia Building Intelligence Project" />');
-
- 		$('#carousel-image-5').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/130319_Collaboration.gif" alt="C-BIP: Columbia Building Intelligence Project" />');
-
- 		$('#carousel-image-6').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/Habitat_1.png" alt="C-BIP: Columbia Building Intelligence Project" />');
-
- 		$('#carousel-image-7').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/130319_Element_2.gif" alt="C-BIP: Columbia Building Intelligence Project" />');
-*/
-		$('#carousel-image-2').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/intro2.png" alt="C-BIP: Columbia Building Intelligence Project" />');
-
- 		$('#carousel-image-3').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/intro3.png" alt="C-BIP: Columbia Building Intelligence Project" />');
-
- 		$('#carousel-image-4').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/intro4.png" alt="C-BIP: Columbia Building Intelligence Project" />');
-
- 		$('#carousel-image-5').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/intro2.png" alt="C-BIP: Columbia Building Intelligence Project" />');
-
- 		$('#carousel-image-5').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/intro2.png" alt="C-BIP: Columbia Building Intelligence Project" />');
-
- 		$('#carousel-image-6').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/intro2.png" alt="C-BIP: Columbia Building Intelligence Project" />');
-
- 		$('#carousel-image-7').html('<img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/intro2.png" alt="C-BIP: Columbia Building Intelligence Project" />');
-		
-
-		//Clicking on main menu on home page
-		$('.front #navigation .menu li a').bind('click', function(event){
-			//event.preventDefault();
-			$('#carousel').slideToggle(config.PAGE_TRANSITION_TIME, function(){
-				$('#oldcastle-logo').hide();
-				$('#gsapp-logo').hide();
-			});
-		});
-
-
-		/////// LIBRARY OF WORK ///////
-		config.appendTagMenuContent();
-		$('#lib-work-tag-sort').hover(config.showTagMenu, config.hideTagMenu);
-
-
-		/////// RESOURCES ///////
-
-		//clicking on resource should open in a new window
-		//@todo: do i need this? can't it be in the template file?
-		$('.resource').bind('click', function(){
-			window.open($(this).attr("href"),'_blank');
-		});
-
-		$('.resource').hover(config.hoverOn, config.hoverOff);
-
-
-
-		/////// CAROUSEL ///////
-
-		//begin the carousel cycle if home page
-		if( $('body').hasClass('front')){
-			//config.cycleCarousel();
-		}
-
-
-
+	
 		/////// RESIZE FUNCTIONS ///////
 
 		//call the resizeFunc on page load and bind to window resize events

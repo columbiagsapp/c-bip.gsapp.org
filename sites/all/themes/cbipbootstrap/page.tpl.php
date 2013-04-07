@@ -17,29 +17,7 @@
     </div>
 
     <div id="jcarousel" class="jcarousel">
-      <div id="carousel-list">
-        <div id="carousel-image-1" class="carousel-item" style="background-color:#000;" crop="false" time="40000" label="">
-          <img class="carousel-image" src="/sites/all/themes/cbipbootstrap/images/intro4.png" alt="C-BIP: Columbia Building Intelligence Project" />
-        </div>
-
-        <div id="carousel-image-2" class="carousel-item" style="background-color:#fff;" crop="false" time="5000" label="Building Element">
-        </div>
-
-        <div id="carousel-image-3" class="carousel-item" style="background-color:#bfbfbf;" crop="false" time="5000" label="Building Element"> 
-        </div>
-
-        <div id="carousel-image-4" class="carousel-item" crop="true" time="5000" label="Building Strategy"> 
-        </div>
-
-        <div id="carousel-image-5" class="carousel-item" crop="true" time="5000" label="Collaboration">
-        </div>
-
-        <div id="carousel-image-6" class="carousel-item" crop="true" time="5000" label="Building Strategy">
-        </div>
-
-        <div id="carousel-image-7" class="carousel-item" style="background-color:#ccc;" crop="false" time="5000" label="Building Element">
-        </div>
-      </div>
+      <div id="carousel-list"></div>
       <div id="carousel-prev"></div>
       <div id="carousel-next"></div>
     </div>
