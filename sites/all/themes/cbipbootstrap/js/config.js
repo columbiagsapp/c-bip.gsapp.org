@@ -648,8 +648,9 @@ function() {
             $('#navigation #block-block-2').show();
             $('#navigation #block-block-1').hide();
             $('#secondary-nav a.active').removeClass('active');
-			$('#secondary-nav #secondary-nav-people a.active').addClass('active');
-
+            //initialize subnav active to people
+			$('#secondary-nav-people a').addClass('active');
+			
 			/////// SCROLL-SPY ///////
 			$('#secondary-nav-affiliates a').bind('click', config.scrollToAffiliates);
 			$('#secondary-nav-people a').bind('click', config.scrollToPeople);
