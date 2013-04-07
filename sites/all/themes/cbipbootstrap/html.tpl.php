@@ -22,6 +22,22 @@
   <![endif]-->
 
   <script type="text/javascript" src="http://fast.fonts.com/jsapi/7ae7343d-e0e4-45fd-a488-2bfa26bd5754.js"></script>
+
+  <!-- google analytics for c-bip.org -->
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-29153313-1']);
+    _gaq.push(['_setDomainName', 'c-bip.org']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
 </head>
 
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
