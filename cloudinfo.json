@@ -1,0 +1,20 @@
+{
+    "name": "Columbia Building Intelligence Project",
+    "url": "http://c-bip.gsapp.org/",
+    "version": "1.0",
+    "thumbnail": "screenshot.png",
+    "contributors": [
+        {
+            "name": "Troy Conrad Therrien",
+            "username": "troyth",
+            "role": "developer"
+        },
+        {
+            "name": "Leigha Dennis",
+            "username": "lleigha",
+            "role": "designer"
+        }
+    ],
+    "dependencies": [
+    ]
+}
